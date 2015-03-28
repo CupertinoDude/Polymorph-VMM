@@ -1,0 +1,8 @@
+primitiveNewMethod
+	| header bytecodeCount class size |
+	header <- self popStack.
+	bytecodeCount <- self popInteger.
+	class <- self popStack.
+	size <- (self literalCountOfHeader: header) + 1 * 2 + bytecodeCount.
+	self push: (memory instantiateClass: class
+				withBytes: size)

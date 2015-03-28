@@ -1,0 +1,4 @@
+toFreePointerListAdd: objectPointer
+	self locationBitsOf: objectPointer
+		put: (self headOfFreePointerList).
+	self headOfFreePointerListPut: objectPointer

@@ -1,0 +1,14 @@
+primitiveNextInstance
+	| object "new instance variable" instance |
+	object <- self popStack.
+	"ERROR: isLastInstance: not defined in G&R, body of
+	method has been changed completely from:
+	(memory isLastInstance: object)
+		ifTrue: [self primitiveFail]
+		ifFalse: [self push: (memory instanceAfter: object)]
+	to:"
+
+	instance <- memory instanceAfter: object.
+	instance = NilPointer
+		ifTrue: [self primitiveFail]
+		ifFalse: [self push: instance]

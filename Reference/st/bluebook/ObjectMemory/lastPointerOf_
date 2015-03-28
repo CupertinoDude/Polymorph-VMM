@@ -1,0 +1,11 @@
+lastPointerOf: objectPointer
+	| methodHeader |
+	(self pointerBitOf: objectPointer) = 0
+		ifTrue: [^HeaderSize]
+		"ERROR: MethodClass not defined"
+		ifFalse: [(self classBitsOf: objectPointer) = MethodClass
+				ifTrue: [methodHeader <- self heapChunkOf: objectPointer
+								word: HeaderSize.
+					^HeaderSize + 1 + ((methodHeader bitAnd: 126)
+								bitShift: -1)]
+				ifFalse: [^self sizeBitsOf: objectPointer]]

@@ -1,0 +1,18 @@
+countDown: rootObjectPointer
+	| count |
+	(self isIntegerObject: rootObjectPointer)
+		ifTrue: [^rootObjectPointer]
+		ifFalse: "this is a pointer, so decrement its reference count"
+			[^self forAllObjectsAccessibleFrom: rootObjectPointer
+				suchThat:
+					"the predicate decrements the count and tests for zero"
+					[ :objectPointer |
+						count <- (self countBitsOf: objectPointer) - 1.
+						count < 127
+							ifTrue: [self countBitsOf: objectPointer
+									put: count].
+						count = 0]
+				do: "the action zeroes the count and deallocates the object"
+					[ :objectPointer |
+						self countBitsOf: objectPointer put: 0.
+						self deallocate: objectPointer]]

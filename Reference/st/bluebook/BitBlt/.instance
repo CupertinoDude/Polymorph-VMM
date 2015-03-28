@@ -1,0 +1,28 @@
+"Instance Variables"
+sourceBits
+sourceRaster
+destBits
+destRaster
+halftoneBits
+skew
+skewMask
+mask1
+mask2
+preload
+nWords
+hDir
+vDir
+sourceIndex
+sourceDelta
+destIndex
+destDelta
+sx
+sy
+dx
+dy
+w
+h
+combinationRule
+"Class Variables"
+AllOnes
+RightMasks

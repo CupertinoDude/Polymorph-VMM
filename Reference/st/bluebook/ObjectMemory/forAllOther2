@@ -1,0 +1,44 @@
+forAllOtherObjectsAccessibleFrom: objectPointer
+		suchThat: predicate
+		do: action
+	| prior current offset size next |
+	"compute prior, current, offset, and size to begin processing objectPointer"
+	prior <- NonPointer.
+	current <- objectPointer.
+	offset <- size <- self lastPointerOf: objectPointer.
+	[true] whileTrue: "for all pointers in all objects traversed"
+		[(offset <- offset - 1) > 0 "decrement the field index"
+			ifTrue: "the class hasn't been passed yet"
+				[next <- self heapChunkOf: current word: offset.
+						"one of the pointers"
+				((self isIntegerObject: next)==false and: [predicate value: next])
+					ifTrue: "it's a non-immediate object and it should be processed"
+						["reverse the pointer chain"
+						self heapChunkOf: current word: offset put: prior.
+						"save the offset either in the count field or in the extra word"
+						size < HugeSize
+							ifTrue: [self countBitsOf: current put: offset]
+							ifFalse: [self heapChunkOf: current
+									word: size+1 put: offset].
+						"compute prior, current, offset, and size to begin processing next"
+						prior <- current.
+						current <- next.
+						offset <- size <- self lastPointerOf: current]]
+			ifFalse: ["all pointers have been followed; now perform the action"
+				action value: objectPointer.
+				"did we get here from another object?"
+				prior = NonPointer
+					ifTrue: "this was the root object, so we are done"
+						[^objectPointer].
+				"restore next, current and size to resume processing prior"
+				next <- current.
+				current <- prior.
+				size <- self lastPointerOf: current.
+				"restore offset either from the count field or from the extra word"
+				size < HugeSize
+					ifTrue: [offset <- self countBitsOf: current]
+					ifFalse: [offset <- self heapChunkOf: current word: size+1].
+				"restore prior from the reversed pointer chain"
+				prior <- self heapChunkOf: current word: offset.
+				"restore (unreverse) the pointer chain"
+				self heapChunkOf: current word: offset put: next]]

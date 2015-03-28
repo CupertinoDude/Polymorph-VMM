@@ -1,0 +1,6 @@
+doubleExtendedSendBytecode
+	| count selector |
+	count <- self fetchByte.
+	selector <- self literal: self fetchByte.
+	self sendSelector: selector
+		argumentCount: count

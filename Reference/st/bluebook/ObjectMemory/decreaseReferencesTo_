@@ -1,0 +1,2 @@
+decreaseReferencesTo: objectPointer
+	self countDown: objectPointer

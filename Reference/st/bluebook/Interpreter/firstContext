@@ -1,0 +1,4 @@
+firstContext
+	newProcessWaiting <- false.
+	^memory fetchPointer: SuspendedContextIndex
+		ofObject: self activeProcess

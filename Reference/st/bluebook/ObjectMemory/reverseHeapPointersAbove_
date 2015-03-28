@@ -1,0 +1,17 @@
+reverseHeapPointersAbove: lowWaterMark
+	| size |
+	0 to: ObjectTableSize-2 by: 2 do:
+		[ :objectPointer |
+			(self freeBitOf: objectPointer) = 0
+				ifTrue: "the Object Table entry is in use"
+					[(self segmentBitsOf: objectPointer) = currentSegment
+						ifTrue: "the object is in this segment"
+							[(self locationBitsOf: objectPointer) < lowWaterMark
+								ifFalse: "the object will be swept"
+									[size <- self sizeBitsOf: objectPointer.
+											"rescue the size"
+									self sizeBitsOf: objectPointer
+										put: objectPointer.
+										"reverse the pointer"
+									self locationBitsOf: objectPointer
+										put: size "save the size"]]]]

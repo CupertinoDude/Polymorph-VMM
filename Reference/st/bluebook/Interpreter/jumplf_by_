@@ -1,0 +1,8 @@
+jumplf: condition by: offset
+	| boolean |
+	boolean <- self popStack.
+	boolean = condition
+		ifTrue: [self jump: offset]
+		ifFalse: [(boolean=TruePointer) | (boolean=FalsePointer)
+				ifFalse: [self unPop: 1.
+					self sendMustBeBoolean]]

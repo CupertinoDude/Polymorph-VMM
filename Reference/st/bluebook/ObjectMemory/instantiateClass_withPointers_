@@ -1,0 +1,5 @@
+instantiateClass: classPointer withPointers: length
+	| size extra |
+	size <- HeaderSize + length.
+	extra <- size < HugeSize ifTrue: [0] ifFalse: [1].
+	^self allocate: size odd: 0 pointer: 1 extra: extra class: classPointer

@@ -1,0 +1,19 @@
+abandonFreeChunksInSegment: segment
+	| lowWaterMark objectPointer nextPointer |
+	lowWaterMark <- HeapSpaceStop. "first assume that no chunk is free"
+	HeaderSize to: BigSize do: "for each free-chunk list"
+		[ :size |
+			objectPointer <- self headOfFreeChunkList: size
+						inSegment: segment.
+			[objectPointer = NonPointer] whileFalse:
+				[lowWaterMark <- lowWaterMark min:
+							(self locationBitsOf: objectPointer).
+				nextPointer <- self classBitsOf: objectPointer.
+							"link to next free chunk"
+				self classBitsOf: objectPointer put: NonPointer.
+							"distinguish for sweep"
+				self releasePointer: objectPointer.
+							"add entry to free-pointer list"
+				objectPointer <- nextPointer].
+			self resetFreeChunkList: size inSegment: segment].
+	^lowWaterMark

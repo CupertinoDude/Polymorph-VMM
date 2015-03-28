@@ -1,0 +1,13 @@
+initializeContextIndices
+	"Class MethodContext"
+	SenderIndex <- 0.
+	InstructionPointerIndex <- 1.
+	StackPointerIndex <- 2.
+	MethodIndex <- 3.
+	ReceiverIndex <- 5.
+	TempFrameStart <- 6.
+	"Class BlockContext"
+	CallerIndex <- 0.
+	BlockArgumentCountIndex <- 3.
+	InitialIPIndex <- 4.
+	HomeIndex <- 5

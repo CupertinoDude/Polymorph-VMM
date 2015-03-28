@@ -1,0 +1,14 @@
+primitiveResponse
+	| flagValue thisReceiver offset |
+	primitiveIndex = 0
+		ifTrue: [flagValue <- self flagValueOf: newMethod.
+			flagValue = 5
+				ifTrue: [self quickReturnSelf.
+					^true].
+			flagValue = 6
+				ifTrue: [self quickInstanceLoad.
+					^true].
+			^false]
+		ifFalse: [self initPrimitive.
+			self dispatchPrimitives.
+			^self success]

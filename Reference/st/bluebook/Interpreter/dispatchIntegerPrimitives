@@ -1,0 +1,19 @@
+dispatchIntegerPrimitives
+	primitiveIndex = 1 ifTrue: [^self primitiveAdd].
+	primitiveIndex = 2 ifTrue: [^self primitiveSubtract].
+	primitiveIndex = 3 ifTrue: [^self primitiveLessThan].
+	primitiveIndex = 4 ifTrue: [^self primitiveGreaterThan].
+	primitiveIndex = 5 ifTrue: [^self primitiveLessOrEqual].
+	primitiveIndex = 6 ifTrue: [^self primitiveGreaterOrEqual].
+	primitiveIndex = 7 ifTrue: [^self primitiveEqual].
+	primitiveIndex = 8 ifTrue: [^self primitiveNotEqual].
+	primitiveIndex = 9 ifTrue: [^self primitiveMultiply].
+	primitiveIndex = 10 ifTrue: [^self primitiveDivide].
+	primitiveIndex = 11 ifTrue: [^self primitiveMod].
+	primitiveIndex = 12 ifTrue: [^self primitiveDiv].
+	primitiveIndex = 13 ifTrue: [^self primitiveQuo].
+	primitiveIndex = 14 ifTrue: [^self primitiveBitAnd].
+	primitiveIndex = 15 ifTrue: [^self primitiveBitOr].
+	primitiveIndex = 16 ifTrue: [^self primitiveBitXor].
+	primitiveIndex = 17 ifTrue: [^self primitiveBitShift].
+	primitiveIndex = 18 ifTrue: [^self primitiveMakePoint]

@@ -1,0 +1,8 @@
+initializeBitBlt
+	"initialize a table of bit masks ... p.356"
+	RightMasks <- 
+		#(0	16r1 16r3 16r7 16rF
+			16r1F 16r3F 16r7F 16rFF
+			16r1FF 16r3FF 16r7FF 16rFFF
+			16r1FFF 16r3FFF 16r7FFF 16rFFFF).
+	AllOnes <- 16rFFFF

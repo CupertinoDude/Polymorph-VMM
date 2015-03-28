@@ -1,0 +1,4 @@
+headOfFreePointerListPut: objectPointer
+	^wordMemory segment: ObjectTableSegment
+		word: FreePointerList
+		put: objectPointer

@@ -1,0 +1,9 @@
+primitiveBitOr
+	| integerReceiver integerArgument integerResult |
+	integerArgument <- self popInteger.
+	integerReceiver <- self popInteger.
+	self success
+		ifTrue: [integerResult <- integerReceiver bitOr: integerArgument].
+	self success
+		ifTrue: [self pushInteger: integerResult]
+		ifFalse: [self unPop: 2]

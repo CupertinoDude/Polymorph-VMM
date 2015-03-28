@@ -1,0 +1,7 @@
+methodClassOf: methodPointer
+	| literalCount association |
+	literalCount <- self literalCountOf: methodPointer.
+	association <- self literal: literalCount - 1
+				ofMethod: methodPointer.
+	^memory fetchPointer: ValueIndex
+		ofObject: association

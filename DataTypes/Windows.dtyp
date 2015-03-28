@@ -1,0 +1,8 @@
+#
+
+FileName=Windows
+DTName=Windows Executable,exe
+Version=1.0
+ID=syst,Wx32
+Recog=#?,MZ
+Flags=binary,case,0

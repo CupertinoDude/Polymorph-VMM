@@ -1,0 +1,2 @@
+success: successValue
+	success <- successValue & success

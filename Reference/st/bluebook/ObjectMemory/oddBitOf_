@@ -1,0 +1,2 @@
+oddBitOf: objectPointer
+	^self ot: objectPointer bits: 8 to: 8

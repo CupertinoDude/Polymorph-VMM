@@ -1,0 +1,14 @@
+lookupMethodInClass: class
+	| currentClass dictionary |
+	currentClass <- class.
+	[currentClass~=NilPointer] whileTrue:
+		[dictionary <- memory fetchPointer: MessageDictionaryIndex
+					ofObject: currentClass.
+		(self lookupMethodInDictionary: dictionary)
+			ifTrue: [^true].
+		currentClass <- self superclassOf: currentClass].
+	messageSelector = DoesNotUnderstandSelector.
+		ifTrue: [self error: 'Recursive not understood error encountered'].
+	self createActualMessage.
+	messageSelector <- DoesNotUnderstandSelector.
+	^self lookupMethodInClass: class

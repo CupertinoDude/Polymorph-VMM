@@ -1,0 +1,9 @@
+primitiveAsObject
+	| thisReceiver newOop |
+	thisReceiver <- self popStack.
+	newOop <- thisReceiver bitAnd: 16rFFFE.
+	"ERROR: hasObject not defined"
+	self success: (memory hasObject: newOop).
+	self success
+		ifTrue: [self push: newOop]
+		ifFalse: [self unPop: 1]

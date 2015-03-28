@@ -1,0 +1,3 @@
+largeContextFlagOf: methodPointer
+	^self extractBits: 8 to: 8
+		of: (self headerOf: methodPointer)

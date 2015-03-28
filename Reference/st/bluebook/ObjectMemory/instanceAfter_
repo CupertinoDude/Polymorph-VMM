@@ -1,0 +1,10 @@
+instanceAfter: objectPointer
+	| classPointer |
+	"ERROR: next line omitted by G&R"
+	classPointer <- self fetchClassOf: objectPointer.
+	objectPointer to: ObjectTableSize-2 by: 2 do:
+		[ :pointer |
+			(self freeBitOf: pointer) = 0
+				ifTrue: [(self fetchClassOf: pointer) = classPointer
+						ifTrue: [^pointer]]].
+	^NilPointer

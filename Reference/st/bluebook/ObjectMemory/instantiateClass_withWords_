@@ -1,0 +1,4 @@
+instantiateClass: classPointer withWords: length
+	| size |
+	size <- HeaderSize + length.
+	^self allocate: size odd: 0 pointer: 0 extra: 0 class: classPointer

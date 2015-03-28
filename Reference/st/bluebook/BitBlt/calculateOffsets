@@ -1,0 +1,14 @@
+calculateOffsets
+	"check if need to preload buffer
+	(i.e., two words of source needed for first word of destination)"
+	preload <- (sourceForm notNil) and:
+			[skew ~= 0 and: [skew <= (sx bitAnd: 15)]].
+	hDir < 0 ifTrue: [preload <- preload == false].
+	"calculate starting offsets"
+	sourceIndex <- sy * sourceRaster + (sx // 16).
+	destIndex <- dy * destRaster + (dx // 16).
+	"calculate increments from end of 1 line to start of next"
+	sourceDelta <-
+		(sourceRaster * vDir) -
+			(nWords + (preload ifTrue: [1] ifFalse: [0]) * hDir).
+	destDelta <- (destRaster * vDir) - (nWords * hDir)

@@ -1,0 +1,9 @@
+argumentCountOf: methodPointer
+	| flagValue |
+	flagValue <- self flagValueOf: methodPointer.
+	flagValue < 5
+		ifTrue: [^flagValue].
+	flagValue < 7
+		ifTrue: [^0]
+		ifFalse: [^self extractBits: 2 to: 6
+				of: (self headerExtensionOf: methodPointer)]

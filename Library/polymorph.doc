@@ -1,0 +1,102 @@
+TABLE OF CONTENTS
+
+polymorph.library/-Background-
+polymorph.library/-RexxHost-
+polymorph.library/GetPolymorphObjectAttr()
+polymorph.library/LoadSegments()
+polymorph.library/ObtainPolymorphObject()
+polymorph.library/OptionTagList()
+polymorph.library/ReleasePolymorphObject()
+polymorph.library/SetPolymorphObjectAttr()
+polymorph.library/StoreSegment()
+polymorph.library/-Background-                 polymorph.library/-Background-
+---------------------------------------------------------------------------*
+
+   BACKGROUND
+
+	This is a Virtual Machine / Emulation / JIT / Translation Extension for
+	AmigaOS to support arbitrary Application Container types
+
+	Each PolymorphApplication plugin added to the system will have its own
+	limitations for what it can and can not support
+
+polymorph.library/-RexxHost-                     polymorph.library/-RexxHost-
+---------------------------------------------------------------------------*
+
+	ARexx will be supported through this ScriptExec vector...
+
+		However that is a "FUTURE SUPPORT" item, not to be written until
+       primary code is functional
+
+polymorph.library/GetPolymorphObjectAttr()ph.library/GetPolymorphObjectAttr()
+---------------------------------------------------------------------------*
+
+	NAME
+		GetPolymorphObjectAttr()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+polymorph.library/LoadSegments()             polymorph.library/LoadSegments()
+---------------------------------------------------------------------------*
+
+	NAME
+		LoadSegments()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+polymorph.library/ObtainPolymorphObject()orph.library/ObtainPolymorphObject()
+---------------------------------------------------------------------------*
+
+	NAME
+		ObtainPolymorphObject()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+polymorph.library/OptionTagList()           polymorph.library/OptionTagList()
+---------------------------------------------------------------------------*
+
+	NAME
+		PolymorphOptionTags()
+		PolymorphOptionTagList()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+polymorph.library/ReleasePolymorphObject()ph.library/ReleasePolymorphObject()
+---------------------------------------------------------------------------*
+
+	NAME
+		ReleasePolymorphObject()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+polymorph.library/SetPolymorphObjectAttr()ph.library/SetPolymorphObjectAttr()
+---------------------------------------------------------------------------*
+
+	NAME
+		SetPolymorphObjectAttr()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+polymorph.library/StoreSegment()             polymorph.library/StoreSegment()
+---------------------------------------------------------------------------*
+
+	NAME
+		StoreSegment()
+
+	SYNOPSIS
+
+	DESCRIPTION
+
+

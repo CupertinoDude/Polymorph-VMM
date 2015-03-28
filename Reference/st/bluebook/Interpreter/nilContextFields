@@ -1,0 +1,7 @@
+nilContextFields
+	memory storePointer: SenderIndex
+		ofObject: activeContext
+		withValue: NilPointer.
+	memory storePointer: InstructionPointerIndex
+		ofObject: activeContext
+		withValue: NilPointer

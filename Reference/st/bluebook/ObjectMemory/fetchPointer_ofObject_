@@ -1,0 +1,2 @@
+fetchPointer: fieldIndex ofObject: objectPointer
+	^self heapChunkOf: objectPointer word: HeaderSize + fieldIndex

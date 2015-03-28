@@ -1,0 +1,9 @@
+primitiveNotEqual
+	| integerReceiver integerArgument integerResult |
+	integerArgument <- self popInteger.
+	integerReceiver <- self popInteger.
+	self success
+		ifTrue: [integerReceiver ~= integerArgument
+				ifTrue: [self push: TruePointer]
+				ifFalse: [self push: FalsePointer]]
+		ifFalse: [self unPop: 2]

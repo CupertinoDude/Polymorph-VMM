@@ -1,0 +1,7 @@
+dispatchArithmeticPrimitives
+	primitiveIndex < 20
+		ifTrue: [^self dispatchIntegerPrimitives].
+	primitiveIndex < 40
+		ifTrue: [^self dispatchLargeIntegerPrimitives].
+	primitiveIndex < 60
+		ifTrue: [^self dispatchFloatPrimitives]

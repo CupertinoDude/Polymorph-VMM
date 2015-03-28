@@ -1,0 +1,4 @@
+heapChunkOf: objectPointer word: offset put: value
+	^wordMemory segment: (self segmentBitsOf: objectPointer)
+		word: ((self locationBitsOf: objectPointer) + offset)
+		put: value

@@ -1,0 +1,7 @@
+specialSelectorPrimitiveResponse
+	self initPrimitive.
+	(currentBytecode between: 176 and: 191)
+		ifTrue: [self arithmeticSelectorPrimitive].
+	(currentBytecode between: 192 and: 207)
+		ifTrue: [self commonSelectorPrimitive].
+	^self success

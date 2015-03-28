@@ -1,0 +1,18 @@
+addLastLink: aLink toList: aLinkedList
+	| lastLink |
+	(self isEmptyList: aLinkedList)
+		ifTrue: [memory storePointer: FirstLinkIndex
+				ofObject: aLinkedList
+				withValue: aLink]
+		ifFalse: [lastLink <- memory fetchPointer: LastLinkIndex
+						ofObject: aLinkedList.
+			memory storePointer: NextLinkIndex
+				ofObject: lastLink
+				withValue: aLink].
+	memory storePointer: LastLinkIndex
+		ofObject: aLinkedList
+		withValue: aLink.
+	"ERROR: this field assigned to but never used"
+	memory storePointer: MyListIndex
+		ofObject: aLink
+		withValue: aLinkedList

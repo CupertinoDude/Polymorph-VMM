@@ -1,0 +1,2 @@
+interpret
+	[true] whileTrue: [self cycle]

@@ -1,0 +1,5 @@
+isBlockContext: contextPointer
+	| methodOrArguments |
+	methodOrArguments <- memory fetchPointer: MethodIndex
+				ofObject: contextPointer.
+	^memory isIntegerObject: methodOrArguments

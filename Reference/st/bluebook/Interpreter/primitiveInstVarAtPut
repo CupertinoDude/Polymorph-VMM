@@ -1,0 +1,15 @@
+primitiveInstVarAtPut
+	"ERROR: realValue is not used in the method"
+	| thisReceiver index newValue "realValue" |
+	newValue <- self popStack.
+	index <- self popInteger.
+	thisReceiver <- self popStack.
+	self checkInstanceVariableBoundsOf: index
+		in: thisReceiver.
+	self success
+		ifTrue: [self subscript: thisReceiver
+				with: index
+				storing: newValue].
+	self success
+		ifTrue: [self push: newValue]
+		ifFalse: [self unPop: 3]

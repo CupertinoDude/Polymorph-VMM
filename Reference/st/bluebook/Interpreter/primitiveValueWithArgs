@@ -1,0 +1,29 @@
+primitiveValueWithArgs
+	| argumentArray blockContext blockArgumentCount
+	arrayClass arrayArgumentCount initialIP |
+	argumentArray <- self popStack.
+	blockContext <- self popStack.
+	blockArgumentCount <- self argumentCountOfBlock: blockContext.
+	arrayClass <- memory fetchClassOf: argumentArray.
+	self success: (arrayClass = ClassArrayPointer).
+	self success
+		ifTrue: [arrayArgumentCount <- memory fetchWordLengthOf: argumentArray.
+			self success: arrayArgumentCount = blockArgumentCount].
+	self success
+		ifTrue: [self transfer: arrayArgumentCount
+				fromIndex: 0
+				ofObject: argumentArray
+				toIndex: TempFrameStart
+				ofObject: blockContext.
+			initialIP <- memory fetchPointer: InitialIPIndex
+						ofObject: blockContext.
+			memory storePointer: InstructionPointerIndex
+				ofObject: blockContext
+				withValue: initialIP.
+			self storeStackPointerValue: arrayArgumentCount
+				inContext: blockContext.
+			memory storePointer: CallerIndex
+				ofObject: blockContext
+				withValue: activeContext.
+			self newActiveContext: blockContext]
+		ifFalse: [self unPop: 2]

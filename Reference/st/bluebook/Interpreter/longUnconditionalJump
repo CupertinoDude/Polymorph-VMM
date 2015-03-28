@@ -1,0 +1,5 @@
+longUnconditionalJump
+	| offset |
+	offset <- self extractBits: 13 to: 15
+			of: currentBytecode.
+	self jump: offset - 4 * 256 + self fetchByte

@@ -1,0 +1,4 @@
+initializeMessageIndices
+	MessageSelectorIndex <- 0.
+	MessageArgumentsIndex <- 1.
+	MessageSize <- 2

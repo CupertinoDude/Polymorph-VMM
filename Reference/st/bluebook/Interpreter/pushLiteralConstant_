@@ -1,0 +1,2 @@
+pushLiteralConstant: literalIndex
+	self push: (self literal: literalIndex)

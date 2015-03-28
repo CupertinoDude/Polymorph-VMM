@@ -1,0 +1,14 @@
+primitiveSomeInstance
+	| class "new instance variable" instance|
+	class <- self popStack.
+	"ERROR: instancesOf not defined in G&R, body of
+	method has been changed completely from:
+	(memory instancesOf: class)
+		ifTrue: [self push: (memory initialInstanceOf: class)]
+		ifFalse: [self primitiveFail]
+	to:"
+
+	instance <- memory initialInstanceOf: class.
+	instance = NilPointer
+		ifTrue: [self primitiveFail]
+		ifFalse: [self push: instance]

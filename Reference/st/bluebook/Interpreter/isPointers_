@@ -1,0 +1,5 @@
+isPointers: classPointer
+	| pointersFlag |
+	pointersFlag <- self extractBits: 0 to: 0
+			of: (self instanceSpecificationOf: classPointer).
+	^pointersFlag = 1

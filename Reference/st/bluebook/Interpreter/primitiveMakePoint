@@ -1,0 +1,20 @@
+primitiveMakePoint
+	| integerReceiver integerArgument pointResult |
+	"ERROR: next four lines replaced by two
+	integerArgument <- self popStack.
+	integerReceiver <- self popStack.
+	self success: (memory isIntegerValue: integerReceiver).
+	self success: (memory isIntegerValue: integerArgument)."
+	integerArgument <- self popInteger.
+	integerReceiver <- self popInteger.
+	self success
+		ifTrue: [pointResult <- memory instantiateClass: ClassPointPointer
+						withPointers: ClassPointSize.
+			memory storePointer: XIndex
+				ofObject: pointResult
+				withValue: integerReceiver.
+			memory storePointer: YIndex
+				ofObject: pointResult
+				withValue: integerArgument.
+			self push: pointResult]
+		ifFalse: [self unPop: 2]

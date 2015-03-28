@@ -1,0 +1,22 @@
+lookupMethodInDictionary: dictionary
+	| length index mask wrapAround nextSelector methodArray |
+	length <- memory fetchWordLengthOf: dictionary.
+	mask <- length - SelectorStart - 1.
+	index <- (mask bitAnd: (self hash: messageSelector)) + SelectorStart.
+	wrapAround <- false.
+	[true] whileTrue:
+		[nextSelector <- memory fetchPointer: index
+					ofObject: dictionary.
+		nextSelector=NilPointer ifTrue: [^false].
+		nextSelector=messageSelector
+			ifTrue: [methodArray <- memory fetchPointer: MethodArrayIndex
+							ofObject: dictionary.
+				newMethod <- memory fetchPointer:  index - SelectorStart
+							ofObject: methodArray.
+				primitiveIndex <- self primitiveIndexOf: newMethod.
+				^true].
+		index <- index + 1.
+		index = length
+			ifTrue: [wrapAround ifTrue: [^false].
+				wrapAround <- true.
+				index <- SelectorStart]]

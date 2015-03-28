@@ -1,0 +1,34 @@
+primitiveNextPut
+	| value stream index limit array arrayClass result ascii |
+	value <- self popStack.
+	stream <- self popStack.
+	array <- memory fetchPointer: StreamArrayIndex
+			ofObject: stream.
+	arrayClass <- memory fetchClassOf: array.
+	index <- self fetchInteger: StreamIndexIndex
+			ofObject: stream.
+	limit <- self fetchInteger: StreamWriteLimitIndex
+			ofObject: stream.
+	self success: index < limit.
+	self success
+		(arrayClass=ClassArrayPointer) | (arrayClass=ClassStringPointer).
+	self checkIndexableBoundsOf: index + 1
+		in: array.
+	self success
+		ifTrue: [index <- index + 1.
+			arrayClass = ClassArrayPointer
+				ifTrue: [self subscript: array
+						with: index
+						storing: value]
+				ifFalse: [ascii <- memory fetchPointer: CharacterValueIndex
+							ofObject: value.
+					self subscript: array
+						with: index
+						storing: ascii]].
+	self success
+		ifTrue: [self storeInteger: StreamIndexIndex
+				ofObject: stream
+				withValue: index].
+	self success
+		ifTrue: [self push: value]
+		ifFalse: [self unPop: 2]

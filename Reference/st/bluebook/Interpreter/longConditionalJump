@@ -1,0 +1,11 @@
+longConditionalJump
+	| offset |
+	offset <- self extractBits: 14 to: 15
+			of: currentBytecode.
+	offset <- offset * 256 + self fetchByte.
+	(currentBytecode between: 168 and: 171)
+		ifTrue: [^self jumplf: TruePointer
+				by: offset].
+	(currentBytecode between: 172 and: 175)
+		ifTrue: (^self jumplf: FalsePointer
+				by: offset]

@@ -1,0 +1,19 @@
+returnBytecode
+	currentBytecode = 120
+		ifTrue: [^self returnValue: receiver
+				to: self sender].
+	currentBytecode = 121
+		ifTrue: [^self returnValue: TruePointer
+				to: self sender].
+	currentBytecode = 122
+		ifTrue: [^self returnValue: FalsePointer
+				to: self sender].
+	currentBytecode = 123
+		ifTrue: [^self returnValue: NilPointer
+				to: self sender].
+	currentBytecode = 124
+		ifTrue: [^self returnValue: self popStack
+				to: self sender].
+	currentBytecode = 125
+		ifTrue: [^self returnValue: self popStack
+				to: self caller]

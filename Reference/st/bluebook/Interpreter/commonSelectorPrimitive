@@ -1,0 +1,17 @@
+commonSelectorPrimitive
+	| receiverClass |
+	argumentCount <- self fetchInteger: (currentBytecode - 176)*2 + 1
+				ofObject: SpecialSelectorsPointer.
+	receiverClass <-
+		memory fetchClassOf: (self stackValue: argumentCount).
+	currentBytecode = 198 ifTrue: [^self primitiveEquivalent].
+	currentBytecode = 199 ifTrue: [^self primitiveClass].
+	currentBytecode = 200
+		ifTrue: [self success:
+				(receiverClass = ClassMethodContextPointer)
+				| (receiverClass = ClassBlockContextPointer).
+			^self success ifTrue: [self primitiveBlockCopy]].
+	(currentBytecode = 201) | (currentBytecode = 202)
+		ifTrue: [self success: receiverClass = ClassBlockContextPointer.
+			^self success ifTrue: [self primitiveValue]].
+	self primitiveFail

@@ -1,0 +1,5 @@
+shortUnconditionalJump
+	| offset |
+	offset <- self extractBits: 13 to: 15
+			of: currentBytecode.
+	self jump: offset + 1

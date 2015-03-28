@@ -1,0 +1,20 @@
+transfer: count
+	fromIndex: firstFrom
+	ofObject: fromOop
+	toIndex: firstTo
+	ofObject: toOop
+	| fromIndex toIndex lastFrom oop |
+	fromIndex <- firstFrom.
+	lastFrom <- firstFrom + count.
+	toIndex <- firstTo.
+	[fromIndex < lastFrom] whileTrue:
+		[oop <- memory fetchPointer: fromIndex
+				ofObject: fromOop.
+		memory storePointer: toIndex
+			ofObject: toOop
+			withValue: oop.
+		memory storePointer: fromIndex
+			ofObject: fromOop
+			withValue: NilPointer.
+		fromIndex <- fromIndex + 1.
+		toIndex <- toIndex + 1]

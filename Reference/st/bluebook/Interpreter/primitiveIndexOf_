@@ -1,0 +1,7 @@
+primitiveIndexOf: methodPointer
+	| flagValue |
+	flagValue <- self flagValueOf: methodPointer.
+	flagValue=7
+		ifTrue: [^self extractBits: 7 to: 14
+				of: (self headerExtensionOf: methodPointer)]
+		ifFalse: [^0]

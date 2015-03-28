@@ -1,0 +1,8 @@
+allocateChunk: size
+	| objectPointer |
+	objectPointer <- self attemptToAllocateChunk: size.
+	objectPointer isNil ifFalse: [^objectPointer].
+	self reclaimInaccessibleObjects. "garbage collect and try again"
+	objectPointer <- self attemptToAllocateChunk: size.
+	objectPointer isNil ifFalse: [^objectPointer].
+	self outOfMemoryError "give up"

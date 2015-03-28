@@ -1,0 +1,10 @@
+primitiveObjectAt
+	| thisReceiver index |
+	index  <- self popInteger.
+	thisReceiver <- self popStack.
+	self success: index > 0.
+	self success: index <= (self objectPointerCountOf: thisReceiver).
+	self success
+		ifTrue: [self push: (memory fetchPointer: index - 1
+					ofObject: thisReceiver)]
+		ifFalse: [self unPop: 2]

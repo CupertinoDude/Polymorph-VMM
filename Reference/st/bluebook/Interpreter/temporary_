@@ -1,0 +1,3 @@
+temporary: offset
+	^memory fetchPointer: offset + TempFrameStart
+		ofObject: homeContext

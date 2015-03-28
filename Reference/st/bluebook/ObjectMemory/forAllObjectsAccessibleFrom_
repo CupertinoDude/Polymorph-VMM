@@ -1,0 +1,7 @@
+forAllObjectsAccessibleFrom: objectPointer
+		suchThat: predicate
+		do: action
+	(predicate value: objectPointer)
+		ifTrue: [^self forAllOtherObjectsAccessibleFrom: objectPointer
+				suchThat: predicate
+				do: action]

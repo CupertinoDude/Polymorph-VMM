@@ -1,0 +1,3 @@
+fixedFieldsOf: classPointer
+	^self extractBits: 4 to: 14
+		of: (self instanceSpecificationOf: classPointer)

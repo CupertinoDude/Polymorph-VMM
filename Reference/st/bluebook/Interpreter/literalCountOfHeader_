@@ -1,0 +1,3 @@
+literalCountOfHeader: headerPointer
+	^self extractBits: 9 to: 14
+		of: headerPointer

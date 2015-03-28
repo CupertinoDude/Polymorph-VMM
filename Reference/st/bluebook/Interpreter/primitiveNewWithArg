@@ -1,0 +1,18 @@
+primitiveNewWithArg
+	| size class |
+	size <- self positive16BitValueOf: self popStack.
+	class <- self popStack.
+	self success: (self isIndexable: class).
+	self success
+		ifTrue: [size <- size + (self fixedFieldsOf: class).
+			(self isPointers: class)
+				ifTrue: [self push: (memory instantiateClass: class
+							withPointers: size)]
+				ifFalse: [(self isWords: class)
+						ifTrue: [self push: (memory
+									instantiateClass: class
+									withWords: size)]
+						ifFalse: [self push: (memory
+									instantiateClass: class
+									withBytes: size)]]]
+		ifFalse: [self unPop: 2]

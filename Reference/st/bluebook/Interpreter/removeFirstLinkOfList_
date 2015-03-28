@@ -1,0 +1,22 @@
+removeFirstLinkOfList: aLinkedList
+	| firstLink lastLink nextLink |
+	firstLink <- memory fetchPointer: FirstLinkIndex
+				ofObject: aLinkedList.
+	lastLink <- memory fetchPointer: LastLinkIndex
+				ofObject: aLinkedList.
+	lastLink = firstLink
+		ifTrue: [memory storePointer: FirstLinkIndex
+				ofObject: aLinkedList
+				withValue: NilPointer.
+			memory storePointer: LastLinkIndex
+				ofObject: aLinkedList
+				withValue: NilPointer]
+		ifFalse: [nextLink <- memory fetchPointer: NextLinkIndex
+						ofObject: firstLink.
+			memory storePointer: FirstLinkIndex
+				ofObject: aLinkedList
+				withValue: nextLink].
+	memory storePointer: NextLinkIndex
+		ofObject: firstLink
+		withValue: NilPointer.
+	^firstLink

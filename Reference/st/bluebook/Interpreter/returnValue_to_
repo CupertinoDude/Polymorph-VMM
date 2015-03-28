@@ -1,0 +1,18 @@
+returnValue: resultPointer to: contextPointer
+	| sendersIP |
+	contextPointer = NilPointer
+		ifTrue: [self push: activeContext.
+			self push: resultPointer.
+			^self sendSelector: CannotReturnSelector
+				argumentCount: 1].
+	sendersIP <- memory fetchPointer: InstructionPointerIndex
+				ofObject: contextPointer.
+	sendersIP = NilPointer
+		ifTrue: [self push: activeContext.
+			self push: resultPointer.
+			^self sendSelector: CannotReturnSelector
+				argumentCount: 1].
+	memory increaseReferencesTo: resultPointer.
+	self returnToActiveContext: contextPointer.
+	self push: resultPointer.
+	memory decreaseReferencesTo: resultPointer

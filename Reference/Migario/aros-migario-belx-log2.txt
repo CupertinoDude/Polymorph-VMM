@@ -1,0 +1,2821 @@
+
+Start of #aros buffer: Sun Oct 07 08:55:57 2012
+* Now talking in #aros
+* Topic is 'http://www.aros.org :: No schedule and rocking!'
+* Set by Kalamatee!~Kalamatee@cl-930.lon-02.gb.sixxs.net on Tue Feb 14 13:54:48
+-ChanServ- [#weechat] Welcome to WeeChat english support channel. IMPORTANT: you *MUST* have read docs and FAQ before asking something on this channel! Read them at: http://weechat.org/doc/
+-ChanServ- [#irssi] Welcome to #irssi. See http://www.irssi.org/documentation/startup before asking your question. Google is your friend. Don't be afraid to ask your question, there's no need to hilight people. Send a mail to info@irssi.org if there's no reply.
+-ChanServ- [#thrashirc] welcome to thrashirc
+-ChanServ- [#qemu] Welcome to unofficial #qemu channel. Official channel can be found in OFTC network (irc.oftc.net)
+-ChanServ- [#python] Welcome to #python, puny fleshlings. Please see our website, http://pound-python.org/ , for information about the channel and Python.
+-ChanServ- [#vim] vim discussion .. www.vim.org, vim.sf.net, :help
+-ChanServ- [##networking] Introductory text: "Computer Networks" by Andrew Tanenbaum. If asking for help, please fully specify the context of the environment.
+-ChanServ- [##physics] Don't ask to ask... ask!
+-ChanServ- [#reactos] Welcome to #ReactOS! || ***Please Identify your Nickname! Ask for help if you don't know what this is!*** || Project Information: http://www.reactos.org/?page=about || Developer Chat: #reactos-dev || Enjoy your stay!
+-ChanServ- [#aros] Welcome to the Official AROS IRC channel
+-bot_ecs- I am an IRC 'bot. Use `tell (yournick) [Factoids search *] to see information I can give you. Then use `tell (yournick) [whatis (factoid)] to see a specific definition.
+* sambagirl has quit IRC (Read error: No route to host)
+* Key-Real has quit IRC (Quit: Leaving)
+* migario has quit IRC (Quit: sunny sunday)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* rzookol has quit IRC (Remote host closed the connection)
+* Ball000 has joined #aros
+* Ball000 has quit IRC (Changing host)
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 244 seconds)
+* Kalam_zZzZ has quit IRC (Quit: ThrashIRC v2.7 sic populo comunicated)
+* bolt has quit IRC (Ping timeout: 252 seconds)
+* Fab1 has quit IRC (Quit: connection reset by Fab)
+* nighty^ has quit IRC (Read error: Connection reset by peer)
+* deadwood_ has joined #aros
+* bolt has joined #aros
+* trn has quit IRC (Read error: Operation timed out)
+* _4_Work has quit IRC (*.net *.split)
+* henes has quit IRC (Read error: Operation timed out)
+* trn has joined #aros
+* henes has joined #aros
+* _4_Work has joined #aros
+* NomadOfNorad-PC has quit IRC (Quit: Leaving)
+* rvalles has quit IRC (Ping timeout: 260 seconds)
+* rvalles has joined #aros
+* rvalles has quit IRC (Excess Flood)
+* rvalles has joined #aros
+* rvalles has quit IRC (Excess Flood)
+* rvalles has joined #aros
+* rvalles has quit IRC (Excess Flood)
+* rvalles has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* jahc has joined #aros
+* tichy1 has joined #aros
+* _4pLaY_ has quit IRC (Read error: Connection reset by peer)
+* Geri_lgfx has joined #aros
+* mschulz has joined #aros
+* Mabo has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* Fab1 has joined #aros
+* Coder_Aros has joined #aros
+* rvalles has quit IRC (Remote host closed the connection)
+* rvalles has joined #aros
+* migario has joined #aros
+* Kalamatee has joined #aros
+* tichy1 has quit IRC (Ping timeout: 246 seconds)
+* tichy1 has joined #aros
+* Tcheko_ has quit IRC (Read error: No route to host)
+* nighty^ has joined #aros
+* analogkid has quit IRC (Ping timeout: 260 seconds)
+* Key-Real has joined #aros
+<Key-Real> hei migario
+<Key-Real> :)
+* NomadOfNorad has joined #aros
+* NomadOfNorad pokes and prods the channel to see who's other than AFK
+<migario> heya key :-)
+* Tcheko_ has joined #aros
+<NomadOfNorad> anyone have experience with choosing the best wifi-equiped router?  the one I have, other machines in the house keep losing their wifi connection to it.
+<migario> in need of a littlebit of care and attention NomadOfNorad ? ;-p
+<migario> ow
+<migario> hehe
+<NomadOfNorad> something like that, yeah
+<migario> yah i just was a little late in my reply :slow:
+* stefkos has joined #aros
+<migario> NomadOfNorad: it is disaster here, because i live in an appertment building. signals get pushed away constantly :(
+<NomadOfNorad> I have a Netgear draft-N wifi router, and I've been having issues with other wifi machines in the house spontaneously losing connection to it.  We recently were presented with a wifi-style iPad.... and that one (but not the other iPads my visiting relatives have) loses the wifi connection, too.  I'm wanting advice on choosing a better (brand of?) wifi-based router.  Probably NOT another Netgear.
+<migario> i have a belkin, it dies the job for me (if possible). but i am not really familair with wifi-devices
+<migario> dies=does
+<migario> i take it you have checked the netgear forums as well as updated your firmware ?
+<NomadOfNorad> Tried to check for firmware update last night.... it gave an error that it could not connect with the update-the-firmware server and to try again later.
+<migario> doesn't netgear offer an offline solution ?
+<migario> hehe thats sounds funny :-D
+<NomadOfNorad> Went to their place manually to search for firmware.... and when I plugged in a search criteria on their search function, I got sent to a page saying their search function was temporarily down while they did some sort of update to their systems.  oO
+<migario> how are you suppose to keep up to date ? uhmz, well try another day ? but eprhaps you can try if others have the same problem as well. if enough trouble mostly a solution follows :/
+<migario> not really an answer to your original question, sorry
+* Coder_Aros has quit IRC (Quit: When the chips are down, the buffalo is empty)
+<NomadOfNorad> grrrrrr..... and my internet service is deciding to be terrible right now.  oO
+<migario> in such cases i mostly cease my actions and try another day... some days are bad so i leave it that way :/
+<migario> not worth the frustration
+* terminills has joined #aros
+<terminills> morning
+-ChanServ- [#Miranda] Welcome to the Miranda IM IRC Channel. Our other official channels are #miranda-dev #miranda-bugs and #miranda-docs
+* impy has joined #aros
+* stefkos has quit IRC (Quit: Client exiting)
+* deadwood_ has joined #aros
+<mschulz> deadwood_: :)
+* arsdmthe has joined #aros
+* arsdmthe_ has quit IRC (Ping timeout: 246 seconds)
+<Kalamatee> NomadOfNorad : a> don't relly on its inbuilt checks for firmware - go to netgears site and look yourself
+<Kalamatee> b> when you say "lose connection" - please be a bit more descriptive. do the devices no longer see the SSID being broadcast/see it but can't connect?
+* Geit has joined #aros
+<Kalamatee> or perhaps they think they are still connected but no traffic is flowing?
+<Kalamatee> anyhows first thing is try updating the firmware - see how that goes and if there are still issues, try changing the authentication used and see if the clients will play better with that.
+<Kalamatee> NomadOfNorad : theres also the possiblity someone is trying to wardrive your connection and de-authenticating your clients to try and sniff the handshake
+* Kalamatee shrugs
+<NomadOfNorad> WEll, I wasn't the one doing the connect with the iPad.  And all the other iPads were working fine.  And now THAT iPad is working fine.  Go figure.
+<Kalamatee> hehe
+* stefkos has joined #aros
+<terminills> sup
+<Kalamatee> hi term
+<terminills> hey kal 
+<terminills> ipads suck ;)
+<Kalamatee> indeed
+<Kalamatee> anything apple sucks
+<terminills> especially the fanbois lol
+<Kalamatee> apple are the only company I know that can have two identical phones and one will connect to your email server while the other won't (with identical settings on both)
+<Kalamatee> how the fuck they do it I don't know ;p
+<terminills> you just don't understand... the iphone 5 designer just said average users just won't get it. rofl
+<Kalamatee> only special (need) users will ;P
+<terminills> ironically if the iphone is the most popular phone wouldn't that make iphone users the average user?
+<Kalamatee> most popular my ass
+<NomadOfNorad> WEll, I've been delibrating between iPad and Android tablets for some while, but strongly leaning towards Android.... but relatives came yesterday and GAVE Dad an iPad. heh
+<Kalamatee> NomadOfNorad : go to chinistore.com - and get a decent anroid one for cheap there ;p
+<terminills> well I was talking specific models kal
+<Kalamatee> terminills : thats the problem I guess - iphone have one brand, android is split into all the different manufacturers of handsets (though its still technically all android..)
+<terminills> and my point would be does that mean iPhone users do't get the iphone? 
+<terminills> don't
+<terminills> mind you I have an ipad and an android tablet
+<Kalamatee> most of the iphone users I know have switched
+<terminills> the android tablet is better
+<terminills> for me
+<Kalamatee> I own neither but have to configure both for customers and know which I would prefer to be sent to setup ;p
+<terminills> my next phone is going to be w8
+<Kalamatee> using a huawei u8850 (honor) atm
+<Kalamatee> not too bad but it suffers some android 4.0.3 bugs
+<Kalamatee> first is the email widget doesn't update to reflect the actual emails
+<Kalamatee> so it will show you stuff from yesterday but if you go into the email client all the new stuff is there also
+<Kalamatee> second is the dreaded black screen of death
+<Kalamatee> the phones still alive but you don't receive calls - and can't get the interface to respond
+<Kalamatee> (the backlight doesn't come on but you can see the content rendered, and the touchscreen and buttons do nothing, except the power button)
+<Kalamatee> fun ;p
+<Kalamatee> bah its the u8860 - not 8850
+<terminills> lol
+* stefkos has quit IRC (Quit: Client exiting)
+<terminills> sounds like my crackberry
+<terminills> emergency oh crap I broke my atrix phone
+<Kalamatee> just wish someone would do a 4.0.4 or jellybean rom instead since the problems are fixed in those
+<terminills> rofl informercials rock
+<terminills> infomercials*
+* Bl1tter has joined #aros
+* Bl1tter has quit IRC (Quit: bye)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* mschulz_ has joined #aros
+* Bl1tter has joined #aros
+* mschulz has quit IRC (Ping timeout: 268 seconds)
+* terminills has joined #aros
+<terminills> ugh effing ipad lol
+<migario> hahaha i thought it was the infomercials
+<terminills> lol
+<terminills> nah I walked away and it idled me out
+<migario> ok, so the underlying message is you can't walk with an iphone ?
+<Key-Real> cu
+* Key-Real has quit IRC (Quit: Leaving)
+<migario> bb key
+<migario> ipad*
+<terminills> lol nah you can't walk away from an ipad
+<mschulz_> re
+<mschulz_> network restart
+<mschulz_> :)
+<terminills> hey mschulz_ 
+* mschulz_ is now known as mschulz
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Bl1tter has quit IRC (Quit: bye)
+* agr has joined #aros
+* mschulz has quit IRC (Remote host closed the connection)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* MaMos has quit IRC (Ping timeout: 256 seconds)
+* MaMos has joined #aros
+* Corscaria has quit IRC (Ping timeout: 246 seconds)
+* Coder_Aros has joined #aros
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* Tcheko_ has quit IRC (Ping timeout: 245 seconds)
+* Coder_Aros has quit IRC (Quit: There's nothing dirtier then a giant ball of oil)
+* jahc has joined #aros
+* Corscaria has joined #aros
+* TiredOf has joined #aros
+* tichy1 has quit IRC (Quit: Leaving.)
+* TiredOf has quit IRC (Ping timeout: 246 seconds)
+* Mabo has quit IRC
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* Fab1 has quit IRC (Quit: connection reset by Fab)
+* NomadOfNorad has joined #aros
+<NomadOfNorad> ashchat time...
+<NomadOfNorad> did aw have a netsplit?  I connected there and see 3 other ppl on #amigaworld channel
+<NomadOfNorad> and no service bots
+<migario> probably, i was not there so cant tell for sure
+<migario> give me a mom
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+<redblue> but its migario! and NomadOfNorad!
+<migario> :-)
+* Kalamatee has quit IRC (Read error: Connection reset by peer)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* _4_Work has quit IRC (Read error: Connection reset by peer)
+* deadwood_ has joined #aros
+* migario has quit IRC (Quit: zoom zoom)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+<redblue> http://www.buzzfeed.com/whitneyjefferson/oliver-stone-gropes-salma-hayeks-boobs-on-the-red
+* analogkid has joined #aros
+* analogkid has quit IRC (Quit: system rebooting)
+* rvalles has quit IRC (Remote host closed the connection)
+* rvalles has joined #aros
+* mschulz has joined #aros
+* liverwurst has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* Tcheko_ has joined #aros
+* deadwood_ has joined #aros
+* o1i has joined #aros
+* tichy^work has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* jahc has joined #aros
+* Geit has joined #aros
+* Fab2 has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* mschulz has quit IRC (Remote host closed the connection)
+* henes has quit IRC (Ping timeout: 260 seconds)
+* henes has joined #aros
+* rvalles has quit IRC (Ping timeout: 260 seconds)
+* rvalles has joined #aros
+* Mabo has joined #aros
+* Geri_lgfx has joined #aros
+* Ba11ooo has joined #aros
+* Fab1 has joined #aros
+* Fab1 has quit IRC (Read error: Connection reset by peer)
+* Fab1 has joined #aros
+* terminills has joined #aros
+* mschulz has joined #aros
+* aircos_guest has joined #aros
+<aircos_guest> ?version
+* aircos_guest has quit IRC (Remote host closed the connection)
+* henes has quit IRC (Quit: Turtle power!)
+* nighty- has joined #aros
+* henes has joined #aros
+* impy has quit IRC (Quit: impy)
+* mschulz has quit IRC (Remote host closed the connection)
+* impy has joined #aros
+* Mabo has quit IRC (Disconnected by services)
+* Mabo_ has joined #aros
+* AMiGA has quit IRC (Ping timeout: 260 seconds)
+* rvalles has quit IRC (Remote host closed the connection)
+* rvalles has joined #aros
+* MaMos has quit IRC (Ping timeout: 246 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Ping timeout: 268 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* Bl1tter has joined #aros
+* Belxjander has quit IRC (Ping timeout: 246 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Ping timeout: 246 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Ping timeout: 246 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Ping timeout: 246 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* Belxjander has quit IRC (Ping timeout: 240 seconds)
+* o1i has quit IRC (Quit: received signal 15)
+* AMiGA has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Belxjander has joined #aros
+* Bl1tter has quit IRC (Quit: bye)
+* agr has quit IRC (Quit: agr)
+* Zevs_ has joined #aros
+* agr has joined #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* trn has quit IRC (Excess Flood)
+* trn has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 256 seconds)
+* arsdmthe_ has joined #aros
+* arsdmthe has quit IRC (Read error: Operation timed out)
+* Kalamatee has joined #aros
+<Belxjander> Kalamatee!
+<Kalamatee> sup
+* Zevs_ has joined #aros
+<Belxjander> Not much 
+<Belxjander> I am still getting nothing when I ask for help about GCC inline assembly strangeness 
+<Belxjander> I also need to get linux dual booting on my sam flex as well 
+<agr> hi
+<agr> may I help you with GCC inline asm ?
+* MaMos has joined #aros
+<Belxjander> I need multiple inline assembly fragments used as C functions mixed with C functions 
+* Coder_Aros has joined #aros
+<Belxjander> Agr I am using an android phone and typing on it sucks 
+<agr> ok, I don't know it, but you still may explain more
+<Belxjander> I have polymorph library which I am writing 
+<Belxjander> It is a generic emulation/virtual machine support library 
+<Belxjander> I need help with plugin wrapping for it 
+<Belxjander> As plugins are datatype libraries 
+<Belxjander> The inline assembly is for the AmigaOS branch 
+<Coder_Aros> Is there a remote desktop utility for Aros that will allow me to control my Aros machine from my laptop?
+<agr> Belxjander: if you show me a concrete example. I may do something maybe
+* Zevs_ has quit IRC (Quit: Zevs_)
+<Belxjander> Agr if I was able to do that for what I want I would not need help
+<Belxjander> I know assembly and C but need the GCC special handling of inline assembly explained 
+<Belxjander> Right now the documentation makes no sense to me 
+* Ball000_ is now known as Ball000
+* Coder_Aros has quit IRC (Quit: OUCH!!!)
+* stefkos has joined #aros
+<agr> Belxjander: if you know normal asm (well, gas), it is pretty simple: for regs you need to prefix them with %% instead of %, args are prefixed with %. after the asm part, comes a ':' and the output args, ':' input args, ':' constaints.
+<Belxjander> Normal?
+<Belxjander> It's the bit after the assembly which confuses me
+<agr> Belxjander: normal = writing a separate asm file, when you don't really need it inlined
+<Belxjander> And where in the docs does it say % for arguments and %% for registers?
+* tichy^work has quit IRC (*.net *.split)
+<agr> found it by reading others code
+* tichy^work has joined #aros
+<Belxjander> Well at least you have that 
+<agr> you want one ?
+<Belxjander> What processor?
+<agr> pc
+<agr> well, knowing asm is required
+<agr> http://wiki.osdev.org/Inline_Assembly/Examples
+<agr> in/out/constrains are optional or can be empty
+* MaMos has quit IRC (Ping timeout: 246 seconds)
+* nighty- has quit IRC (Ping timeout: 246 seconds)
+* nighty^ has quit IRC (Ping timeout: 246 seconds)
+* MaMos has joined #aros
+* nighty^ has joined #aros
+* nighty- has joined #aros
+* suppahasrv has joined #aros
+* suppahsrv has quit IRC (Ping timeout: 244 seconds)
+* suppahasrv has quit IRC (Read error: Connection reset by peer)
+* suppahsrv has joined #aros
+* tichy has joined #aros
+* Disconnected
+* Rejoined channel #aros
+* Topic is 'http://www.aros.org :: No schedule and rocking!'
+* Set by Kalamatee!~Kalamatee@cl-930.lon-02.gb.sixxs.net on Tue Feb 14 13:54:48
+-ChanServ- [#weechat] Welcome to WeeChat english support channel. IMPORTANT: you *MUST* have read docs and FAQ before asking something on this channel! Read them at: http://weechat.org/doc/
+-ChanServ- [#irssi] Welcome to #irssi. See http://www.irssi.org/documentation/startup before asking your question. Google is your friend. Don't be afraid to ask your question, there's no need to hilight people. Send a mail to info@irssi.org if there's no reply.
+-ChanServ- [#thrashirc] welcome to thrashirc
+-ChanServ- [#Miranda] Welcome to the Miranda IM IRC Channel. Our other official channels are #miranda-dev #miranda-bugs and #miranda-docs
+-ChanServ- [#qemu] Welcome to unofficial #qemu channel. Official channel can be found in OFTC network (irc.oftc.net)
+-ChanServ- [#python] Welcome to #python, puny fleshlings. Please see our website, http://pound-python.org/ , for information about the channel and Python.
+-ChanServ- [#vim] vim discussion .. www.vim.org, vim.sf.net, :help
+-ChanServ- [##networking] Introductory text: "Computer Networks" by Andrew Tanenbaum. If asking for help, please fully specify the context of the environment.
+-ChanServ- [##physics] Don't ask to ask... ask!
+-ChanServ- [#android] Welcome to #android! No bots, no publicly-accessible logging, and no bridging Android apps to this channel, please. Please show good IRC etiquette: don't send private messages without asking first.
+-ChanServ- [#reactos] Welcome to #ReactOS! || ***Please Identify your Nickname! Ask for help if you don't know what this is!*** || Project Information: http://www.reactos.org/?page=about || Developer Chat: #reactos-dev || Enjoy your stay!
+-ChanServ- [#aros] Welcome to the Official AROS IRC channel
+-bot_ecs- I am an IRC 'bot. Use `tell (yournick) [Factoids search *] to see information I can give you. Then use `tell (yournick) [whatis (factoid)] to see a specific definition.
+* Mabo_ has quit IRC
+<redblue> 4k goodness - http://www.youtube.com/watch?feature=player_detailpage&v=cJPv3TAEAcM
+<MrBIOS> heyh redblue
+<redblue> hi MrBIOS =)
+<redblue> i remember u
+<redblue> ltns =)
+<MrBIOS> agreewd
+<MrBIOS> how goes?
+<redblue> just taking it easy!
+<redblue> and u?
+<MrBIOS> been busy with work and live-in girlfriend, but things are settling down now (except for a close family member in the hospital since Sunday)
+<redblue> oh
+<redblue> well
+* ekix_ has joined #aros
+* ekix has quit IRC (Ping timeout: 272 seconds)
+* Ball000_ has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* MrBIOS- has joined #aros
+<MrBIOS-> redblue, sorry, got D/C
+<redblue> np
+<redblue> wb =)
+* Zevs_ has left #aros
+* MrBIOS has quit IRC (Remote host closed the connection)
+* Belxjander has quit IRC (Ping timeout: 394 seconds)
+<terminills> hey redblue
+<terminills> what ya listening to tonight?
+<terminills> lol
+<MrBIOS-> terminills, just got your PM
+<MrBIOS-> I know it's underway
+<MrBIOS-> would love to have it operate under the Anubis banner, honestly
+<terminills> well you know how it goes ;D
+<redblue> terminills, DU3normal
+<terminills> nice :D
+<terminills> lol used to the mp3's scrolling in the room ;D
+<redblue> http://soundcloud.com/du3normal/du3normal-sitar-dub
+<redblue> http://soundcloud.com/du3normal/du3normal-long-walk
+<redblue> hehe
+<redblue> ^^
+* Belxjander2 has joined #aros
+<redblue> hi Belxjander2 =)
+* Belxjander2 has quit IRC (Ping timeout: 264 seconds)
+* Fab1 has quit IRC (Quit: connection reset by Fab)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* nighty- has joined #aros
+* nighty- has quit IRC (Remote host closed the connection)
+* CountRaven has joined #aros
+* redblue is having chamomile tea
+<redblue> np: zan-zan-zawa-veia - khei-moni.mp3
+* vOYtEC has joined #aros
+* _vOYtEC has quit IRC (Read error: Connection reset by peer)
+* ekix_ is now known as ekix
+* jahc has joined #aros
+* vOYtEC_ has joined #aros
+* vOYtEC has quit IRC (Read error: Connection reset by peer)
+* vOYtEC_ has quit IRC (Read error: Connection reset by peer)
+* vOYtEC has joined #aros
+* vOYtEC has quit IRC (Read error: Connection reset by peer)
+* vOYtEC has joined #aros
+* deadwood_ has joined #aros
+* guest_2343 has joined #aros
+* vOYtEC has quit IRC (Read error: Connection reset by peer)
+* vOYtEC_ has joined #aros
+* vOYtEC has joined #aros
+* vOYtEC_ has quit IRC (Read error: Connection reset by peer)
+* Nalle_ has joined #aros
+* Zevs_ has joined #aros
+* Corscaria_ has quit IRC (Read error: Connection reset by peer)
+* impy_ has quit IRC (Read error: Connection reset by peer)
+* Corscaria_ has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* liverwurst has joined #aros
+* Ba11ooo has joined #aros
+* tichy has joined #aros
+* tichy has quit IRC (Client Quit)
+* corpticle has quit IRC (Ping timeout: 245 seconds)
+* Tcheko_ has joined #aros
+* jahc has quit IRC (Ping timeout: 248 seconds)
+* agr has quit IRC (Quit: agr)
+* Fab1 has joined #aros
+* Tcheko_ has quit IRC (Quit: Ex-Chat)
+* Tcheko_ has joined #aros
+* Cammy has quit IRC (Ping timeout: 256 seconds)
+* Geit has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* terminills has quit IRC (Remote host closed the connection)
+* Zevs_ has left #aros
+* deadwood_ has joined #aros
+* agr has joined #aros
+* crazyhair has joined #aros
+* crazyhair has quit IRC (Client Quit)
+* Mabo has joined #aros
+* Ba11ooo_ has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Geri_lgfx has joined #aros
+* impy has joined #aros
+* terminills has joined #aros
+* o1i has joined #aros
+<o1i> http://www.anubis-os.org/ ??
+<o1i> Registrant Name:Alex Perez
+<o1i> Registrant Email:aperez@alexperez.com
+<impy> o1i: uhuh that'd be MrBIOS-
+<o1i> Created On:17-Sep-2012 23:20:34 UTC
+* guest_2343 has quit IRC (Quit: Page closed)
+<o1i> http://www.amiga.org/forums/archive/index.php/t-49928.html
+<o1i> http://www.amiga.org/forums/archive/index.php/t-49928.html
+<o1i> "Towards that end, I've begun moving through the paces to revive http://www.anubis-os.org and would like to kindly request that people limit the rampant speculation to whatever degree they find themselves capable (which, for a meaningful minority of regular posters, would appear to be not at all)."
+* bl1tter has joined #aros
+* bl1tter has left #aros ("bye")
+* Bl1tter has joined #aros
+* Nalle_ has quit IRC (Quit: home)
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* Ba11ooo_ has quit IRC (Ping timeout: 245 seconds)
+* o1i has quit IRC (Quit: received signal 15)
+* corpsicle has joined #aros
+* nighty- has joined #aros
+* analogkid has joined #aros
+* eliotmc has joined #aros
+* bolt has quit IRC (Ping timeout: 265 seconds)
+* analogkid has quit IRC (Read error: No route to host)
+* analogkid has joined #aros
+* analogkid has quit IRC (Read error: Connection reset by peer)
+* bolt has joined #aros
+* Kalamatee has joined #aros
+<Kalamatee> re
+* bolt has quit IRC (Ping timeout: 264 seconds)
+* Bl1tter has quit IRC (Quit: bye)
+* Ball000_ has quit IRC (Read error: No route to host)
+* bolt has joined #aros
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000_ is now known as Ball000
+* nighty- has quit IRC (Read error: Connection reset by peer)
+* nighty- has joined #aros
+* BSzili has joined #aros
+<Kalamatee> hi BSzili
+<BSzili> hey!
+<Kalamatee> hows things?
+<BSzili> a bit slower than the usual rate, but I still managed to do a playable port of frogatto :P
+<Kalamatee> hehe
+<BSzili> BTW, if you don't plan to work on Doom3 in the near future, I'd love to find out what causes that darn crash
+<Kalamatee> would be nice
+<Kalamatee> my suspicion is that it is referencing a destroyed object
+<BSzili> yeah. but it's interesting that it doesn't causes a segfault on linux, or windows
+<Kalamatee> could be a driver issue but i don't know
+<Kalamatee> I didn't investigate it too much - changing the code has wacky results sometimes lol
+<Kalamatee> I could see where it crashed and what caused the crash (null pointer) - but no idea why
+<Kalamatee> if memory serves me it was trying to transform the coordinates of a particle but used a null pointer during the transform causing the crash
+<BSzili> maybe some sanity checks could serve as a workaround to the problem
+<Kalamatee> tried that .. it didn't like it lol
+<Kalamatee> doom3 has a habbit of breaking in wacky ways =)
+<BSzili> did it still crash?
+<Kalamatee> yup
+<Kalamatee> or didn't even load
+<BSzili> lol
+<Kalamatee> BSzili : first thing to do is merge the dll code changes
+<Kalamatee> BSzili : if you want I could chuck it on my google code site
+<Kalamatee> + the shared sdl stuff
+<BSzili> that would be nice. oh, how stable is the shared SDL library?
+<Kalamatee> sdl.library itself works well
+<Kalamatee> the support libraries though... thats the whole different ball game
+<Kalamatee> you could link to them statically still if necessary - but they depend on too much external stuff that all uses their own globals
+<Kalamatee> = a nightmare to clean up
+<BSzili> :-\
+<Kalamatee> BSzili : any of the sdl libs that need to link in external stuff will be an effort to sanitise to work properly as a shared library
+<Kalamatee> im open to offers of help ;p
+* Cammy has joined #aros
+* guest__ has joined #aros
+<BSzili> I'm still pretty illiterate on how shared libraries work :S
+<Kalamatee> not much to them
+<Kalamatee> BSzili : the problem is we need to use "per-task" libraries so that the contents of library structures are unique between tasks
+<BSzili> oh, so globals are no good...
+<Kalamatee> linking to external code using globals means task a calls lib function -> goes into support code and uses some global
+<Kalamatee> task b calls the function -> goes into support code which references the same/wrong pointers from task a
+<Kalamatee> -> things get upset
+<BSzili> so if the other libraries SDL depends on were shared too, then there weren't a problem
+<Kalamatee> yes
+<Kalamatee> but thats the bit which is a lot of work
+<Kalamatee> and strictly speaking you shouldn't use other libraries from within a library
+<Kalamatee> *unless you open and close it yourself
+<BSzili> but weren't some static libraries already reworked into shared ones?  at least I saw a few for ABIv1
+<Kalamatee> http://code.google.com/p/kalamateesarosextras/source/browse/#svn%2Ftrunk%2Fcontrib%2FSDL
+* eliotmc has quit IRC (Quit: eliotmc)
+<Kalamatee> if you want to modify any of the code - copy the extracted directory from under bin/<arch>/Ports into the source directory and modify the files as necessary - then call the create patch macro in the mmakefile.src
+<Kalamatee> reneme the newly generated patch and delete the directory you copied in
+<Kalamatee> btw - yes, the thread stuff is broken in AROS
+<Kalamatee> ive fixed it a bit in my shared implementation - you can run the tests though and see whats broken and why ;)
+<BSzili> oh, that one sounds a good candidate to backport :P I can finally finish my homeworld port
+<Kalamatee> i would be grateful if you could try it with just the shared sdl.library (and statically linked versions of sdl_xxx)
+<Kalamatee> the main code should be totaly thread/task safe
+<BSzili> if that works, then I'll be glad to try that
+<Kalamatee> like i said - its just the support libs that cause issues
+* arsdmthe has joined #aros
+<BSzili> what about the shared jpeg and png libraries? do they use any features specific to  ABIv1?
+<Kalamatee> probably
+<Kalamatee> no idea though
+<BSzili> darn. because I don't think SDL_image depends on anything else
+* arsdmthe_ has quit IRC (Ping timeout: 260 seconds)
+* guest__ has quit IRC (Quit: Page closed)
+* Tcheko_ has quit IRC (Ping timeout: 256 seconds)
+<BSzili> Kalamatee: will I be able to build this thing if I only replace SDL_main?
+<Kalamatee> you might need to modify the target names in the other libs mmakefiles
+<Kalamatee> but otherwise yes
+* kirin` has quit IRC (Ping timeout: 265 seconds)
+* stefkos has joined #aros
+* kirin` has joined #aros
+* NomadOfNorad has joined #aros
+* mschulz has joined #aros
+* kirin` has quit IRC (Ping timeout: 252 seconds)
+* Zevs_ has joined #aros
+<BSzili> darn this luck! it looks like this approach won't work, but I'm not so keen on doing a full rebuild :S
+* kirin` has joined #aros
+* jahc has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* NomadOfNorad has joined #aros
+* mschulz has quit IRC (Quit: ChatZilla 0.9.89 [Firefox 4.0.1/20110413222027])
+* LuKeJerry has joined #aros
+<LuKeJerry> Good ev' people ;) 
+* mschulz has joined #aros
+* tichy has joined #aros
+* vOYtEC_ has joined #aros
+* vOYtEC has quit IRC (Read error: Connection reset by peer)
+* mschulz has quit IRC (Quit: Yaaic - Yet another Android IRC client - http://www.yaaic.org)
+* jahc has quit IRC (Ping timeout: 265 seconds)
+* mschulz has joined #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* mschulz has quit IRC (Quit: ChatZilla 0.9.89 [Firefox 4.0.1/20110413222027])
+* Tcheko_ has joined #aros
+* arsdmthe has quit IRC (Read error: No route to host)
+<Ball000> !olivier2222
+<Ball000> no bot?
+* Tcheko_ has quit IRC (Ping timeout: 264 seconds)
+* nighty- has quit IRC (Quit: Disappears in a puff of smoke)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* neoman has joined #aros
+* MaMos has quit IRC (Quit: System rebooting)
+* MaMos has joined #aros
+<MaMos> hi
+<MaMos> do you use Wokie 2b14 ?
+<MaMos> !seen Ball000
+<AmigaIta> MaMos, Ball000 Ã¨ ancora in #aros.
+<Ball000> hi MaMos! ty ... unfortunately I'm on Linux and use Konversation
+<Ball000> !seen olivier2222
+<AmigaIta> Mi spiace Ball000, non ho visto olivier2222 qui intorno
+* stefkos has quit IRC (Quit: Client exiting)
+<Ball000> ok thank you MaMos for the correct usage example ;-)
+<MaMos> np
+<MaMos> sorry Ball000 is in italian :/
+<Ball000> hehe not that bad ;-)
+<MaMos> oooook ò/
+<MaMos> Did you tried wookie ?
+<Ball000> nope I only recently got networking working on native... and I don't have much time for native those days
+<Ball000> ask Nikaros when he's around: I knows Wookie very well
+<Ball000> -I +he
+<MaMos> ok
+<MaMos> thanks
+<neoman> !seen sonic
+<AmigaIta> Mi spiace neoman, non ho visto sonic qui intorno
+<MaMos> !seen nikaros
+<AmigaIta> Mi spiace MaMos, non ho visto nikaros qui intorno
+<MaMos> !seen lukejerry
+<AmigaIta> MaMos, lukejerry Ã¨ ancora in #aros.
+<MaMos> ciao LuKeJerry
+<MaMos> !seen saimon69
+<AmigaIta> Mi spiace MaMos, non ho visto saimon69 qui intorno
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* LuKeJerry just started watching "23" ... starts with soundrack from DEEP PURPLE, must be a hell of a hacker-movie :D 
+* LuKeJerry has quit IRC (Quit: buonanotte!)
+* Smartnow has joined #aros
+* Tcheko_ has joined #aros
+* tichy has quit IRC (Quit: Leaving.)
+* terminills_ has joined #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Tcheko_ has quit IRC (Ping timeout: 265 seconds)
+* @ChanServ has quit IRC (*.net *.split)
+* rvalles has quit IRC (Ping timeout: 260 seconds)
+* ChanServ has joined #aros
+* hubbard.freenode.net sets mode: +o ChanServ
+* agr has quit IRC (Remote host closed the connection)
+* agr has joined #aros
+* rvalles has joined #aros
+* Geit has quit IRC (Ping timeout: 244 seconds)
+* neoman has quit IRC
+* terminills_ has joined #aros
+* Smartnow has quit IRC (Quit: Smartnow)
+* tichy^work has quit IRC (Ping timeout: 245 seconds)
+* Mabo has quit IRC
+<terminills_> sup
+* tichy^work has joined #aros
+<terminills_> ugh theres that other terminills again... >.<
+<impy> :<
+<terminills_> hey impy
+<impy> hey term, sup?
+<terminills_> ssdd
+* CountRaven has quit IRC (Ping timeout: 264 seconds)
+<terminills_> u?
+<impy> well, i have to report my ass at work tomorrow
+<impy> i hope i get fired
+<terminills_> lol
+<terminills_> long term vacation!!!
+<terminills_> lol j/k
+* bolt has quit IRC (Ping timeout: 246 seconds)
+* bolt has joined #aros
+<impy> terminills_: if only i had the money to sustain my lazyness ;p
+<terminills_> lol same
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* tichy^work has quit IRC (Ping timeout: 265 seconds)
+* tichy^work has joined #aros
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Client Quit)
+* nighty- has joined #aros
+* nighty- has quit IRC (Client Quit)
+* nighty- has joined #aros
+* Kalamatee has quit IRC (Ping timeout: 272 seconds)
+* Cammy has quit IRC (Ping timeout: 244 seconds)
+* Cammy has joined #aros
+* AmigaIta has quit IRC (Ping timeout: 245 seconds)
+* MaMos has quit IRC (Ping timeout: 264 seconds)
+* deadwood_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* Nalle_ has joined #aros
+* Ba11ooo has joined #aros
+* tichy has joined #aros
+* o1i has joined #aros
+* liverwurst has joined #aros
+* tichy has quit IRC (Quit: Leaving.)
+* rvalles has quit IRC (Ping timeout: 265 seconds)
+* rvalles has joined #aros
+* Unknownymost has joined #aros
+<Unknownymost> hello
+* Tcheko_ has joined #aros
+* Unknownymost has quit IRC
+* rvalles has quit IRC (Read error: Connection reset by peer)
+* rvalles has joined #aros
+* Geit has joined #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* terminills_ has joined #aros
+* analogkid has joined #aros
+* jahc has joined #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* jahc has quit IRC (Ping timeout: 244 seconds)
+* kolla has joined #aros
+* analogkid has quit IRC (Ping timeout: 256 seconds)
+* AMiGA has joined #aros
+* Geri_lgfx has joined #aros
+* _vOYtEC has joined #aros
+* vOYtEC_ has quit IRC (Read error: Connection reset by peer)
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Mabo has joined #aros
+* AMiGA has quit IRC (Ping timeout: 244 seconds)
+* Mabo has quit IRC (Ping timeout: 240 seconds)
+* Nalle_ has quit IRC (Quit: off)
+* Mabo has joined #aros
+* AMiGA has joined #aros
+* nighty-_ has joined #aros
+* Cammy has quit IRC (Quit: Leaving)
+* olivier2222 has joined #aros
+<olivier2222> hello
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* o1i has quit IRC (Quit: received signal 15)
+* kolla has quit IRC (Remote host closed the connection)
+* Geri_lgfx has quit IRC (Ping timeout: 255 seconds)
+* Geri_lgfx has joined #aros
+* rvalles has quit IRC (Ping timeout: 252 seconds)
+* rvalles has joined #aros
+* NomadOfNorad has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 256 seconds)
+* Corscaria_ has quit IRC (Ping timeout: 246 seconds)
+* kudlaty has joined #aros
+* Zevs_ has joined #aros
+* kudlaty has quit IRC (Quit: ^C)
+* Zevs_ has quit IRC (Quit: Zevs_)
+* tichy has joined #aros
+* Corscaria_ has joined #aros
+* Corscaria_ is now known as Corscaria
+* mschulz has joined #aros
+* Kalamatee has joined #aros
+* Ball000_ is now known as Ball000
+* Zevs_ has joined #aros
+* mschulz has quit IRC (Quit: ChatZilla 0.9.89 [Firefox 4.0.1/20110413222027])
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Zevs_ has quit IRC (Quit: Zevs_)
+* nikaros has joined #aros
+* MaMos has joined #aros
+* CountRaven has joined #aros
+<nikaros> olivier2222: salute :)
+* Corscaria has quit IRC (Ping timeout: 264 seconds)
+<olivier2222> saluut
+* Corscaria has joined #aros
+* terminills has quit IRC
+* Tcheko_ has joined #aros
+* Ball000 has quit IRC (Quit: Konversation terminated!)
+* Ball000 has joined #aros
+* Ball000 has quit IRC (Changing host)
+* Ball000 has joined #aros
+* CountRaven has quit IRC (Ping timeout: 245 seconds)
+* CountRaven has joined #aros
+* Corscaria has quit IRC (Read error: Connection reset by peer)
+* Corscaria has joined #aros
+* Corscaria has quit IRC (Ping timeout: 264 seconds)
+* Corscaria has joined #aros
+* MaaG^dA has joined #aros
+* Zevs_ has joined #aros
+* terminills has joined #aros
+* CountRaven has quit IRC (Ping timeout: 248 seconds)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* kolla has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 248 seconds)
+* nikaros has quit IRC (Ping timeout: 256 seconds)
+* nighty-_ has quit IRC (Remote host closed the connection)
+* _4pLaY_ has joined #aros
+* ekix has quit IRC (Ping timeout: 264 seconds)
+* tichy has quit IRC (Quit: Leaving.)
+* ekix has joined #aros
+* Zevs_ has left #aros
+* CountRaven has joined #aros
+* Geri_lgfx has quit IRC (Ping timeout: 255 seconds)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* Geri_lgfx has joined #aros
+<olivier2222> ++
+* olivier2222 has left #aros ("Kopete 0.12.7 : http://kopete.kde.org")
+* CountRaven has quit IRC (Ping timeout: 256 seconds)
+* _4pLaY_ has quit IRC (Read error: Connection reset by peer)
+* kolla has quit IRC (Remote host closed the connection)
+* kirin` has quit IRC (Quit: leaving)
+* terminills has joined #aros
+<terminills> suppity sup sup sup :D
+* Geit has quit IRC (Ping timeout: 256 seconds)
+* Mabo has quit IRC
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills has joined #aros
+* MaaG^dA has quit IRC (Quit: Leaving)
+* CountRaven has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills has joined #aros
+* Fab1 has quit IRC (Ping timeout: 256 seconds)
+* CountRaven has quit IRC (Ping timeout: 244 seconds)
+* Cammy has joined #aros
+* Corscaria has quit IRC (Ping timeout: 264 seconds)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Kalamatee has quit IRC (Quit: ThrashIRC v2.7 sic populo comunicated)
+* deadwood_ has joined #aros
+* Nalle_ has joined #aros
+* jahc has joined #aros
+* liverwurst has joined #aros
+* Ba11ooo has joined #aros
+* o1i has joined #aros
+* Tcheko_ has joined #aros
+* Belxjander has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Geit has joined #aros
+* deadwood_ has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* analogkid has joined #aros
+* kolla has joined #aros
+* jahc has quit IRC (Ping timeout: 252 seconds)
+* Geit has quit IRC (Read error: Connection reset by peer)
+* analogkid has quit IRC (Read error: Connection reset by peer)
+* Mabo has joined #aros
+* Geri_lgfx has joined #aros
+* terminills has joined #aros
+<Belxjander> Hello everyone 
+* Corscaria has joined #aros
+* terminills_ has joined #aros
+* Geit has joined #aros
+* Belxjander has quit IRC (Ping timeout: 248 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Client Quit)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* rvalles has quit IRC (Read error: Connection reset by peer)
+* rvalles has joined #aros
+* analogkid has joined #aros
+* CountRaven has joined #aros
+* analogkid has quit IRC (Read error: No route to host)
+* CountRaven has quit IRC (Ping timeout: 252 seconds)
+* Belxjander has quit IRC (Quit: Yaaic - Yet another Android IRC client - http://www.yaaic.org)
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Nalle_ has quit IRC (Quit: home)
+* terminills has quit IRC (Ping timeout: 256 seconds)
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* o1i has quit IRC (Quit: received signal 15)
+* Fab1 has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* impje has joined #aros
+* impy has quit IRC (Ping timeout: 264 seconds)
+* deadwood_ has joined #aros
+* BSzili has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 244 seconds)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* tichy has joined #aros
+* tichy1 has joined #aros
+* Zevs_ has joined #aros
+* tichy has quit IRC (Read error: No route to host)
+* tichy1 has quit IRC (Ping timeout: 252 seconds)
+* ArosAspire has joined #aros
+* ArosAspire is now known as nikaros
+<nikaros> seams like time to release AspireOS v.1.95
+<nikaros> everything seams good.
+* tichy has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 265 seconds)
+* jahc has joined #aros
+* nikaros has quit IRC (Read error: Connection reset by peer)
+* bolt has quit IRC (Quit: telnet irc.freenode.net 6667)
+* bolt has joined #aros
+* Zevs_ has quit IRC (Read error: Connection reset by peer)
+* Zevs_ has joined #aros
+* Zevs_ has quit IRC (Client Quit)
+* jahc has quit IRC (Ping timeout: 255 seconds)
+* kolla has quit IRC (Read error: Connection reset by peer)
+* MaaG^dA has joined #aros
+* Ball000_ is now known as Ball000
+* NomadOfNorad has joined #aros
+* tichy has quit IRC (Read error: Operation timed out)
+* impje has quit IRC (Quit: Linkinus - http://linkinus.com)
+* impy has joined #aros
+* impje has joined #aros
+* impy has quit IRC (Ping timeout: 250 seconds)
+* mschulz has joined #aros
+* tichy has joined #aros
+* nighty-_ has joined #aros
+* Zevs_ has joined #aros
+<MaMos> hi
+* Tcheko_ has joined #aros
+* tichy has quit IRC (Ping timeout: 244 seconds)
+* mschulz has quit IRC (Remote host closed the connection)
+* tichy has joined #aros
+* tichy has quit IRC (Ping timeout: 260 seconds)
+* terminills has joined #aros
+* nikaros has joined #aros
+<nikaros> hallo people
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* nikaros has quit IRC (Quit: Rock on)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* terminills has joined #aros
+<terminills> sup
+* PKodon has joined #aros
+* nighty-_ has quit IRC (Quit: Disappears in a puff of smoke)
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* bl1tter has joined #aros
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* Geit has quit IRC (Ping timeout: 256 seconds)
+* Mabo has quit IRC
+* MaMos has quit IRC (Quit: System rebooting)
+* Tcheko_ has quit IRC (Ping timeout: 244 seconds)
+* terminills has quit IRC (Remote host closed the connection)
+* bl1tter has quit IRC (Quit: I love jahc)
+* terminills has joined #aros
+* Zevs_ has left #aros
+* MaaG^dA has quit IRC (Quit: Leaving)
+* terminills has quit IRC (Remote host closed the connection)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills has joined #aros
+* gdane1 has joined #aros
+<gdane1> hello
+<gdane1> i have ubuntu 12.04 + virtbox 4.1.22
+<gdane1> i installed icaros 1.1.5 into hdd
+<gdane1> but my mouse doesnt work after first reboot
+<gdane1> can someone help me with it?
+* PKodon has quit IRC (Quit: Oooh, pretty, what happens when I ....?)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+<gdane1> hmm i think its up from guest addittion of the virtualbox
+* gdane1 has left #aros
+* Fab1 has quit IRC (Quit: connection reset by Fab)
+<redblue> np: the plough - suicide express.mp3
+* jahc has joined #aros
+* o1i has joined #aros
+* jahcoff has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* liverwurst has joined #aros
+* Zevs_ has joined #aros
+* Ba11ooo has joined #aros
+* Ball000 has quit IRC (Read error: Operation timed out)
+* Ball000 has joined #aros
+* Tcheko_ has joined #aros
+* jahc has joined #aros
+* jahcoff has quit IRC (Ping timeout: 246 seconds)
+* Tcheko_ has quit IRC (Quit: Ex-Chat)
+* Tcheko_ has joined #aros
+* agr has quit IRC (Ping timeout: 245 seconds)
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* mschulz has joined #aros
+* Zevs_ has left #aros
+* mschulz has quit IRC (Remote host closed the connection)
+* jahc has quit IRC (Ping timeout: 260 seconds)
+* Geit has joined #aros
+* LuKeJerry has joined #aros
+* LuKeJerry has quit IRC (Read error: No route to host)
+* LuKeJerry has joined #aros
+* LuKeJerry has left #aros
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* terminills has joined #aros
+* terminills has quit IRC (Ping timeout: 248 seconds)
+* terminills has joined #aros
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* terminills has quit IRC (Client Quit)
+* Geri_lgfx has joined #aros
+* Mabo has joined #aros
+* rvalles has quit IRC (Read error: Connection reset by peer)
+* rvalles has joined #aros
+* kolla has joined #aros
+* analogkid has joined #aros
+* o1i has quit IRC (Quit: received signal 15)
+* agr has joined #aros
+* Fab1 has joined #aros
+* Bl1tter has joined #aros
+* beezle has joined #aros
+* beezle has left #aros
+* nighty-_ has joined #aros
+* gdane has joined #aros
+<gdane> hi
+<gdane> is anyone from russia
+<gdane> ?
+* Ball000 has quit IRC (Remote host closed the connection)
+* Ball000 has joined #aros
+* Fab2 has quit IRC (Ping timeout: 245 seconds)
+* Geri_lgfx has quit IRC (Ping timeout: 255 seconds)
+* eliotmc has joined #aros
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* Tcheko_ has quit IRC (Ping timeout: 245 seconds)
+* eliotmc has quit IRC (Quit: eliotmc)
+* beezle has joined #aros
+* beezle has left #aros
+* Tcheko_ has joined #aros
+* kolla has quit IRC (Remote host closed the connection)
+* deadwood_ has joined #aros
+* Bl1tter has quit IRC (Quit: bye)
+* eliotmc has joined #aros
+* gdane has left #aros
+* Zevs_ has joined #aros
+* tichy has joined #aros
+* eliotmc has quit IRC (Quit: cya)
+* impje has quit IRC (Read error: Connection reset by peer)
+* eliotmc has joined #aros
+* impy has joined #aros
+* NomadOfNorad has joined #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* AMiGA has quit IRC
+* Mabo has quit IRC (Disconnected by services)
+* Mabo_ has joined #aros
+* eliotmc has quit IRC (Quit: eliotmc)
+* stefkos has joined #aros
+* mschulz has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* MaMos has joined #aros
+* AMiGA has joined #aros
+* terminills_ has quit IRC
+* CountRaven has joined #aros
+* migario has joined #aros
+<migario> does someone perhaps know who i need to contact concerning the archives ?
+* terminills has joined #aros
+<Ball000> migario : hi! :-) ... about the screenshot?
+<migario> yups. i made a _big_ boo-boo
+<migario> hi also :-)
+<Ball000> you want me to try and delete it?
+<migario> if you can then pleae do. i've uploaded the correct one right now
+<Ball000> ok I'll have a look
+<migario> thank you in advance
+* terminills has quit IRC (Ping timeout: 252 seconds)
+* terminills has joined #aros
+* Manu_aros has joined #aros
+* migario is so clumsy sometimes, all confused by all those filenames and directories :/
+<Ball000> ;-) looks better now?
+<migario> ahh, my hero.. :-)
+<migario> thank you very much Ball000. this way it saves me from openly asking on the forums about solving my clumsyness :-D
+<Ball000> no problemo ;-)
+<migario> oh, nice you did the pending uploads as well :thumbsup:
+<migario> Manu_aros: is it ok fro me to upload the rtcw kitty boxshot picture you created to the archives ?
+<Manu_aros> Hi migario, Sure no problem :-)
+<Manu_aros> I should have painted it but time is not enough :(
+<Manu_aros> I mean colored it
+<migario> ah ok. thanks. i was in the process of getting some screenshots for BSzili games and your picture was one of them ;-)
+<migario> ah, don't worry. i think it is very nce as it is. but i know an artist is never done ;-)
+<Manu_aros> That's actually true ;-)
+<migario> yes, i know :-D
+<migario> very frustrating sometimes to argue with artists, if you need a picture or a mod in time to meet a deadline :/
+<migario> no offense ofcourse, i understand why
+<Manu_aros> Yes inspiration usually never arises when you need it. But on a slow day at work when I have no chance of drawing I typically get lots of inspiration :-P
+* Mephisto has joined #aros
+<migario> hehe, i know the feeling all to well unfortunely...
+<migario> unfortunately
+* Mabo_ has quit IRC
+* Zevs_ has joined #aros
+* terminills_ has joined #aros
+* terminills has quit IRC (Ping timeout: 246 seconds)
+* terminills_ is now known as terminills
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* Manu_aros has quit IRC (Quit: Leaving)
+* mschulz has quit IRC (Remote host closed the connection)
+* terminills has quit IRC (Ping timeout: 260 seconds)
+* buzz_ has joined #aros
+* terminills has joined #aros
+* tichy has quit IRC (Ping timeout: 245 seconds)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* nighty-_ has quit IRC (Quit: Disappears in a puff of smoke)
+* stefkos has quit IRC (Quit: Client exiting)
+* terminills has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* rvalles has quit IRC (Ping timeout: 260 seconds)
+* rvalles has joined #aros
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Zevs_ has left #aros
+* NomadOfNorad has joined #aros
+* terminills has joined #aros
+* MaMos has quit IRC (Quit: System rebooting)
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* NomadOfNorad has joined #aros
+<NomadOfNorad> is amigworld.net down at the moment, or is it just me?  oO
+<migario> i cannot reach it either, ping timeout as well
+<migario> btw i assume you meant amigaworld ?
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills has joined #aros
+<NomadOfNorad> er..... yeah, I did.
+<migario> hehe, thisis what google says: Dear Anonymous user your IP address 66.249.71.10 has been temporarily refused access to this site. This can occur when a severe attack is under way.
+<migario> and no, that is not my ip ;-p
+<NomadOfNorad> whos IP is that.  AW.net's?  oO
+<migario> actually, no idea :/
+<migario> hmz aw seems troubled i see... a fronight ago same probs it seems
+<migario> fronight=fortnight
+<migario> hmz
+<migario> a thought occured to me
+<migario> amigaworld.net has support for freeciv is it not ?
+<migario> wasn't bszili busy with a port :-D
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+<NomadOfNorad> what's freeciv again?
+<migario> civilization
+<NomadOfNorad> open source clone of Civili--- ah, figures
+<migario> i just found it a curious coincidence
+* agr has quit IRC (Quit: agr)
+<NomadOfNorad> :)
+<migario> irc server is out as well btw, but could run on same server ofcourse
+* terminills has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Corscaria has quit IRC (Ping timeout: 256 seconds)
+* Corscaria has joined #aros
+* _Lucretia__ has joined #aros
+* _Lucretia_ has quit IRC (Ping timeout: 268 seconds)
+<migario> NomadOfNorad: aw is back :-)
+* migario has quit IRC (Quit: actually for once having a weekend)
+* Corscaria has quit IRC (Ping timeout: 245 seconds)
+* deadwood_ has joined #aros
+* tichy has joined #aros
+* tichy has quit IRC (Ping timeout: 244 seconds)
+* rvalles has quit IRC (Ping timeout: 252 seconds)
+* rvalles has joined #aros
+* olivier2222 has joined #aros
+<olivier2222> hi
+* Tcheko_ has quit IRC (Ping timeout: 246 seconds)
+* Tcheko_ has joined #aros
+* rvalles has quit IRC (Ping timeout: 252 seconds)
+* rvalles has joined #aros
+* rvalles has quit IRC (Excess Flood)
+* rvalles has joined #aros
+* rvalles has quit IRC (Excess Flood)
+* rvalles has joined #aros
+* mschulz has joined #aros
+* Geri_lgfx has joined #aros
+* Geit has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* Mabo has joined #aros
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* Geri_lgfx has joined #aros
+* _Lucretia__ is now known as _Lucretia_
+* _Lucretia_ has quit IRC (Changing host)
+* _Lucretia_ has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* mutch has joined #aros
+* Tcheko_ has quit IRC (Read error: Operation timed out)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* mutch has quit IRC (Quit: Leaving)
+<olivier2222> .
+* impy has joined #aros
+* terminills has joined #aros
+<olivier2222> .
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* _4pLaY_ has joined #aros
+* kirin` has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* kirin` has quit IRC (Ping timeout: 246 seconds)
+* kirin` has joined #aros
+* Bl1tter has joined #aros
+* impy has joined #aros
+* eliotmc has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* kirin` has quit IRC (Quit: leaving)
+* kirin` has joined #aros
+* terminills has joined #aros
+* kirin` has quit IRC (Quit: leaving)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* kirin` has joined #aros
+* kolla has joined #aros
+* Zevs_ has joined #aros
+* olivier2222 has quit IRC (Quit: Kopete 0.12.7 : http://kopete.kde.org)
+* Corscaria has joined #aros
+* Zevs_ has left #aros
+* tichy^work has quit IRC (Ping timeout: 245 seconds)
+* eliotmc has quit IRC (Quit: cya)
+* eliotmc has joined #aros
+* deadwood_ has joined #aros
+* BSzili has joined #aros
+* buzz_ has quit IRC (Ping timeout: 245 seconds)
+* buzz_ has joined #aros
+* tichy has joined #aros
+* terminills has joined #aros
+* worduk has joined #aros
+* eliotmc has quit IRC (Quit: cya)
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 252 seconds)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* NomadOfNorad has joined #aros
+* NomadOfNorad has quit IRC (Client Quit)
+* impy has quit IRC (Read error: Connection reset by peer)
+* NomadOfNorad has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* impy has joined #aros
+* Zevs_ has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* BSzili has joined #aros
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* MaMos has joined #aros
+<Zevs_> BSzili: I see you are busy porting games for AROS :-) Have you looked at fs-uae yet? Its getting really good now, almost as good as WinUAE ;-)
+<BSzili> yeah, and I had some trouble with GLib
+<Zevs_> BSzili: So its a no-go for now then?
+<BSzili> for the time being. I'll talk with o1i about the GLib headers
+<Zevs_> BSzili: That would be great! AROS need an easy to use and FAST uae
+<Zevs_> j-uae is dead slow, I'm sorry to say
+<BSzili> yeah, it's based on E-UAE 
+<Zevs_> an updated uae is in my opinion a key component for AROS :-)
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* mschulz_ has quit IRC (Remote host closed the connection)
+* MaMos has quit IRC (Quit: System rebooting)
+* MaMos has joined #aros
+* terminills has joined #aros
+* Mabo has quit IRC
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* _4pLaY_ has quit IRC (Read error: Connection reset by peer)
+* _4_ has joined #aros
+* _4_ is now known as _4pLaYeR
+* Zevs_ has quit IRC (Quit: Zevs_)
+* MaMos has quit IRC (Quit: System rebooting)
+* MaMos has joined #aros
+* migario has joined #aros
+* terminills has joined #aros
+* tichy has quit IRC (Ping timeout: 252 seconds)
+* MaMos has quit IRC (Quit: System rebooting)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* Kalamatee has joined #aros
+* agr has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* _4pLaYeR has quit IRC (Quit: Leaving)
+* terminills has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills has joined #aros
+* kolla has quit IRC (Remote host closed the connection)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* buzz_ has quit IRC (Remote host closed the connection)
+* agr has quit IRC (Ping timeout: 245 seconds)
+* Bl1tter has quit IRC (Quit: bye)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 260 seconds)
+* migario has quit IRC (*.net *.split)
+* migario has joined #aros
+* migario has quit IRC (*.net *.split)
+* migario has joined #aros
+* oiragim has joined #aros
+* migario has quit IRC (Ping timeout: 246 seconds)
+* oiragim is now known as migario
+* Tz1m1sc3 has joined #aros
+<Tz1m1sc3> woa i'm here with a C64 lol 
+<migario> seriously ? i am aware it's possible
+<Tz1m1sc3> well the c64 is just connected to my linux box with kipperterm and from there i run irssi :p
+<migario> hehe, cheater ;-)
+<Tz1m1sc3> contiki irc client sucks :p
+<migario> i have no idea, internetting with the c64 i've never done... bss'ing was more my thing 
+* Fab1 has quit IRC (Quit: connection reset by Fab)
+<Tz1m1sc3> there is a c128 on his way to my home from ebay... can't wait for it to be here
+<migario> cool, a d version ?
+<Tz1m1sc3> nope not a d
+<migario> ah, shame. it is such a nice machine.
+<migario> have any particular plans with the 128 ?
+* _Lucretia__ has joined #aros
+<Tz1m1sc3> yes replacing the dead one i have here to run CPM software
+* _Lucretia_ has quit IRC (Ping timeout: 255 seconds)
+<migario> a dead 128, sorry to hear that. ah yes those days of cpm :D
+<Tz1m1sc3> well as long as ppl does things like z80 homebrew computer, cpm is still alive, there a bunch of home made computer runing cpm out there ;)
+<migario> well i am personally very open for such things, but honestly it is getting too much for me to keep up with these days /me is getting old :D 
+* Tz1m1sc3 has quit IRC (Quit: boum)
+* migario waves Ciao
+* Corscaria has quit IRC (Ping timeout: 245 seconds)
+* terminills has joined #aros
+* Corscaria has joined #aros
+* deadwood_ has joined #aros
+* terminills has quit IRC (Remote host closed the connection)
+* Zevs_ has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* mschulz has joined #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* eliotmc has joined #aros
+* eliotmc has quit IRC (Quit: cya)
+* Nalle_ has joined #aros
+* worduk has quit IRC (Quit: Leaving)
+* Cammy has quit IRC (Quit: Leaving)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* Fab2 has joined #aros
+* mschulz has quit IRC (Remote host closed the connection)
+* Alexfrench has joined #aros
+* crazyhair2 has joined #aros
+* crazyhair2 is now known as longtoe
+* _Lucretia__ is now known as _Lucretia_
+* _Lucretia_ has quit IRC (Changing host)
+* _Lucretia_ has joined #aros
+* longtoe puts migario on a tredmill
+* longtoe has left #aros ("bye")
+* BSzili has joined #aros
+<migario> heya bszili. have a good day today :-)
+<Alexfrench> hi all
+<BSzili> hey, you too! :P 
+<migario> heya Alexfrench 
+* Geri_lgfx has joined #aros
+* Zevs_ has joined #aros
+* cubezzz2 has joined #aros
+* mschulz has joined #aros
+* Geit has joined #aros
+* Alexfrench has quit IRC (Remote host closed the connection)
+* Alexfrench has joined #aros
+* JohnnyBaby has joined #aros
+* Alexfrench has left #aros
+* JohnnyBaby has quit IRC (Ping timeout: 252 seconds)
+* JohnnyBaby has joined #aros
+* migario has quit IRC (Quit: chumbawamba)
+* JohnnyBaby has quit IRC (Quit: No Ping reply in 360 seconds.)
+* JohnnyBaby has joined #aros
+* JohnnyBaby has quit IRC (Ping timeout: 248 seconds)
+* JohnnyBaby has joined #aros
+* CountRaven has quit IRC (Ping timeout: 245 seconds)
+* Geri_lgfx has quit IRC (Ping timeout: 255 seconds)
+* JohnnyBaby has quit IRC (Ping timeout: 246 seconds)
+* JohnnyBaby has joined #aros
+* Geri_lgfx has joined #aros
+* JohnnyBaby has quit IRC (Ping timeout: 246 seconds)
+* JohnnyBaby has joined #aros
+* JohnnyBaby has quit IRC (Ping timeout: 246 seconds)
+* beezle has joined #aros
+* beezle has left #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* mschulz has quit IRC (Remote host closed the connection)
+* NomadOfNorad has joined #aros
+* Mabo has joined #aros
+* mschulz has joined #aros
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 240 seconds)
+* stefkos has joined #aros
+* BSzili has quit IRC (Ping timeout: 260 seconds)
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* terminills has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* BSzili has joined #aros
+* tichy has joined #aros
+* eliotmc has joined #aros
+* deadwood_ has joined #aros
+* _Lucretia_ has quit IRC (Ping timeout: 252 seconds)
+* impy has quit IRC (Read error: Connection reset by peer)
+* _Lucretia_ has joined #aros
+* BSzili has quit IRC (Read error: Connection reset by peer)
+* MaaG^dA has joined #aros
+* BSzili has joined #aros
+* beezle has joined #aros
+<beezle> evening folks
+* mschulz has joined #aros
+<beezle> does anyone have any experience with usb mobile broadband modems on aros please?
+<beezle> If Im not mistaken a lot of huwaei sticks are supported?
+<beezle> Id post asking at a-e, but I'll be damned if I can remember my password
+<MaaG^dA> hi all :)
+* mschulz_ has quit IRC (Ping timeout: 260 seconds)
+* beezle has quit IRC
+* impy has joined #aros
+* Tcheko_ has joined #aros
+* terminills has joined #aros
+* nighty^ has quit IRC (Quit: Disappears in a puff of smoke)
+* eliotmc has quit IRC (Quit: cya)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* MaMos has joined #aros
+<MaMos> hi
+* Nalle_ has quit IRC (Quit: leaving)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* ang1l has quit IRC (Ping timeout: 246 seconds)
+* terminills has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* ang1l has joined #aros
+* Mabo has quit IRC
+* Corscaria has quit IRC (Ping timeout: 245 seconds)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* mschulz has quit IRC (Remote host closed the connection)
+* tichy has quit IRC (Quit: Leaving.)
+* stefkos has quit IRC (Quit: Client exiting)
+* Tcheko_ has quit IRC (Ping timeout: 260 seconds)
+* Geit has joined #aros
+* Corscaria has joined #aros
+* agr has joined #aros
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* _Lucretia_ has quit IRC (Ping timeout: 255 seconds)
+* _Lucretia_ has joined #aros
+* _Lucretia_ has quit IRC (Ping timeout: 252 seconds)
+* MrBIOS has joined #aros
+* _Lucretia_ has joined #aros
+* Mephisto has quit IRC
+* terminills has joined #aros
+* MaaG^dA has quit IRC (Ping timeout: 246 seconds)
+<MrBIOS> hey terminills
+<terminills> hey MrBIOS 
+<MrBIOS> how  goes?
+<terminills> pretty good working on a server again
+<MrBIOS> production?
+<MrBIOS> best thing I ever did was to get away from that, although I very well may need to return to it, some day
+<terminills> build server :)
+<MrBIOS> gotcha
+* _Lucretia__ has joined #aros
+* _Lucretia_ has quit IRC (Ping timeout: 244 seconds)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Corscaria has quit IRC (Read error: Connection reset by peer)
+* Corscaria has joined #aros
+* Fab2 has quit IRC (Quit: connection reset by Fab)
+* cubezzz2 has quit IRC (Remote host closed the connection)
+* Kalamatee has quit IRC (Quit: ThrashIRC v2.7 sic populo comunicated)
+* cubezzz2 has joined #aros
+* analogkid has quit IRC (Ping timeout: 255 seconds)
+* NomadOfNorad has quit IRC (Ping timeout: 256 seconds)
+* NomadOfNorad has joined #aros
+* MaaG^dA has joined #aros
+* jahc has joined #aros
+* liverwurst has joined #aros
+* o1i has joined #aros
+* tichy^work has joined #aros
+* Ba11ooo has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* Tcheko_ has joined #aros
+* mschulz has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 245 seconds)
+* jahcoff has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Ba11ooo_ has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* Tcheko_ has joined #aros
+* Corscaria has quit IRC (Ping timeout: 245 seconds)
+* Thordasin has joined #aros
+<Thordasin> hi all, is there a dev list for aros?
+<Ba11ooo_> hi Thordasin! Look here: http://aros.sourceforge.net/contact.php#mailing-lists
+<Thordasin> sorry, i ment is ther an irc channel for developers?
+<Ba11ooo_> developers come and chat here on #aros usually
+<Ba11ooo_> there is no other official room
+<Thordasin> oh :) i'm trying to compile aros for darwin but i'm haveing no luck any ideas where i can look for better instructions?
+<Ba11ooo_> did you follow those instructions there: http://aros.sourceforge.net/documentation/developers/compiling.php ?
+<Thordasin> i don't think so, i'll look at thos, i followed the instructions on the git under arch/all-darwin
+* crazyhair has joined #aros
+<Ba11ooo_> I would guess you miss some depandancies... Though I don't know what errors you encountered... And I don't build for darwin myself
+<Ba11ooo_> If you don't solve your problems, don't hesitate to ask on dev-ml ... some devs do compile for darwin there, who almost never come to #aros
+* Ba11ooo has joined #aros
+<Thordasin> here is what i get :
+<Thordasin> Building MetaMake...
+<Thordasin> aclocal: warning: autoconf input should be named 'configure.ac', not 'configure.in'
+<Thordasin> configure.in:48: error: automatic de-ANSI-fication support has been removed
+<Thordasin> /opt/local/share/aclocal-1.12/protos.m4:10: AM_C_PROTOTYPES is expanded from...
+<Thordasin> configure.in:48: the top level
+<Thordasin> autom4te: /opt/local/bin/gm4 failed with exit status: 1
+<Thordasin> aclocal: error: autom4te failed with exit status: 1
+<Thordasin> make: *** [/Users/rlumley/Desktop/AROS/src/tools/MetaMake/configure] Error 1
+* cubezzz2 is now known as cubelog
+* MaaG^dA has quit IRC (Ping timeout: 260 seconds)
+<Ba11ooo> ok, I don't know then ... perhaps some lurkers there will see this in some time and will be able to help... If not, I advise you to try and ask on dev-ml of course
+* Ba11ooo_ has quit IRC (Ping timeout: 245 seconds)
+* crazyhair has quit IRC (Quit: I love jahc)
+* Geit has joined #aros
+* Mabo has joined #aros
+* Thordasin has quit IRC (Quit: Leaving.)
+* agr has quit IRC (Quit: agr)
+* terminills has joined #aros
+* @ChanServ has quit IRC (*.net *.split)
+* Ball000_ has quit IRC (Remote host closed the connection)
+* Ball000_ has joined #aros
+* ChanServ has joined #aros
+* hubbard.freenode.net sets mode: +o ChanServ
+* bl1tter has joined #aros
+* Fab2 has joined #aros
+* jahcoff has quit IRC (Ping timeout: 260 seconds)
+* bl1tter has left #aros ("quit")
+* jahc has joined #aros
+* Geri_lgfx has joined #aros
+* agr has joined #aros
+* _4_Work has joined #aros
+* jahc has quit IRC (Ping timeout: 260 seconds)
+* agr has quit IRC (Quit: agr)
+* agr has joined #aros
+* terminills has quit IRC (Ping timeout: 245 seconds)
+* agr has quit IRC (Quit: agr)
+* Fab1 has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* o1i has quit IRC (Quit: received signal 15)
+* nighty^ has joined #aros
+* agr has joined #aros
+* olivier2222 has joined #aros
+<olivier2222> hi
+* nighty-_ has joined #aros
+* nighty-_ has quit IRC (Read error: Connection reset by peer)
+* nighty^ has quit IRC (Read error: Connection reset by peer)
+* nighty^ has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* nighty- has quit IRC (Read error: Connection reset by peer)
+* nighty- has joined #aros
+<Ba11ooo> Salut olivier2222 !
+<olivier2222> salut salut :)
+* impy has joined #aros
+<olivier2222> is AmiFIG on the repository?
+<olivier2222> i can't find it
+<Ba11ooo> http://archives.aros-exec.org/index.php?function=showfile&file=graphics/vector/amifig-suite_v0.8.zip ?
+<olivier2222> that's the "suite", that is, the binary distro.
+<olivier2222> it seems there are no other sources than sf://amifig
+<olivier2222> through svn
+<Ba11ooo> ok can't tell indeed
+<olivier2222> on my build, amifig does compile & run.
+<olivier2222> (AmiFIG v0.9, aros-i386 V1)
+<Ba11ooo> :-)
+<olivier2222> is there a way to fetch sources directly from svn with the aros build system?
+<Ba11ooo> I'd guess that's more or less what is done in ports
+<Ba11ooo> https://svn.aros.org/svn/aros/trunk/ports/text/polyglotman/mmakefile.src has " REPOSITORIES := sf://polyglotman"
+<olivier2222> yeah, is looking for a _file_ named rman-3.2.tar.gz
+<olivier2222> not for the svn in itself.
+<olivier2222> thus, i subscribed to the amifig project, on sf.n
+<olivier2222> seems its maintened by a french
+<olivier2222> yannick erb
+<olivier2222> ideally, i want to make a tarball of the 0.9 sources. i already have the necessary file tree for ports/amifig, mmakefile.src, etc.
+<olivier2222> i have a problem here.
+<olivier2222> a linux "sed" command problem... 
+<olivier2222> in config/make.tmpl
+<olivier2222> at copy_recursively
+<olivier2222> in the skins/ directories names there are "simple quote" that breaks the build
+<olivier2222> like: "Manu's Theme"
+<olivier2222> (same in the aminet amifig-suite tree)
+<Ba11ooo> o1i is the sed's guru... unfortunately he left one hour ago
+* Bl1tter has joined #aros
+<Ba11ooo> there is also https://svn.aros.org/svn/aros/trunk/ports/devel/ctags/mmakefile.src ... is it more useful?
+<olivier2222> the command is "%copy_dir_recursive" actually
+<olivier2222> tar.gz again, see in the %fetch_and_build line
+<olivier2222> another thing is that AmiFIG is actually AROS focused.
+<Ba11ooo> ok I wondered if this line _needed_ it or _built_ it
+<olivier2222> it's a wget or something
+<olivier2222> then again, having an amifig built with the build system returns many cpu/arch supported at once. works v1, about 5/10 lines to edit to compile it for aros.
+* nighty-_ has joined #aros
+<olivier2222> hi
+* nighty-_ has quit IRC (Read error: Connection reset by peer)
+* nighty- has quit IRC (Read error: Connection reset by peer)
+* nighty-_ has joined #aros
+* nighty^ has quit IRC (Read error: Connection reset by peer)
+<Ba11ooo> sure, ports is the best way, I agree...
+* nighty- has joined #aros
+<Ba11ooo> http://www.dusabledanslherbe.eu/AROSPage/index.html this is Yanickescu's home page
+<Ba11ooo> this Yanickescu: http://aros-exec.org/modules/newbb/viewtopic.php?post_id=74026#forumpost74026
+<olivier2222> i see
+<Ba11ooo> http://aros-exec.org/modules/newbb/viewtopic.php?post_id=68390#forumpost68390 is more specific ;-)
+<olivier2222> k
+<olivier2222> yes, exactly
+<olivier2222> good.
+<olivier2222> cool be useful on all plateforms
+* Ba11ooo_ has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Ba11ooo has joined #aros
+* Ba11ooo_ has quit IRC (Ping timeout: 245 seconds)
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* BSzili has joined #aros
+* Fab2 has quit IRC (Ping timeout: 245 seconds)
+* Geit has quit IRC (Read error: Connection reset by peer)
+* Geit_ has joined #aros
+* impje_ has quit IRC (Read error: Connection reset by peer)
+* impje has joined #aros
+* impy has quit IRC (Ping timeout: 246 seconds)
+* impy has joined #aros
+* Mabo has quit IRC (Ping timeout: 245 seconds)
+* AMiGA has quit IRC (Ping timeout: 260 seconds)
+* MaMos has quit IRC (Ping timeout: 256 seconds)
+* Mabo has joined #aros
+* AMiGA has joined #aros
+* deadwood_ has joined #aros
+* nighty-__ has joined #aros
+* nighty^ has joined #aros
+* nighty-_ has quit IRC (Ping timeout: 245 seconds)
+* nighty- has quit IRC (Ping timeout: 260 seconds)
+* CountRaven has joined #aros
+<mschulz> deadwood_: :)
+* CountRaven has quit IRC (Ping timeout: 246 seconds)
+* nighty^ has quit IRC (Read error: Connection reset by peer)
+* nighty-__ has quit IRC (Read error: Connection reset by peer)
+* nighty- has joined #aros
+* nighty^ has joined #aros
+* analogkid has joined #aros
+* terminills has joined #aros
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* BSzili has quit IRC (Ping timeout: 256 seconds)
+* BSzili has joined #aros
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills has quit IRC (Ping timeout: 256 seconds)
+* Zevs_ has joined #aros
+* Ball000 has joined #aros
+* Ball000 has quit IRC (Changing host)
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Remote host closed the connection)
+* BSzili_ has joined #aros
+* terminills has joined #aros
+* BSzili has quit IRC (Ping timeout: 256 seconds)
+* Geri_lgfx has joined #aros
+* BSzili_ is now known as BSzili
+* BSzili has quit IRC (Read error: Connection reset by peer)
+* BSzili has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 245 seconds)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* MaaG^dA has joined #aros
+* CountRaven has joined #aros
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 245 seconds)
+* PKodon has joined #aros
+* Corscaria has joined #aros
+* PKodon has quit IRC (Client Quit)
+* Zevs_ has quit IRC (Quit: Zevs_)
+* NomadOfNorad has joined #aros
+* jahc has joined #aros
+* Tcheko_ has joined #aros
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Ping timeout: 240 seconds)
+* Bl1tter has quit IRC (Quit: bye)
+* Ball000 has joined #aros
+* Ball000 has quit IRC (Changing host)
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 260 seconds)
+* tichy has joined #aros
+* nighty^ has quit IRC (Read error: Connection reset by peer)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Read error: Operation timed out)
+* Ball000_ is now known as Ball000
+* MaMos has joined #aros
+<MaMos> hi
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Ping timeout: 260 seconds)
+* beezle has joined #aros
+* beezle has left #aros
+<MrBIOS-> hi MaMos
+* mschulz_ has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* Ball000_ is now known as Ball000
+<MaMos> hey MrBIOS- ò/
+* MaaG^dA has quit IRC (Quit: Leaving)
+* Ball000 has quit IRC (Ping timeout: 255 seconds)
+* Ball000 has joined #aros
+* Ball000 has quit IRC (Changing host)
+* Ball000 has joined #aros
+* BSzili has quit IRC (Quit: Be vigilant!)
+* tichy has quit IRC (Quit: Leaving.)
+* _4_W0rk has joined #aros
+* _vOYtEC has quit IRC (Ping timeout: 256 seconds)
+* _4_Work has quit IRC (Ping timeout: 245 seconds)
+* MaaG^dA has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 255 seconds)
+* vOYtEC has joined #aros
+* nighty^ has joined #aros
+* henes has quit IRC (Ping timeout: 256 seconds)
+* henes has joined #aros
+* olivier2222 has quit IRC (Quit: Kopete 0.12.7 : http://kopete.kde.org)
+* MaaG^dA has quit IRC (Quit: Leaving)
+* Mabo has quit IRC
+* terminills has quit IRC (Remote host closed the connection)
+* Geit_ has quit IRC (Quit: Heroes never die...They just reload!)
+* terminills has joined #aros
+* terminills has quit IRC (Client Quit)
+* terminills has joined #aros
+* MrBIOS has quit IRC (Ping timeout: 244 seconds)
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Ping timeout: 256 seconds)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills_ has joined #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 240 seconds)
+* nighty^ has quit IRC (Quit: Disappears in a puff of smoke)
+* NomadOfNorad has quit IRC (Read error: Connection reset by peer)
+* NomadOfNorad has joined #aros
+* redblue is having earl grey tea
+<redblue> np: roni ben-hur - you are there.cda
+* NomadOfNorad-PC has joined #aros
+* NomadOfNorad has quit IRC (Ping timeout: 245 seconds)
+* TheNomadicOne has joined #aros
+* NomadOfNorad-PC has quit IRC (Ping timeout: 256 seconds)
+* Tcheko_ has joined #aros
+* analogkid has quit IRC (Ping timeout: 252 seconds)
+* Tcheko_ has quit IRC (Ping timeout: 246 seconds)
+* eliotmc has joined #aros
+* o1i has joined #aros
+* Zevs_ has joined #aros
+* impy_ has joined #aros
+* liverwurst has joined #aros
+* impy has quit IRC (Ping timeout: 265 seconds)
+* impy_ has quit IRC (Ping timeout: 272 seconds)
+* Ba11ooo has joined #aros
+* MrBIOS has joined #aros
+* MrBIOS- has quit IRC (Ping timeout: 256 seconds)
+* Tcheko_ has joined #aros
+* Zevs_ has quit IRC (Ping timeout: 272 seconds)
+* kolla has joined #aros
+<_4_W0rk> m0rn
+* Ba11ooo_ has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 245 seconds)
+* Ba11ooo_ is now known as Ba11ooo
+* Ba11ooo has quit IRC (*.net *.split)
+* Ba11ooo has joined #aros
+* Geit has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* mschulz has joined #aros
+* Geri_lgfx has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 246 seconds)
+* TheNomadicOne has quit IRC (Quit: Leaving)
+* beezle has joined #aros
+* beezle has left #aros
+* Mabo has joined #aros
+* eliotmc has quit IRC (Quit: cya)
+* Ba11ooo_ has joined #aros
+* Tcheko_ has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+* Ba11ooo_ is now known as Ba11ooo
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* terminills_ has joined #aros
+* Bl1tter has joined #aros
+* nighty^ has joined #aros
+* impy has joined #aros
+* oGALAXYo has joined #aros
+* oGALAXYo has quit IRC (Client Quit)
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* o1i has quit IRC (Quit: received signal 15)
+* Ba11ooo_ has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+* Ba11ooo_ has quit IRC (Ping timeout: 240 seconds)
+* eliotmc has joined #aros
+* analogkid has joined #aros
+* deadwood_ has joined #aros
+* tichy has joined #aros
+* nikaros has joined #aros
+<nikaros> hallo guys
+<nikaros> deadwood_: Someone reported that BiB (boing icon bar) have some gfx glitches.
+<nikaros> deadwood_: I noticed myself using big icons.
+<deadwood_> nikaros: hi
+<nikaros> deadwood_: I guess a little more space is needed beween the icons to prevent that from happening.
+<nikaros> deadwood_: I mean could you look at the code in BiB ?
+* Ball000_ has quit IRC (Ping timeout: 248 seconds)
+<nikaros> deadwood_: Or is this difficult.
+* eliotmc has quit IRC (Quit: cya)
+* Ball000_ has joined #aros
+<nikaros> deadwood_: for someone talented as you, I think it would be simple to fix ;)
+<nikaros> Ball000_: haya :)
+<nikaros> Ball000_: long time.
+<nikaros> mschulz: I heard you are doing AROS NG :P
+<nikaros> mschulz: jokes apart. good to see you here.
+* Bl1tter has quit IRC (Quit: bye)
+<nikaros> deadwood_: not much happening in AROS land when you are not doing any code ;)
+<nikaros> deadwood_: sure BSzili is porting lots of games :)
+<nikaros> deadwood_: Would be nice to see a MESA gallium3D update some time.
+<nikaros> deadwood_: maybe we should start a bounty to get it updated.
+<nikaros> deadwood_: would that be interesting for you ?
+* tichy^work has quit IRC (Ping timeout: 246 seconds)
+* MaMos has quit IRC (Ping timeout: 246 seconds)
+* tichy^work has joined #aros
+* tichy^work has quit IRC (Changing host)
+* tichy^work has joined #aros
+* MaMos has joined #aros
+<mschulz> nikaros: true, not much new within aros
+<nikaros> mschulz: seams like stalled.
+<mschulz> not my fault ;)
+<nikaros> mschulz: it is :P
+<mschulz> how come?
+<mschulz> I'm innocent
+<nikaros> mschulz:  hehe
+<nikaros> mschulz: when father quit the children follow :P
+<mschulz> father?
+<mschulz> naah
+<nikaros> mschulz: you are AROS father ;)
+<mschulz> Aron is father of aros ;)
+<mschulz> not me
+<nikaros> mschulz: If you ask me AROS is almost as good as it gets talking classic.
+<nikaros> mschulz: that is why I want AROS to go to the next level.
+<nikaros> mschulz: memory protection and all the mothern stuff.
+<mschulz> forget
+<mschulz> ;)
+<nikaros> mschulz: Is there realy much point doing more for the classic AROS version.
+<nikaros> mschulz: sure would break everything.
+<nikaros> mschulz: But sometime it should happen, or is it just a bad idea.
+<mschulz> I would love to see it happen :)
+<nikaros> mschulz: that is the spirit :)
+<nikaros> mschulz: many are so much against it.
+<nikaros> mschulz: I just don't see how it could be a bad thing.
+<nikaros> mschulz: We need to bring the ideas behind AmigaOS to 2012
+<nikaros> mschulz: but introduse all the mothern stuff.
+<mschulz> lol
+<impy> like spell checkers
+<mschulz> but who are we?
+<mschulz> we, the team who wants 100% os3.x compatible?
+<nikaros> impy: haha
+<nikaros> impy: I know
+<nikaros> mschulz: are not compatible enough now.
+<nikaros> mschulz: what more OS 3.1 do we want ;)
+<impy> we, mschulz plus a bunch of bystanders bikeshedding
+<impy> nikaros: it still need a good polish
+<impy> (not ness by a polish)
+<nikaros> impy: haha, they are all polish ;)
+<nikaros> impy: I wonder if abi v.1 will ever get finished.
+<nikaros> I don't even see the point with abi v.1
+<nikaros> maybe good for aros 68k 
+<nikaros> Fab1: are you there ?
+<nikaros> Fab1: as far as I know streaming does not work with the youtube links anymore ?
+<nikaros> Fab1: Download works good, so thanx for the new script.
+<nikaros> I need someone to do a update script for AspireOS.
+<nikaros> for future updates.
+<nikaros> Ball000_: maybe something for you ;)
+<nikaros> this script should just replace and add files to sys:
+<nikaros> ok. see you
+* nikaros has quit IRC (Quit: Rock on)
+* Tcheko_ has quit IRC (Ping timeout: 244 seconds)
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 255 seconds)
+* Tcheko_ has joined #aros
+* mschulz_ is now known as mschulz
+* kolla has quit IRC (Remote host closed the connection)
+* terminills_ has quit IRC
+* NomadOfNorad has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* terminills_ has joined #aros
+* mschulz has quit IRC (Remote host closed the connection)
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills_ has joined #aros
+* nighty^ has quit IRC (Remote host closed the connection)
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills_ has joined #aros
+* Geit has quit IRC (Read error: Connection reset by peer)
+* Geit has joined #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* tichy has quit IRC (Quit: Leaving.)
+* tichy has joined #aros
+* tichy has quit IRC (Client Quit)
+* bolt has quit IRC (Ping timeout: 252 seconds)
+* bolt has joined #aros
+* Malesperanto has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 246 seconds)
+* Geit has quit IRC (Ping timeout: 260 seconds)
+* Mabo has quit IRC
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+<terminills> sup
+<Malesperanto> nop
+* Ball000_ has quit IRC (Read error: Operation timed out)
+* Ball000_ has joined #aros
+* terminills has quit IRC (Client Quit)
+* terminills has joined #aros
+* terminills has quit IRC (Client Quit)
+* terminills has joined #aros
+<Malesperanto> bye
+* Malesperanto has left #aros
+* nighty^ has joined #aros
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills_ has joined #aros
+* nighty^ has quit IRC (Quit: Disappears in a puff of smoke)
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* rvalles has quit IRC (Ping timeout: 252 seconds)
+* rvalles has joined #aros
+* rvalles has quit IRC (Ping timeout: 252 seconds)
+* rvalles has joined #aros
+* _Lucretia___ has joined #aros
+* _Lucretia__ has quit IRC (Ping timeout: 245 seconds)
+* AMiGA has quit IRC (Ping timeout: 246 seconds)
+* CountRaven has quit IRC (Ping timeout: 255 seconds)
+* CountRaven has joined #aros
+* NomadOfNorad-PC has joined #aros
+* NomadOfNorad has quit IRC (Ping timeout: 240 seconds)
+* Ba11ooo has joined #aros
+* TheNomadicOne has joined #aros
+* NomadOfNorad-PC has quit IRC (Ping timeout: 255 seconds)
+* _Lucretia___ has quit IRC (Ping timeout: 244 seconds)
+* jahc has joined #aros
+* _Lucretia___ has joined #aros
+* Corscaria has quit IRC (Ping timeout: 246 seconds)
+* Tcheko_ has joined #aros
+* mschulz has joined #aros
+* TheNomadicOne has quit IRC (Quit: Leaving)
+* eliotmc has joined #aros
+* analogkid has quit IRC (Read error: Connection reset by peer)
+* analogkid has joined #aros
+* Geit has joined #aros
+* jahc has quit IRC (Ping timeout: 240 seconds)
+* terminills has quit IRC (Read error: Connection reset by peer)
+* eliotmc has quit IRC (Quit: eliotmc)
+* rvalles has quit IRC (Ping timeout: 272 seconds)
+* Mabo has joined #aros
+* rvalles has joined #aros
+<_4_W0rk> If you ever wanted an A1200 magic pack Petro has now opened for orders =)
+<mschulz> lol
+<mschulz> ;)
+<_4_W0rk> Petro T. Tyschtschenko order quantity only 1 !!! Price 150 Euro + Tax + shipping = 200 Euro
+<_4_W0rk> 5 minutes ago · Like
+<_4_W0rk> i dont need one as i have lots of them but for some reason i want to get another one =)
+<mschulz> no thanks :)
+<mschulz> I loved my a1200, but well ;)
+<mschulz> it's kind of ancient ;)
+<_4_W0rk> for serious usage of course =) but i still turn on mine for the odd game or to run demos =)
+<_4_W0rk> if i had bought one of these id not open it but display it in my man cave =)
+<mschulz> lol
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+<_4_W0rk> ive gone a bit overboard lately buying other crap for it though, i mean, what do i need 8 snes machines for =)
+* Geri_lgfx has joined #aros
+* terminills has joined #aros
+<mschulz> terminills: hi :)
+<terminills> mschulz :D
+* kas1e has joined #aros
+<kas1e> no schedule and broken !
+<terminills> What's broken? 
+<kas1e> amiga1200
+<kas1e> broken amiga1200 and holy boing ball
+* rvalles has quit IRC (Read error: Connection reset by peer)
+* rvalles has joined #aros
+<terminills> hrmm
+* kas1e has quit IRC
+* kolla has joined #aros
+<redblue> http://www.dolby.com/gb/en/consumer/technology/mobile/dolby-pulse.html
+<redblue> kolla, terminills, mschulz, _4_W0rk =)
+<terminills> morning redblue
+<kolla> redblue :)
+<kolla> reminds me, I had put on some water for tea ;)
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 246 seconds)
+* nighty^ has joined #aros
+* mschulz_ is now known as mschulz
+* CountRaven has quit IRC (Ping timeout: 255 seconds)
+<redblue> kolla, yeah! we must drink a lot of tea!
+<redblue> ^^
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 252 seconds)
+* Ball000 has quit IRC (Ping timeout: 256 seconds)
+* Ball000 has joined #aros
+* eliotmc has joined #aros
+* Thordasin has joined #aros
+<Thordasin> hi all :)
+* Thordasin has left #aros
+* Tcheko_ has quit IRC (Ping timeout: 256 seconds)
+* Coder_Aros has joined #aros
+* kolla has quit IRC (Remote host closed the connection)
+* AMiGA has joined #aros
+* CountRaven has joined #aros
+* eliotmc has quit IRC (Quit: eliotmc)
+* BSzili has joined #aros
+* Zevs_ has joined #aros
+* Coder_Aros has quit IRC (Quit: Say What?)
+* mschulz_ has joined #aros
+* deadwood_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 240 seconds)
+* Mabo has quit IRC (Read error: Connection reset by peer)
+* Mabo_ has joined #aros
+* Tcheko_ has joined #aros
+* mschulz_ is now known as mschulz
+* NomadOfNorad has joined #aros
+* BSzili has quit IRC (Quit: Be vigilant!)
+* Corscaria has joined #aros
+* amiximac has joined #aros
+* tichy has joined #aros
+<amiximac> hello
+<amiximac> I need AROS videos
+<amiximac> :)
+* tichy has quit IRC (Quit: Leaving.)
+* olivier2222 has joined #aros
+<olivier2222> hi
+* Zevs_ has quit IRC (Quit: Zevs_)
+<mschulz> salut
+<olivier2222> salut herr Doctor
+<mschulz> :)
+* Tcheko_ has quit IRC (Ping timeout: 246 seconds)
+* mschulz has quit IRC (Remote host closed the connection)
+* Zevs_ has joined #aros
+* Ball000_ has joined #aros
+* Ball000_ has quit IRC (Changing host)
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Ping timeout: 244 seconds)
+* nighty^ has quit IRC (Remote host closed the connection)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* amiximac has quit IRC (Quit: Leaving)
+* olivier2222 has left #aros ("Kopete 0.12.7 : http://kopete.kde.org")
+* nighty^ has joined #aros
+* beezle has joined #aros
+* beezle has left #aros
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* terminills_ has joined #aros
+* nighty^ has quit IRC (Ping timeout: 246 seconds)
+* Mabo_ has quit IRC
+* Zevs_ has left #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills_ has joined #aros
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* terminills_ has joined #aros
+* CountRaven has quit IRC (Read error: Connection reset by peer)
+* terminills_ has quit IRC (Remote host closed the connection)
+* CountRaven has joined #aros
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills_ has joined #aros
+* analogkid has quit IRC (Ping timeout: 248 seconds)
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* impy has quit IRC (Quit: impy)
+* NomadOfNorad-PC has joined #aros
+* jahc has joined #aros
+* NomadOfNorad has quit IRC (Ping timeout: 246 seconds)
+* kirin` has quit IRC (Ping timeout: 260 seconds)
+* kirin` has joined #aros
+* Zevs_ has joined #aros
+* liverwurst has joined #aros
+* terminills has quit IRC (Ping timeout: 244 seconds)
+* Corscaria has quit IRC (Ping timeout: 246 seconds)
+* terminills has joined #aros
+* Ba11ooo has joined #aros
+* Fab2 has joined #aros
+* Fab1 has quit IRC (Ping timeout: 260 seconds)
+* jahc has quit IRC (Read error: Connection reset by peer)
+* jahc has joined #aros
+* Geit has joined #aros
+* Zevs_ has left #aros
+* mschulz has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* NomadOfNorad-PC has quit IRC (Quit: Leaving)
+* terminills_ has joined #aros
+* Mabo has joined #aros
+* Tcheko_ has joined #aros
+* kolla has joined #aros
+* Geri_lgfx has joined #aros
+* mschulz has quit IRC (Remote host closed the connection)
+* corpsicle has quit IRC (Ping timeout: 256 seconds)
+* corpsicle has joined #aros
+* o1i has joined #aros
+* AMiGA has quit IRC (Ping timeout: 246 seconds)
+* AMiGA has joined #aros
+* nighty^ has joined #aros
+* terminills_ has quit IRC (Ping timeout: 244 seconds)
+* olivier2222 has joined #aros
+* impje has quit IRC (Ping timeout: 252 seconds)
+* impje has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 252 seconds)
+* Ball000_ has joined #aros
+<olivier2222> .
+* cubelog has quit IRC (Read error: Connection reset by peer)
+* cubelog has joined #aros
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* corpsicle has quit IRC (Read error: Connection reset by peer)
+* corpsicle has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+* kolla has quit IRC (Read error: Connection reset by peer)
+* o1i has quit IRC (Quit: received signal 15)
+* deadwood_ has joined #aros
+* mschulz has joined #aros
+* rvalles has quit IRC (Ping timeout: 272 seconds)
+* rvalles has joined #aros
+* rvalles has quit IRC (Excess Flood)
+* kolla has joined #aros
+* rvalles has joined #aros
+* impy has joined #aros
+* terminills_ has joined #aros
+* impy has quit IRC (Ping timeout: 265 seconds)
+* impy has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Corscaria has joined #aros
+* kolla has quit IRC (Remote host closed the connection)
+* terminills__ has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 245 seconds)
+* terminills_ has quit IRC (Ping timeout: 244 seconds)
+* _Lucretia___ is now known as _Lucretia_
+* _Lucretia_ has quit IRC (Changing host)
+* _Lucretia_ has joined #aros
+* kolla has joined #aros
+* Tcheko_ has joined #aros
+* impy has quit IRC (Quit: impy)
+* AMiGA has quit IRC
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Ping timeout: 246 seconds)
+* impy has joined #aros
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Disconnected by services)
+* mschulz_ is now known as mshculz
+* mshculz is now known as mschulz
+* BSzili has joined #aros
+* LuKeJerry has joined #aros
+* NomadOfNorad has joined #aros
+* CountRaven has quit IRC (Ping timeout: 256 seconds)
+* deadwood_ has joined #aros
+* LuKeJerry has quit IRC (Ping timeout: 256 seconds)
+* terminills has quit IRC
+* terminills__ is now known as terminills
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Zevs_ has joined #aros
+* impy has quit IRC (Quit: impy)
+* terminills has joined #aros
+* Zevs_ has left #aros
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* mschulz has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* Tcheko_ has quit IRC (Ping timeout: 245 seconds)
+* Tcheko_ has joined #aros
+* nighty^ has quit IRC (Remote host closed the connection)
+* terminills has quit IRC (Remote host closed the connection)
+* terminills has joined #aros
+* olivier2222 has quit IRC (Quit: Kopete 0.12.7 : http://kopete.kde.org)
+* tichy has joined #aros
+* terminills_ has joined #aros
+* impy has joined #aros
+* tichy has quit IRC (Quit: Leaving.)
+* AMiGA has joined #aros
+* nighty^ has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* Malesperanto has joined #aros
+* AMiGA has quit IRC
+* terminills__ has joined #aros
+* terminills_ has quit IRC (Ping timeout: 244 seconds)
+* terminills_ has joined #aros
+* agr has quit IRC (Quit: agr)
+* terminills__ has quit IRC (Ping timeout: 252 seconds)
+* AMiGA has joined #aros
+* Mabo has quit IRC
+* Malesperanto has quit IRC (Quit: ChatZilla 0.9.89 [Firefox 15.0.1/20120907230839])
+* terminills_ has quit IRC (Ping timeout: 260 seconds)
+* terminills_ has joined #aros
+* terminills_ has quit IRC (Remote host closed the connection)
+* Geit has quit IRC (Ping timeout: 240 seconds)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills has left #aros
+* terminills has joined #aros
+* _Lucretia__ has joined #aros
+* _Lucretia_ has quit IRC (Ping timeout: 240 seconds)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* henes has quit IRC (*.net *.split)
+* trn has quit IRC (*.net *.split)
+* siggjen has quit IRC (*.net *.split)
+* siggjen has joined #aros
+* trn has joined #aros
+* nighty^ has quit IRC (Quit: Disappears in a puff of smoke)
+* jahc has joined #aros
+* impy has quit IRC (Quit: impy)
+* impy has joined #aros
+* impy has quit IRC (Ping timeout: 265 seconds)
+* impy has joined #aros
+* impy_ has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* impy_ has quit IRC (Read error: Connection reset by peer)
+* impy_ has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* jahc has quit IRC (Ping timeout: 244 seconds)
+* impy has joined #aros
+* impy_ has quit IRC (Read error: Connection reset by peer)
+* impy_ has joined #aros
+* impy has quit IRC (Read error: Connection reset by peer)
+* impy has joined #aros
+* impy_ has quit IRC (Read error: Connection reset by peer)
+* impy has quit IRC (Client Quit)
+* liverwurst has joined #aros
+* o1i has joined #aros
+* Ba11ooo has joined #aros
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+* impy has joined #aros
+<impy> moin
+<_4_W0rk> m000h
+<_4_W0rk> limpy 
+* Ba11ooo has joined #aros
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* Geit has joined #aros
+* mschulz has joined #aros
+* impy has quit IRC (Quit: Page closed)
+* eliotmc has joined #aros
+* eliotmc has quit IRC (Client Quit)
+* eliotmc has joined #aros
+* kolla has quit IRC (Remote host closed the connection)
+* olivier2222 has joined #aros
+<olivier2222> hi
+<_4_W0rk> olivier2222
+<olivier2222> hey 4P'
+<olivier2222> (aros-archives MidToFront compiled for AROS i386/V1: http://reziztanzia.free.fr/Aros/Images/aros-midtofront-icon.png  )
+<olivier2222> and my little dream of the day: if only the svg datatype was completed. 
+* impy has joined #aros
+* Geri_lgfx has joined #aros
+* cubelog has quit IRC (Ping timeout: 260 seconds)
+<Ba11ooo> olivier2222: nice! :-) did you take the opportunity to add shell argumetns handling? which the comment in the code says it handles, but which the real code doesn't handle anymore on the most recent version
+<olivier2222> yes
+<olivier2222> and a shell start without any arguments doesn't crash more
+<Ba11ooo> good, gratz ;-)
+<olivier2222> shell help works. but starts midtofront anyway. light problem.
+* henes has joined #aros
+<olivier2222> http://reziztanzia.free.fr/blog/view.php?date=2012-10-03%2023:25:33
+<olivier2222> if you want to compile it for yourself :)
+<Ba11ooo> ty! :-)
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+* cubezzz2 has joined #aros
+* cubezzz2 is now known as cubelog
+* Ba11ooo has joined #aros
+* impy has quit IRC (Ping timeout: 240 seconds)
+* o1i has quit IRC (Quit: received signal 15)
+* rvalles has quit IRC (Read error: Connection reset by peer)
+* rvalles has joined #aros
+* cubelog has quit IRC (Ping timeout: 264 seconds)
+* analogkid has joined #aros
+* nighty^ has joined #aros
+* terminills has joined #aros
+* cubezzz has joined #aros
+* cubezzz is now known as cubelog
+* Ba11ooo has quit IRC (Ping timeout: 240 seconds)
+* mschulz has quit IRC (Remote host closed the connection)
+* liverwurst has quit IRC (Quit: Konversation terminated!)
+* rvalles has quit IRC (Quit: brb)
+* holodeck has joined #aros
+<holodeck> does aros have image manipulation progam that support layers?
+* holodeck has quit IRC (Client Quit)
+* impy has joined #aros
+* deadwood_ has joined #aros
+* mschulz has joined #aros
+<olivier2222> .
+* rvalles has joined #aros
+* BSzili has joined #aros
+* BSzili_ has joined #aros
+* NomadOfNorad has joined #aros
+* BSzili has quit IRC (Ping timeout: 246 seconds)
+* BSzili_ is now known as BSzili
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Ping timeout: 248 seconds)
+* tichy has joined #aros
+* eliotmc has quit IRC (Quit: cya)
+* Zevs_ has joined #aros
+* deadwood_ has quit IRC (Read error: Connection reset by peer)
+* jahc has joined #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* olivier2222 has quit IRC (Read error: Connection reset by peer)
+* terminills has left #aros
+* tichy has quit IRC (Quit: Leaving.)
+* Zevs_ has joined #aros
+* Tcheko_ has quit IRC (Read error: Operation timed out)
+* mschulz_ has quit IRC (Remote host closed the connection)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* NomadOfNorad-PC has joined #aros
+* NomadOfNorad has quit IRC (Read error: Connection reset by peer)
+* tichy has joined #aros
+* tichy has quit IRC (Client Quit)
+* terminills has joined #aros
+* tichy has joined #aros
+* nighty^ has quit IRC (Quit: Disappears in a puff of smoke)
+* Geit has quit IRC (Ping timeout: 256 seconds)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* Ball000 has quit IRC (Remote host closed the connection)
+* Ball000_ has joined #aros
+* Zevs_ has left #aros
+* tichy has quit IRC (Quit: Leaving.)
+* _Lucretia__ is now known as _Lucretia_
+* _Lucretia_ has quit IRC (Changing host)
+* _Lucretia_ has joined #aros
+* jahc has quit IRC (Ping timeout: 255 seconds)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* nighty^ has joined #aros
+* _Lucretia__ has joined #aros
+* _Lucretia_ has quit IRC (Disconnected by services)
+* _Lucretia__ is now known as _Lucretia_
+* _Lucretia_ has quit IRC (Changing host)
+* _Lucretia_ has joined #aros
+* redblue is having earl grey tea
+<redblue> np: fanta - cooperation demo 2.sid
+* jahc has joined #aros
+* impje has quit IRC (Read error: Connection reset by peer)
+* impje has joined #aros
+* jahc has quit IRC (Ping timeout: 246 seconds)
+* jahc has joined #aros
+* jahcoff has joined #aros
+* jahc has quit IRC (Ping timeout: 240 seconds)
+* tichy^work has quit IRC (Ping timeout: 246 seconds)
+* tichy^work has joined #aros
+* deadwood_ has joined #aros
+<jahcoff> anyone got muiprog.h ?
+* Geri_lgfx has joined #aros
+* plasmab has joined #aros
+* Tcheko_ has joined #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* cubelog has quit IRC (Read error: Connection reset by peer)
+* cubelog has joined #aros
+* plasmab has quit IRC (Ping timeout: 246 seconds)
+* Tcheko_ has quit IRC (Ping timeout: 260 seconds)
+* migario has joined #aros
+* NomadOfNorad-PC has quit IRC (Quit: Leaving)
+* analogkid has quit IRC (Ping timeout: 264 seconds)
+* analogkid has joined #aros
+* holodeck has joined #aros
+<holodeck> hi
+<holodeck> is there any image manipulation program for aros that supports layers?
+* Ball000 has joined #aros
+* Ball000 has quit IRC (Changing host)
+* Ball000 has joined #aros
+* Ball000_ has quit IRC (Remote host closed the connection)
+<migario> holodeck: doesn't Grafx2 do that ?
+<migario> holodeck: and i i recall correctly lunapaint as well
+* Zevs_ has joined #aros
+* Zevs_ has quit IRC (Quit: Zevs_)
+* Mabo has joined #aros
+* jahcoff has quit IRC (Ping timeout: 240 seconds)
+* Geit has joined #aros
+* _4pLaY_ has joined #aros
+* tichy has joined #aros
+* terminills has joined #aros
+* Geit has quit IRC (Read error: Connection reset by peer)
+* Mabo has quit IRC
+* holodeck has quit IRC (Ping timeout: 240 seconds)
+* mschulz has joined #aros
+* Geit has joined #aros
+* Belxjander has joined #aros
+* terminills_ has joined #aros
+* exobuzz has joined #aros
+* terminills_ has quit IRC (Remote host closed the connection)
+* terminills_ has joined #aros
+* tichy^work has quit IRC (Ping timeout: 246 seconds)
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* olivier2222 has joined #aros
+<olivier2222> hi
+<olivier2222> does the cross compilation from x86_64 to i386 work?
+<olivier2222> and does the x86_64 compile at all?
+<olivier2222> i have some spare cycles on a 16 cores. 
+* terminills_ has joined #aros
+* terminills has quit IRC (Ping timeout: 260 seconds)
+* terminills_ has quit IRC (Read error: Operation timed out)
+* terminills has joined #aros
+* BSzili has joined #aros
+* NomadOfNorad has joined #aros
+<olivier2222> ..;
+* NomadOfNorad has quit IRC (Quit: Leaving)
+* deadwood_ has joined #aros
+* slubman has quit IRC (Ping timeout: 252 seconds)
+* terminills_ has joined #aros
+* NomadOfNorad has joined #aros
+* agr has joined #aros
+* tichy has quit IRC (Quit: Leaving.)
+<migario> ahr: just in case, olivier is here ;)
+<migario> agr also
+<olivier2222> :)
+<agr> hi, yes
+<olivier2222> what did i do, again?
+<migario> because i was so stupid last time i thought i mention it :/
+<olivier2222> tell?
+<agr> olivier2222: I asked migario about you when you wasn't
+<migario> O-o
+<olivier2222> i wasn't?
+<agr> here
+<migario> olivier2222: i mistaken your identity with ol1's 
+<olivier2222> oh, ok
+<agr> because I just wrote oli22
+<migario> and i missed the 22 part
+<olivier2222> that's ok. i perfectly see: you both don't want to talk with me. i see now
+<migario> thats a funny way of loking at it :-)
+<olivier2222> he
+<agr> olivier2222: how's AmigFig ?
+<olivier2222> well, i did dsome light work on it
+<olivier2222> i was able to compile mkbitmap, but it is crashing right before the start
+<agr> light = lumiÃ¨re ?
+* Kalamatee has joined #aros
+<olivier2222> light = lÃ©ger. cromme crÃªme dessert light
+<agr> :)
+<olivier2222> Kalamatee: hi!
+<olivier2222> agr: let me make a screenshot
+<agr> k
+<agr> how do you make a screenshot ? is it a screenshot of qemu ?
+<migario> agr: there is a screenshot program in aros as well
+<agr> migario: what is it's name ?
+<olivier2222> http://reziztanzia.free.fr/Aros/Images/aros-amifig-dir.png
+<migario> agr: good question, i have no idea (would have to look it up)
+<olivier2222> agr: sys:tools/screengrabber
+<migario> olivier2222: ah yes that one :-)
+<agr> thank you
+<olivier2222> this shot is done with ksnapshot
+<agr> on aros hosted ?
+<olivier2222> linux
+<olivier2222> yes
+<agr> ok
+<agr> how did you port amifig ? with zune ?
+<olivier2222> amifig: it isn't that stable, some features aren't working like fonts, colors, background color goes back to orange (i seen this before)
+<olivier2222> i did not
+<olivier2222> amifig exists for aros
+<olivier2222> but notin the contrib
+<olivier2222> the source is on sourceforge
+<olivier2222> i did some mmakefiles, translation, file descriptors (for prefs, .fig, .fig-library), removed only one bug in the icon creation
+<olivier2222> basically works on my i386-V1
+<olivier2222> it isn"t using Zune. but Intuition.
+<olivier2222> the export to bitmap does popup the lua script, with a zune window, then calls mkbitmap, but mkbitmap does crash there.
+<olivier2222> exports and imports need some love.
+<olivier2222> on the build side: there are simple quotes in filenames that break the build scripts. same for the space in the "potrace support" directory name
+<olivier2222> i don't know how to handle thoses filenames
+<olivier2222> using the build system, that is.
+<agr> you tried to put \' in the mmakefile ?
+<olivier2222> either than that, it could be packaged as a tar.gz on sourceforge, as and a fetch&build script could be used to biuld it.
+<olivier2222> i will
+<olivier2222> i wasn't able to link the other utils...
+<olivier2222> maybe mazze will have more luck
+<agr> there is a Makefile.aros in sf.net, did that worked some day ?
+<olivier2222> can't tell, i don't use that method to build.
+* mschulz_ has joined #aros
+* mschulz has quit IRC (Disconnected by services)
+* mschulz_ is now known as mschulz
+* terminills_ has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+<olivier2222> http://reziztanzia.free.fr/Aros/Images/aros-amifig-lua-all.png
+<agr> nice !
+<migario> that looks cool olivier2222
+<olivier2222> but then again, the lua frontend does work, when the mkbitmap backend crashes
+<mschulz> Kalamatee: hi
+<mschulz> Kalamatee: haven't seen you recently
+<olivier2222> and it could simply save to datatypes (and with a working svg dt would rox)
+<olivier2222> mschulz: salut :)
+<mschulz> salut! ca va?
+<olivier2222> ca va, oui :)
+* BSzili has quit IRC (Read error: Connection reset by peer)
+* BSzili has joined #aros
+* Tcheko_ has joined #aros
+<agr> olivier2222: http://en.wikipedia.org/wiki/WinFIG, can it draw things like WinFIG ?
+<olivier2222> about, yes
+<olivier2222> amifig => winfig you know...
+<agr> cool, I can drop visio
+<agr> xfig too
+<olivier2222> :)
+<agr> I was using xfig years ago but it was not very good
+<olivier2222> yes
+<olivier2222> amifig was and is better. and very simple. on aros it is missing some integration (datatypes), and some libraries of objects
+<olivier2222> now, fig2dev is C++ mixed with C and i don't know how to link that.
+<agr> you may have to port libstdc++, but I think someone is already using c++ in aros (mesa ?)
+<olivier2222> yes some apps are using c++ and build for aros
+<olivier2222> i mean, i don't know, with the build system, to create such an exe.
+<agr> wpa_supplicant ? ask the guys who linked those ?
+<olivier2222> i will have a look
+* damocles has joined #aros
+* ChanServ sets mode: +o damocles
+* @damocles waves to terminills 
+<olivier2222> hi damo!
+* BSzili has quit IRC (Read error: Connection reset by peer)
+* BSzili has joined #aros
+<agr> I just bought a mac mini, I hope it can run morphos
+<impy> which one did you get?
+<agr> 1.42MHz, don't know much
+<agr> I don't have it yet, it is an internet auction
+<Kalamatee> mschulz: Hi
+<olivier2222> \o
+<Kalamatee> salut olivier
+* jahc has joined #aros
+* terminills_ has joined #aros
+<terminills_> sup
+<olivier2222> :)
+<terminills_> hey olivier2222 
+<Ball000> hi there! :-)
+<olivier2222> hello!
+<Ball000> congratz olivier2222! (amifig)
+<terminills_> hey Ball000 
+<Ball000> :-)
+<olivier2222> well, it is mostly working in v1. i only had to add some includes here and there
+<Ball000> hehe as I see it, it only needs Jason to complete his svg.datatype now ;-) and perhaps some endian macros here and there (colours)
+<olivier2222> yes, many bugs are related to the way aros handle the arrays of constants
+<olivier2222> if the svg datatype was working it would definately rox
+<olivier2222> jason wanted the svg datatype for resizable icons
+<Ball000> yeah that's another cool thing it will do :-)
+* impy has quit IRC (*.net *.split)
+* @damocles has quit IRC (*.net *.split)
+* AMiGA has quit IRC (*.net *.split)
+* kirin` has quit IRC (*.net *.split)
+* Lycanthropist has quit IRC (*.net *.split)
+* damocles has joined #aros
+* AMiGA has joined #aros
+* Lycanthropist has joined #aros
+* hubbard.freenode.net sets mode: +o damocles
+* agr has quit IRC (Remote host closed the connection)
+* terminills looks at other terminills
+<terminills> ;D
+* kirin` has joined #aros
+* agr has joined #aros
+<terminills> hey Dammy 
+<Ball000> I see those 2 "LaTeX" buttons... what relationship is Amifig able to have with LaTeX?
+* LjL has quit IRC (Excess Flood)
+* LjL has joined #aros
+* LjL has quit IRC (Excess Flood)
+* holodeck has joined #aros
+* saimon69 has joined #aros
+<saimon69> hi@all
+<saimon69> terminills: you there?
+<saimon69> terminills_: you there?
+<terminills> I am now ;D
+<saimon69> trn: you there?
+* impy has joined #aros
+<migario> terminills: it probably is like looking at a mirror ? :D
+<holodeck> anyone here who migrated from haiku?
+<migario> sorry but rofl
+<migario> what's the problem holodeck ?
+<migario> haiku is at the least a bit different
+<holodeck> I found aros less buggy than haiku
+<migario> hmz, i found haiku more stable (but i did not really use haiku, only testing)
+<migario> although aros is very stable also lately
+<migario> personally i did find haiku a little cold in it's appearance
+* saimon69 has quit IRC (Ping timeout: 240 seconds)
+* holodeck has left #aros
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* @damocles has left #aros ("http://randy.iexfuze.net/thejourney")
+<terminills> lol
+<terminills> I break mirrors >.<
+<terminills> ;D
+<migario> because your beauty makes the glass break ? ;-p
+<terminills> rofl yes my ugly does ;D
+<migario> your words, not mine :D
+<terminills> rofl
+<migario> btw i dunno if it got to you last time we spoke, but thank you for the conversation and your time :appreciated:
+<terminills> n/p
+<terminills> ugh gotta go dig for some stuff
+* _4pLaY_ has quit IRC (Ping timeout: 264 seconds)
+<migario> have fun diggin' terminills :-)
+* _4pLaY_ has joined #aros
+* jahc has quit IRC (Ping timeout: 256 seconds)
+* _4pLaY_ has quit IRC (Read error: Connection reset by peer)
+* mschulz has quit IRC (Remote host closed the connection)
+* BSzili has quit IRC (Quit: Be vigilant!)
+* terminills__ has joined #aros
+* terminills___ has joined #aros
+* Fab2 has quit IRC (Read error: Connection reset by peer)
+* Fab has joined #aros
+* terminills_ has quit IRC (Ping timeout: 246 seconds)
+* terminills has quit IRC (Ping timeout: 248 seconds)
+* terminills___ is now known as terminills
+* MaMos has quit IRC (Read error: Connection reset by peer)
+* exobuzz has quit IRC (Quit: Leaving)
+* LjL has joined #aros
+* Belxjander2 has joined #aros
+* Belxjander has quit IRC (Ping timeout: 248 seconds)
+* Geit has quit IRC (Quit: Heroes never die...They just reload!)
+* Geri_lgfx has quit IRC (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+* terminills has quit IRC (Quit: Colloquy for iPad - http://colloquy.mobi)
+* olivier2222 has left #aros ("Kopete 0.12.7 : http://kopete.kde.org")
+<Belxjander2> Any coders around now? 
+<NomadOfNorad> I used to write stuff in BASIC, does that count?  :D
+<Belxjander2> NomadOfNorad not really 
+<NomadOfNorad> :)
+<Belxjander2> I need help in C with GCC as tool of choice 
+* Belxjander2 is now known as Belxjander
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+* jahc has joined #aros
+<Belxjander> Hey jahc 
+<jahc> yo
+<Belxjander> Jahc did you ever work with android? 
+<jahc> yep.
+<jahc> I'm sure I showed you my shitty bunny game on my SGS2 lol
+<Belxjander> Didn't look that I recall 
+<jahc> hehe its ok
+<Belxjander> And I need advice for tethering my android phone with my sam 
+* Ball000_ has joined #aros
+* Ball000 has quit IRC (Remote host closed the connection)
+* Belxjander2 has joined #aros
+* Belxjander has quit IRC (Ping timeout: 256 seconds)
+* redblue is having earl grey tea
+<redblue> np: trash80 - lazerscale 2010 - 03.mp3
+<Belxjander2> goddammed disconnections 
+<redblue> oh
+<redblue> <Belxjander> Know about GCC register vars?
+<redblue> im not even a newbie about that. just a wannabe ^^
+<Belxjander2> I also need help decyphering register vars in GCC beyond the scope of a single function 
+<redblue> but if i was u, id hang on c#, #c++ and #programming
+<redblue> #c even
+<Belxjander2> I only getting better "RTFM" comments from those channels 
+<redblue> ignore em
+<Belxjander2> I only get ... 
+<redblue> u need only 1 to get help
+<redblue> out of the psychobag idling
+<Belxjander2> I do and I waited for a different answer for two weeks 
+<redblue> oh
+* Fab has quit IRC (Quit: connection reset by Fab)
+<Belxjander2> I need to declare register vars that are global and don't get fucked with 
+<redblue> well there's #coders on ircnet, #coders on espernet, #coding on chatspike, #programming on swiftirc
+<redblue> and #coders on efnet
+<redblue> if u wanna give a try
+<Belxjander2> Not while stuck with only android being online 
+<redblue> k
+<redblue> #osdev, #haiku, #reactos ?
+<redblue> #plan9 ?
+<Belxjander2> Too easy to screw up descriptions and too many disconnection events while typing 
+<redblue> hmm
+<jahc> Belxjander2,  ahh..
+<jahc> Belxjander2, unless you have a wifi adapter for the sam.. mimght be hard!!
+<jahc> or impossible
+<redblue> Belxjander2, and theres #vim, #emacs
+<jahc> oh.. you could turn on wifi hotspot on your phone, connect laptop to phone, then connect sam to laptop via ethernet, bridge the laptops wifi and ethernet adapters
+<jahc> thats pretty much how I got the Sam460 here connected to the internet 
+<Belxjander2> Jahc I only have the sam and android 
+<Belxjander2> There is nothing else here right now 
+<jahc> ok
+<migario> http://gcc.gnu.org/onlinedocs/gcc/Global-Reg-Vars.html
+<migario> http://stackoverflow.com/questions/3486715/why-cant-register-variables-be-made-global
+<migario> register int foo asm ("r12");
+<migario> register int *foo asm ("a5");
+<Belxjander2> Migario only gives me errors 
+<migario> anything specific ?
+<Belxjander2> And I need them persistent across function calls 
+<Belxjander2> I am making multiple threads and using the same entry point for all of them 
+<migario> can't you store it in a var and use inline to push that value to the register you want ?
+<migario> global register allocation is nearly impossible without rewriteing the compiler 
+<migario> you cannot influence e.g. optimalization done by the compiler. it just uses the specific register regardless of what you tell the compiler to do. The longer the code the less likely 'your' register is not used for something by the compiler
+<Belxjander2> No because the vars concerned exist multiple times with a single instance per process 
+<migario> each and all in their own process space i assume ?
+<Belxjander2> I need these vars to remain updated and in registers 
+<Belxjander2> No  if but maybe or other options 
+<Belxjander2> Each process is its own VM 
+<Belxjander2> I am register remapping and have registers as registers 
+<migario> than i am affraid i can't help any further on these specifics
+<Belxjander2> And I am trying to do this with GCC for AmigaOS 4 and MorphOS and AROS 
+<migario> yes i understand your situation, you've explained it before
+<Belxjander2> Yes good 
+* Kalamatee has quit IRC (Ping timeout: 245 seconds)
+<migario> and if i recall correctly i pointed you to context switching of the processor
+<Belxjander2> Which dumps and restores all the registers on change of process 
+<migario> correct
+<Belxjander2> I am writing this as inside a single process where each thread is its own process 
+<Belxjander2> I don't need fancy tricks for context changes 
+<migario> then there is only one solution left
+<migario> software context switching, but you don't want that if i recall correctly
+<Belxjander2> I just need the context and register setup I make to persist for my process and have GCC behave 
+<migario> but gcc can't behave...
+<migario> so you need to do it manually
+<Belxjander2> Once I setup this context it remains persistent for the life of that process 
+* nighty^ has quit IRC (Read error: Operation timed out)
+<Belxjander2> Using both the polymorph and plugin library code 
+<migario> i understand that is your setup
+<Belxjander2> I know How for SAS/C on 68k but I am not on that host for this 
+<Belxjander2> I need this on AmigaOS GCC with PPC host 
+<migario> congratulations... the days of sas/c, lattice and all those alike are long gone... the day a compiler let's you use and abuse the free registers it does not use itself is long gone. and afaik you cannot tell gcc to do that
+<migario> but i am not familair with gcc
+<migario> what i do know is that you use either a hardware context switch (if processor supports it) or you do it manually
+<migario> hence why i called your implementation simulation instead of emulation
+<migario> trust me when i tell that i wish there was a better solution for this
+<migario> but there is none out of the box
+<migario> btw: you wrote: Which dumps and restores all the registers on change of process 
+<migario> which i replied correct
+<migario> which is not entirely true
+<migario> it is not always bound to change of process alone
+<migario> intel procides a way to switch register context at your will
+<migario> provides
+<Belxjander2> bleh
+<migario> yes i know, and i unfortunately know shite about ppc
+<Belxjander2> well as long as I'm not needing to screw around too much
+<migario> afaik it simply means you fill and store the registers you want and at your will
+<migario> but it eats time 
+<migario> see also here: http://msdn.microsoft.com/en-us/library/k1a8ss06(v=vs.71).aspx
+<migario> and here: http://gcc.gnu.org/onlinedocs/gcc/Extended-Asm.html
+<migario> and to stay with your solution (again i dont think it will work): http://gcc.gnu.org/onlinedocs/gcc/Explicit-Reg-Vars.html#Explicit-Reg-Vars
+<migario> which leads to: http://gcc.gnu.org/onlinedocs/gcc/Global-Reg-Vars.html#Global-Reg-Vars
+<migario> and circle completed
+* deadwood_ has joined #aros
+<impy> deadwood_: :D
+<deadwood_> hi impy
+<impy> deadwood_: great days at work i assume? :)
+<Belxjander2> migario that kind of explains why I'm havingg troubles getting genuine help
+<migario> probably no-one knows or won't tell... probably the latter. shame though, i am not an expert on these things
+<migario> so what do i know :/
+<migario> i understand your predicament perfectly. you want a good and fast (and maybe even easy) solution to the problem at hand. so you search for it, and ask if you don't know how to implement it practically. 
+<migario> shame nobody explain things. like i said it's not my field at all, so i use wrong wordings, wrong examples and all that :/
+<Belxjander2> more that I'm also unfamiliar with gcc
+<migario> *shakes hand* :D
+<Belxjander2> and the docs are limited to x86 
+<migario> mostly yes
+<migario> i've seen some arm floating around 
+<Belxjander2> what I'm also in need of is a net linkage to my sam440
+<Belxjander2> arm is different again
+<Belxjander2> is there a qmake on AROS?
+<migario> yes but for arm i know register bank switching is possible :-)
+<migario> qmake, i have no idea. don't think so.
+<Belxjander2> I'm using inline assembly blocks and need a fixed register layout
+<migario> ow, that is cruel, webkit is cross-compiled with qmake :/
+<migario> for your paramters you mean Belxjander2 ?
+<Belxjander2> wanting openscad which needs qmake
+<Belxjander2> yes
+<Belxjander2> I'm not using registers in numeric order
+<Belxjander2> and need vars to persist through recursion too
+<migario> i understand your issue, but i have trouble finding a solution... these macros perhaps ?: http://gcc.gnu.org/onlinedocs/gccint/Register-Arguments.html
+<migario> hmz maybe this can be of help as well (way beyond my scope): http://locklessinc.com/articles/gcc_asm/
+* Belxjander2 has quit IRC (Ping timeout: 260 seconds)
+* Belxjander has joined #aros
+* Belxjander has quit IRC (Changing host)
+* Belxjander has joined #aros
+<migario> repost: hmz maybe this can be of help as well (way beyond my scope): http://locklessinc.com/articles/gcc_asm/
+<Belxjander> thanks for the efforts
+<migario> well, not much help i'm affraid :/ 
+<Belxjander> better than anything else
+<Belxjander> and the crap I have had to deal with
+<migario> i can only imagine ...
+* NomadOfNorad has quit IRC (Quit: Leaving)
+<migario> hmz
+<migario> perhaps a small light ?
+<migario> -ffixed-reg
+<migario> Treat the register named reg as a fixed register; generated code should never refer to it (except perhaps as a stack pointer, frame pointer or in some other fixed role). 
+<migario> reg must be the name of a register. The register names accepted are machine-specific and are defined in the REGISTER_NAMES macro in the machine description macro file. 
+<migario> This flag does not have a negative form, because it specifies a three-way choice.
+<migario> from: http://gcc.gnu.org/onlinedocs/gcc-4.4.2/gcc/Code-Gen-Options.html#index-ffixed-1972
+<Belxjander> you managed to find a description I didn't
+<migario> craps, i just closed the stackoverflow question and answer that referred to it :/
+<migario> wrong question, good answer #3 : :-) http://stackoverflow.com/questions/2114163/reading-a-register-value-into-a-c-variable
+<migario> he explains how the gcc option is used
+<migario> in practise
+<migario> or she
+* slubman has joined #aros
+<migario> have a nice day y'all
+* migario has quit IRC (Quit: znurkel)
+* Belxjander has quit IRC (Remote host closed the connection)
+* Belxjander has joined #aros
+<Belxjander> irc on android sucks!
+<Belxjander> Does anyone have a log of channel links?
+* Corscaria has quit IRC (Ping timeout: 245 seconds)
+* deadwood_ has quit IRC (Quit: Wychodzi)
+* mschulz has joined #aros
+<redblue> http://www.androirc.com/
+<redblue> http://www.yaaic.org/
+<redblue> http://gorry.haun.org/android/aicia/ (AiCiA - IRC Client) [Hiroaki GOTO as GORRY]?
+<redblue> http://www.hanhuy.com/android (qicr lite IRC client beta) [Perry Nguyen]
+<redblue> http://www.andchat.net/
+<redblue> http://www.countercultured.net/android/
+<redblue> http://code.google.com/p/firc-chat/
+<redblue> http://quasseldroid.iskrembilen.com/
+<redblue> http://www.webimpact.co.jp/darairc/
+<redblue> think they're all android Belxjander
+<redblue> http://www.androidcentral.com/
+<redblue> mschulz, slubman =)
+* Kalamatee has joined #aros
+<redblue> Kalamatee =)
+<mschulz> Kalamatee: :)
+* analogkid has quit IRC (Ping timeout: 246 seconds)
+* analogkid has joined #aros
+* Belxjander has quit IRC (Ping timeout: 246 seconds)
+* Belxjander has joined #aros
+* jahc has quit IRC (Ping timeout: 260 seconds)
+* BSzili has joined #aros
+* analogkid has quit IRC (Ping timeout: 260 seconds)
+* analogkid has joined #aros
+* analogkid has quit IRC (Ping timeout: 248 seconds)
+<redblue> <redblue> http://www.androirc.com/
+<redblue> <redblue> http://www.yaaic.org/
+<redblue> <redblue> http://gorry.haun.org/android/aicia/ (AiCiA - IRC Client) [Hiroaki GOTO as GORRY]?
+<redblue> <redblue> http://www.hanhuy.com/android (qicr lite IRC client beta) [Perry Nguyen]
+<redblue> <redblue> http://www.andchat.net/
+<redblue> <redblue> http://www.countercultured.net/android/
+<redblue> <redblue> http://code.google.com/p/firc-chat/
+<redblue> <redblue> http://quasseldroid.iskrembilen.com/
+<redblue> <redblue> http://www.webimpact.co.jp/darairc/
+<redblue> <redblue> think they're all android Belxjander
+<redblue> <redblue> http://www.androidcentral.com/
+* analogkid has joined #aros
+* Geri_lgfx has joined #aros
+* analogkid has quit IRC (Ping timeout: 245 seconds)
+* analogkid has joined #aros
+* tichy has joined #aros
+<mschulz> tichy :)
+<tichy> mschulz: :):)
+<mschulz> sup
+* analogkid has quit IRC (Ping timeout: 260 seconds)
+<tichy> i just had a dream which made me realize that xcode was a revenge of some frustrated apple programmer, who made it so dumb and useless on purpose
+<tichy> how are things, Michal?
+<mschulz> slowly progressing
+* analogkid has joined #aros
+<mschulz> have to made the quartal VAT report for tax office
+<mschulz> what I don't get in xcode is, it'S so oriented on the content of the project, that it doesn't even allow you to lay out your code in sub-directories ;)
+<mschulz> besides I always plan to learn using it
+<mschulz> and give up due to lack of time
+<tichy> you don't want to do that ;)
+<tichy> it's a hell on earth
+<tichy> it's good that apple didn't make us use microsoft word for that yet -- with obligatory interpunction corrections and underlining nondictionary words
+<tichy> you know text from xcode wexbsite? ;)
+<tichy> i saw almost all of those messages
+<tichy> i'm devasted by work lately..
+<tichy> this 'manager' of ours is pushing us too hard, and yet he's too f..king lazy to do any work himself
+<tichy> i need to go back to regular coding, but i'm almost braindead..
+<redblue> tichy =)
+* Geit has joined #aros
+<redblue> Geit =)
+<redblue> np: electric keet - depth.it
+<Geit> hi redblue
+* @ChanServ has quit IRC (*.net *.split)
+* Mabo has joined #aros
+<redblue> Mabo =)
+* ChanServ has joined #aros
+* hubbard.freenode.net sets mode: +o ChanServ
+* agr has quit IRC (Remote host closed the connection)
+* agr has joined #aros
+<Belxjander> redblue I asked for the links Migario posted earlier...not the android irc links
+<Belxjander> has anyone looked at having aros tethered through android?
+<terminills__> tethered?
+* Belxjander2 has joined #aros
+* Fab2 has joined #aros
+* Belxjander has quit IRC (Ping timeout: 246 seconds)
+* terminills__ is now known as terminills
+* terminills is now known as arixos-bot
+* arixos-bot is now known as terminills
+* terminills has left #aros ("http://quassel-irc.org - Chat comfortably. Anywhere.")
+* Tcheko_ has quit IRC (Ping timeout: 260 seconds)
+* terminills has joined #aros
+End of #aros buffer    Sun Oct 07 08:55:58 2012

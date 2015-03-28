@@ -1,0 +1,8 @@
+dispatchOnThisBytecode
+	(currentBytecode between: 0 and: 119) ifTrue: [^self stackBytecode].
+	(currentBytecode between: 120 and: 127) ifTrue: [^self returnBytecode].
+	(currentBytecode between: 128 and: 130) ifTrue: [^self stackBytecode].
+	(currentBytecode between: 131 and: 134 ifTrue: [^self sendBytecode].
+	(currentBytecode between: 135 and: 137) ifTrue: [^self stackBytecode].
+	(currentBytecode between: 144 and: 175) ifTrue: [^self jumpBytecode].
+	(currentBytecode between: 176 and: 255) ifTrue: [^self sendBytecode]

@@ -1,0 +1,4 @@
+cantBeIntegerObject: objectPointer
+	(self isIntegerObject: objectPointer)
+		"ERROR: Sensor and notify: not defined"
+		ifTrue: [Sensor notify: 'A small integer has no object table entry']

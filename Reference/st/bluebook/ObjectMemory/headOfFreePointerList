@@ -1,0 +1,3 @@
+headOfFreePointerList
+	^wordMemory segment: ObjectTableSegment
+		word: FreePointerList

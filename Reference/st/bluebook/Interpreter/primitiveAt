@@ -1,0 +1,14 @@
+primitiveAt
+	| index array arrayClass result |
+	index <- self positive16BitValueOf: self popStack.
+	array <- self popStack.
+	arrayClass <- memory fetchClassOf: array.
+	self checkIndexableBoundsOf: index
+		in: array.
+	self success
+		ifTrue: [index <- index + (self fixedFieldsOf: arrayClass).
+			result <- self subscript: array
+					with: index].
+	self success
+		ifTrue: [self push: result]
+		ifFalse: [self unPop: 2]

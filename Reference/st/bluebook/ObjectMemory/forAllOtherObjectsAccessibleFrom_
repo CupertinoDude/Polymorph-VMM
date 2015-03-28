@@ -1,0 +1,15 @@
+forAllOtherObjectsAccessibleFrom: objectPointer
+		suchThat: predicate
+		do: action
+	| next |
+	1 to: (self lastPointerOf: objectPointer) - 1 do:
+		[ :offset |
+			next <- self heapChunkOf: objectPointer word: offset.
+			((self isIntegerObject: next)==false and: [predicate value: next])
+				ifTrue: "it's a non-immediate object and it should be processed"
+					[self forAllOtherObjectsAccessibleFrom: next
+						suchThat: predicate
+						do: action]].
+	"all pointers have been followed; now perform the action"
+	action value: objectPointer.
+	^objectPointer

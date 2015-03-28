@@ -1,0 +1,6 @@
+fetchByte
+	| byte |
+	byte <- memory fetchByte: instructionPointer
+			ofObject: method.
+	instructionPointer <- instructionPointer + 1.
+	^byte

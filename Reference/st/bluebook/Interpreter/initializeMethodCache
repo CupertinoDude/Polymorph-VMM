@@ -1,0 +1,3 @@
+initializeMethodCache
+	methodCacheSize <- 1024.
+	methodCache <- Array new: methodCacheSize

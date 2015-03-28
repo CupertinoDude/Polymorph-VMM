@@ -1,0 +1,2 @@
+classBitsOf: objectPointer
+	^self heapChunkOf: objectPointer word: 1

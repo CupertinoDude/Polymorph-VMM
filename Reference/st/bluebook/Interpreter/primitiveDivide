@@ -1,0 +1,12 @@
+primitiveDivide
+	| integerReceiver integerArgument integerResult |
+	integerArgument <- self popInteger.
+	integerReceiver <- self popInteger.
+	self success: integerArgument ~= 0.
+	self success: integerReceiver \\ integerArgument = 0.
+	self success
+		ifTrue: [integerResult <- integerReceiver // integerArgument.
+			self success: (memory isIntegerValue: integerResult)].
+	self success
+		ifTrue: [ self push: (memory integerObjectOf: integerResult)]
+		ifFalse: [self unPop: 2]

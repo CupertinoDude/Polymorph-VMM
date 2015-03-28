@@ -1,0 +1,5 @@
+ot: objectPointer put: value
+	self cantBeIntegerObject: objectPointer.
+	^wordMemory segment: ObjectTableSegment
+		word: ObjectTableStart + objectPointer
+		put: value

@@ -1,0 +1,7 @@
+sendBytecode
+	(currentBytecode between: 131 and: 134)
+		ifTrue: [^self extendedSendBytecode].
+	(currentBytecode between: 176 and: 207)
+		ifTrue: [^self sendSpecialSelectorBytecode].
+	(currentBytecode between: 208 and: 255)
+		ifTrue: [^self sendLiteralSelectorBytecode]

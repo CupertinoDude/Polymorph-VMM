@@ -1,0 +1,2 @@
+integerObjectOf: value
+	^(value bitShift: 1) + 1

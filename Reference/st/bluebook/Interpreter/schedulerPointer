@@ -1,0 +1,3 @@
+schedulerPointer
+	^memory fetchPointer: ValueIndex
+		ofObject: SchedulerAssociationPointer

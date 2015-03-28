@@ -1,0 +1,29 @@
+stackBytecode
+	(currentBytecode between: 0 and: 15)
+		ifTrue: [^self pushReceiverVariableBytecode].
+	(currentBytecode between: 16 and: 31)
+		ifTrue: [^self pushTemporaryVariableBytecode].
+	(currentBytecode between: 32 and: 63)
+		ifTrue: [^self pushLiteralConstantBytecode].
+	(currentBytecode between: 64 and: 95)
+		ifTrue: [^self pushLiteralVariableBytecode].
+	(currentBytecode between: 96 and: 103)
+		ifTrue: [^self storeAndPopReceiverVariableBytecode].
+	(currentBytecode between: 104 and: 111)
+		ifTrue: [^self storeAndPopTemporaryVariableBytecode].
+	currentBytecode = 112
+		ifTrue: [^self pushReceiverBytecode].
+	currentBytecode between: 113 and: 119)
+		ifTrue: [^self pushConstantBytecode].
+	currentBytecode = 128
+		ifTrue: [^self extendedPushBytecode].
+	currentBytecode = 129
+		ifTrue: [^self extendedStoreBytecode].
+	currentBytecode = 130
+		ifTrue: [^self extendedStoreAndPopBytecode].
+	currentBytecode = 135
+		ifTrue: [^self popStackBytecode].
+	currentBytecode = 136
+		ifTrue: [^self duplicateTopBytecode].
+	currentBytecode = 137
+		ifTrue: [^self pushActiveContextBytecode]

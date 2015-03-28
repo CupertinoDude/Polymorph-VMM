@@ -1,0 +1,7 @@
+storeAndPopTemporaryVariableBytecode
+	| variableIndex |
+	variableIndex <- self extractBits: 13 to: 15
+				of: currentBytecode.
+	memory storePointer: variableIndex + TempFrameStart
+		ofObject: homeContext
+		withValue: self popStack

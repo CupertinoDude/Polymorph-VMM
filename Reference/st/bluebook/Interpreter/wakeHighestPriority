@@ -1,0 +1,9 @@
+wakeHighestPriority
+	| priority processLists processList |
+	processLists <- memory fetchPointer: ProcessListsIndex
+				ofObject: self schedulerPointer.
+	priority <- memory fetchWordLengthOf: processLists.
+	[processList <- memory fetchPointer: priority - 1
+				ofObject: processLists.
+	self isEmptyList: processList] whileTrue: [priority <- priority - 1].
+	^self removeFirstLinkOfList: processList

@@ -1,0 +1,5 @@
+hasObject: objectPointer
+	"is objectPointer pointing to a valid object ?"
+	^(self freeBitOf: objectPointer) = 0
+		"not sure that the first clause is necessary"
+		and: [(self countBitsOf: objectPointer) ~= 0]

@@ -1,0 +1,8 @@
+toFreeChunkList: size add: objectPointer
+	| segment |
+	segment <- self segmentBitsOf: objectPointer.
+	self classBitsOf: objectPointer
+		put: (self headOfFreeChunkList: size inSegment: segment).
+	self headOfFreeChunkList: size
+		inSegment: segment
+		put: objectPointer

@@ -1,0 +1,2 @@
+sizeBitsOf: objectPointer
+	^self heapChunkOf: objectPointer word: 0

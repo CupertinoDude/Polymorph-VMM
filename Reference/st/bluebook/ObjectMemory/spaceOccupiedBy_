@@ -1,0 +1,6 @@
+spaceOccupiedBy: objectPointer
+	| size |
+	size <- self sizeBitsOf: objectPointer.
+	(size < HugeSize or: [(self pointerBitOf: objectPointer) = 0])
+		ifTrue: [^size]
+		ifFalse: [^size + 1]

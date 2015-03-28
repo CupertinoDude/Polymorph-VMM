@@ -1,0 +1,4 @@
+fetchClassOf: objectPointer
+	(self isIntegerObject: objectPointer)
+		ifTrue: [^IntegerClass] "ERROR IntegerClass not defined"
+		ifFalse: [^self classBitsOf: objectPointer]

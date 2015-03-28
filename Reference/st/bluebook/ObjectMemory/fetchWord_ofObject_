@@ -1,0 +1,2 @@
+fetchWord: wordIndex ofObject: objectPointer
+	^self heapChunkOf: objectPointer word: HeaderSize + wordIndex

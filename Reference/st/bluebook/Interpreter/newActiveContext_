@@ -1,0 +1,6 @@
+newActiveContext: aContext
+	self storeContextRegisters.
+	memory decreaseReferencesTo: activeContext.
+	activeContext <- aContext.
+	memory increaseReferencesTo: activeContext.
+	self fetchContextRegisters

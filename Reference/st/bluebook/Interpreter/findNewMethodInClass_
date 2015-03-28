@@ -1,0 +1,13 @@
+findNewMethodInClass: class
+	| hash |
+	"Altered to that in Bits of History, p.244"
+	hash <- (((messageSelector bitXor: class) bitAnd: 16rFF) bitShift: 2) + 1.
+	((methodCache at: hash) = messageSelector
+			and: [(methodCache at: hash + 1) = class])
+		ifTrue: [newMethod <- methodCache at: hash + 2.
+			primitiveIndex <- methodCache at: hash + 3]
+		ifFalse: [self lookupMethodInClass: class.
+			methodCache at: hash put: messageSelector.
+			methodCache at: hash + 1 put: class.
+			methodCache at: hash + 2 put: newMethod.
+			methodCache at: hash + 3 put: primitiveIndex]

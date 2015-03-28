@@ -1,0 +1,5 @@
+push: object
+	stackPointer <- stackPointer + 1.
+	memory storePointer: stackPointer
+		ofObject: activeContext
+		withValue: object

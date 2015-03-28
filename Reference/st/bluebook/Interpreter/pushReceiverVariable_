@@ -1,0 +1,3 @@
+pushReceiverVariable: fieldIndex
+	self push: (memory fetchPointer: fieldIndex
+			ofObject: receiver)

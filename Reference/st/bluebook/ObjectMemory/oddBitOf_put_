@@ -1,0 +1,2 @@
+oddBitOf: objectPointer put: value
+	^self ot: objectPointer bits: 8 to: 8 put: value

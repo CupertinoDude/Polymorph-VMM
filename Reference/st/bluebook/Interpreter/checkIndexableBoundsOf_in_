@@ -1,0 +1,5 @@
+checkIndexableBoundsOf: index in: array
+	| class |
+	class <- memory fetchClassOf: array.
+	self success: index >= 1.
+	self success: index + (self fixedFieldsOf: class) <= (self lengthOf: array)

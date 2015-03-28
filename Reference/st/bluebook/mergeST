@@ -1,0 +1,16 @@
+#!/bin/sh
+# merges C and Smalltalk source, include the Smalltalk as comments in
+# the C. The C should include comments (on lines by themselves) of
+# the form:
+#	/*ST!class-name!method-name!*/
+# The program will extract the method from its file (via the .index file)
+# in the class' directory and include at that point in the C source.
+trap "rm -f /tmp/f$$" 0
+
+awk -F! '/\/\*ST/ { printf "bluebook/%s/%s\n", $2, $3; }' $1 >/tmp/f$$
+if [ -s /tmp/f$$ ]
+then
+	ed - /tmp/f$$ <bluebook/gened.ed | ed - $1
+else
+	cat $1
+fi

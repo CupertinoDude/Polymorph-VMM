@@ -1,0 +1,10 @@
+storeInteger: fieldIndex
+	ofObject: objectPointer
+	withValue: integerValue
+	| integerPointer |
+	(memory isIntegerValue: integerValue)
+		ifTrue: [integerPointer <- memory integerObjectOf: integerValue.
+			memory storePointer: fieldIndex
+				ofObject: objectPointer
+				withValue: integerPointer]
+		ifFalse: [^self primitiveFail]

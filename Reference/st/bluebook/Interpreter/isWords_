@@ -1,0 +1,5 @@
+isWords: classPointer
+	| wordsFlag |
+	wordsFlag <- self extractBits: 1 to: 1
+			of: (self instanceSpecificationOf: classPointer).
+	^wordsFlag = 1

@@ -1,0 +1,11 @@
+markObjectsAccessibleFrom: rootObjectPointer
+	| unmarked |
+	^self forAllObjectsAccessibleFrom: rootObjectPointer
+		suchThat: "the predicate tests for an unmarked object and marks it"
+			[ :objectPointer |
+				unmarked <- (self countBitsOf: objectPointer) = 0.
+				unmarked ifTrue: [self countBitsOf: objectPointer put: 1].
+				unmarked]
+		do: "the action restores the mark to count=1"
+			[ :objectPointer |
+				self countBitsOf: objectPointer put: 1]

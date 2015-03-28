@@ -1,0 +1,27 @@
+primitiveBlockCopy
+	| context methodContext blockArgumentCount newContext initialIP contextSize |
+	blockArgumentCount <- self popStack.
+	context <- self popStack.
+	(self isBlockContext: context)
+		ifTrue: [methodContext <- memory fetchPointer: HomeIndex
+						ofObject: context]
+		ifFalse: [methodContext <- context].
+	contextSize <- memory fetchWordLengthOf: methodContext.
+	newContext <- memory instantiateClass: ClassBlockContextPointer
+				withPointers: contextSize.
+	initialIP <- memory integerObjectOf: instructionPointer + 3.
+	memory storePointer: InitialIPIndex
+		ofObject: newContext
+		withValue: initialIP.
+	memory storePointer: InstructionPointerIndex
+		ofObject: newContext
+		withValue: initialIP.
+	self storeStackPointerValue: 0
+		inContext: newContext.
+	memory storePointer: BlockArgumentCountIndex
+		ofObject: newContext
+		withValue: blockArgumentCount.
+	memory storePointer: HomeIndex
+		ofObject: newContext
+		withValue: methodContext.
+	self push: newContext

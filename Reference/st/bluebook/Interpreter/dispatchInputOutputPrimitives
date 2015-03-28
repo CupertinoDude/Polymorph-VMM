@@ -1,0 +1,17 @@
+dispatchInputOutputPrimitives
+	primitiveIndex = 90 ifTrue: [^self primitiveMousePoint].
+	primitiveIndex = 91 ifTrue: [^self primitiveCursorLocPut].
+	primitiveIndex = 92 ifTrue: [^self primitiveCursorLink].
+	primitiveIndex = 93 ifTrue: [^self primitiveInputSemaphore].
+	primitiveIndex = 94 ifTrue: [^self primitiveSampleInterval].
+	primitiveIndex = 95 ifTrue: [^self primitiveInputWord].
+	primitiveIndex = 96 ifTrue: [^self primitiveCopyBits].
+	primitiveIndex = 97 ifTrue: [^self primitiveSnapshot].
+	primitiveIndex = 98 ifTrue: [^self primitiveTimeWordsInto].
+	primitiveIndex = 99 ifTrue: [^self primitiveTickWordsInto].
+	primitiveIndex = 100 ifTrue: [^self primitiveSignalAtTick].
+	primitiveIndex = 101 ifTrue: [^self primitiveBeCursor].
+	primitiveIndex = 102 ifTrue: [^self primitiveBeDisplay].
+	primitiveIndex = 103 ifTrue: [^self primitiveScanCharacters].
+	primitiveIndex = 104 ifTrue: [^self primitiveDrawLoop].
+	primitiveIndex = 105 ifTrue: [^self primitiveStringReplace]

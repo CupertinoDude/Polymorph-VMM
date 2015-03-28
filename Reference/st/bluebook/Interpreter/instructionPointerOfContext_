@@ -1,0 +1,3 @@
+instructionPointerOfContext: contextPointer
+	^self fetchInteger: InstructionPointerIndex
+		ofObject: contextPointer

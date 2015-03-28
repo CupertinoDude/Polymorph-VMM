@@ -1,0 +1,10 @@
+sendSpecialSelectorBytecode
+	| selectorIndex selector count |
+	self specialSelectorPrimitiveResponse
+		ifFalse: [selectorIndex <- (currentBytecode - 176) * 2.
+			selector <- memory fetchPointer: selectorIndex
+					ofObject: SpecialSelectorsPointer.
+			count <- self fetchInteger: selectorIndex + 1
+					ofObject: SpecialSelectorsPointer.
+			self sendSelector: selector
+				argumentCount: count]

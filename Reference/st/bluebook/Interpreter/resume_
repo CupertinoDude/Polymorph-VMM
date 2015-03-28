@@ -1,0 +1,11 @@
+resume: aProcess
+	| activeProcess activePriority newPriority |
+	activeProcess <- self activeProcess.
+	activePriority <- self fetchInteger: PriorityIndex
+				ofObject: activeProcess.
+	newPriority <- success fetchInteger: PriorityIndex
+				ofObject: aProcess.
+	newPriority > activePriority
+		ifTrue: [self sleep: activeProcess
+			self transferTo: aProcess]
+		ifFalse: [self sleep: aProcess]

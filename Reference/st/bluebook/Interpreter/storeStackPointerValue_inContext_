@@ -1,0 +1,4 @@
+storeStackPointerValue: value inContext: contextPointer
+	self storeInteger: StackPointerIndex
+		ofObject: contextPointer
+		withValue: value

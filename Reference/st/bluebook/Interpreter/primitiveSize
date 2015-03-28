@@ -1,0 +1,9 @@
+primitiveSize
+	| array class length |
+	array <- self popStack.
+	class <- memory fetchClassOf: array.
+	length <- self positive16BitIntegerFor:
+			(self lengthOf: array) - (self fixedFieldsOf: class).
+	self success
+		ifTrue: [self push: length]
+		ifFalse: [self unPop: 1]

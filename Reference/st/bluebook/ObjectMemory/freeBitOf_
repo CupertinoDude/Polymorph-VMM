@@ -1,0 +1,2 @@
+freeBitOf: objectPointer
+	^self ot: objectPointer bits: 10 to: 10

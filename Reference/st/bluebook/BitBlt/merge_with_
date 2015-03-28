@@ -1,0 +1,34 @@
+merge: sourceWord with: destinationWord
+	"These are the 16 combination rules:"
+	combinationRule = 0
+		ifTrue: [^0].
+	combinationRule = 1
+		ifTrue: [^sourceWord bitAnd: destinationWord].
+	combinationRule = 2
+		ifTrue: [^sourceWord bitAnd: destinationWord bitInvert].
+	combinationRule = 3
+		ifTrue: [^sourceWord].
+	combinationRule = 4
+		ifTrue: [^sourceWord bitInvert bitAnd: destinationWord].
+	combinationRule = 5
+		ifTrue: [^destinationWord].
+	combinationRule = 6
+		ifTrue: [^sourceWord bitXor: destinationWord].
+	combinationRule = 7
+		ifTrue: [^sourceWord bitOr: destinationWord].
+	combinationRule = 8
+		ifTrue: [^sourceWord bitInvert bitAnd: destinationWord bitInvert].
+	combinationRule = 9
+		ifTrue: [^sourceWord bitInvert bitXor: destinationWord].
+	combinationRule = 10
+		ifTrue: [^destinationWord bitInvert].
+	combinationRule = 11
+		ifTrue: [^sourceWord bitOr: destinationWord bitInvert].
+	combinationRule = 12
+		ifTrue: [^sourceWord bitInvert].
+	combinationRule = 13
+		ifTrue: [^sourceWord bitInvert bitOr: destinationWord].
+	combinationRule = 14
+		ifTrue: [^sourceWord bitInvert bitOr: destinationWord bitInvert].
+	combinationRule = 15
+		ifTrue: [^AllOnes]

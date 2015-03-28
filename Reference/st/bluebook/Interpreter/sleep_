@@ -1,0 +1,10 @@
+sleep: aProcess
+	| priority processLists processList |
+	priority <- self fetchInteger: PriorityIndex
+			ofObject: aProcess.
+	processLists <- memory fetchPointer: ProcessListsIndex
+				ofObject: self schedulerPointer.
+	processList <- memory fetchPointer: priority - 1
+				ofObject: processLists.
+	self addLastLink: aProcess
+		toList: processList

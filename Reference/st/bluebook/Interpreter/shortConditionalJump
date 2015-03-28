@@ -1,0 +1,6 @@
+shortConditionalJump
+	| offset |
+	offset <- self extractBits: 13 to: 15
+			of: currentBytecode.
+	self jumplf: FalsePointer
+		by: offset + 1

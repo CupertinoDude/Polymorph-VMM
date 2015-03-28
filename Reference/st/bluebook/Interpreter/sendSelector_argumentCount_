@@ -1,0 +1,6 @@
+sendSelector: selector argumentCount: count
+	| newReceiver |
+	messageSelector <- selector.
+	argumentCount <- count.
+	newReceiver <- self stackValue: argumentCount.
+	self sendSelectorToClass: (memory fetchClassOf: newReceiver)

@@ -1,0 +1,3 @@
+isIntegerValue: valueWord
+	"ERROR: G&R really cock this up"
+	^valueWord >= -16384 and: [valueWord <= 16383]

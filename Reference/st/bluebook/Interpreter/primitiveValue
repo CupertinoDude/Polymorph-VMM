@@ -1,0 +1,23 @@
+primitiveValue
+	| blockContext blockArgumentCount initialIP |
+	blockContext <- self stackValue: argumentCount.
+	blockArgumentCount <- self argumentCountOfBlock: blockContext.
+	self success: argumentCount = blockArgumentCount.
+	self success
+		ifTrue: [self transfer: argumentCount
+				fromIndex: stackPointer - argumentCount + 1
+				ofObject: activeContext
+				toIndex: TempFrameStart
+				ofObject: blockContext.
+			self pop: argumentCount + 1.
+			initialIP <- memory fetchPointer: InitialIPIndex
+						ofObject: blockContext.
+			memory storePointer: InstructionPointerIndex
+				ofObject: blockContext
+				withValue: initialIP.
+			self storeStackPointerValue: argumentCount
+				inContext: blockContext.
+			memory storePointer: CallerIndex
+				ofObject: blockContext
+				withValue: activeContext.
+			self newActiveContext: blockContext]

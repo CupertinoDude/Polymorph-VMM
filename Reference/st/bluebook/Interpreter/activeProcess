@@ -1,0 +1,5 @@
+activeProcess
+	newProcessWaiting
+		ifTrue: [^newProcess]
+		ifFalse: [^memory fetchPointer: ActiveProcessIndex
+				ofObject: self schedulerPointer]

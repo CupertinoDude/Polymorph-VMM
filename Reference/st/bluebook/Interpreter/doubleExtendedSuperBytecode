@@ -1,0 +1,6 @@
+doubleExtendedSuperBytecode
+	| methodClass |
+	argumentCount <- self fetchByte.
+	messageSelector <- self literal: self fetchByte.
+	methodClass <- self methodClassOf: method.
+	self sendSelectorToClass: (self superclassOf: methodClass)

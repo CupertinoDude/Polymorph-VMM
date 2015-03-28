@@ -1,0 +1,14 @@
+positive16BitValueOf: integerPointer
+	| value |
+	(memory isIntegerObject: integerPointer)
+		ifTrue: [^memory integerValueOf: integerPointer].
+	(memory fetchClassOf: integerPointer) =
+			ClassLargePositiveIntegerPointer
+		ifFalse: [^self primitiveFail].
+	(memory fetchByteLengthOf: integerPointer) = 2
+		ifFalse: [^self primitiveFail].
+	value <- memory fetchByte: 1
+			ofObject: integerPointer.
+	value <- value * 256 + (memory fetchByte: 0
+					ofObject: integerPointer).
+	^value

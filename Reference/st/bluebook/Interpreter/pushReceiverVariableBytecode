@@ -1,0 +1,5 @@
+pushReceiverVariableBytecode
+	| fieldIndex |
+	fieldIndex <- self extractBits: 12 to: 15
+			of: currentBytecode.
+	self pushReceiverVariable: fieldIndex

@@ -1,0 +1,2 @@
+primitiveResume
+	self resume: self stackTop

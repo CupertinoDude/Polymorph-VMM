@@ -1,0 +1,2 @@
+jump: offset
+	instructionPointer <- instructionPointer + offset

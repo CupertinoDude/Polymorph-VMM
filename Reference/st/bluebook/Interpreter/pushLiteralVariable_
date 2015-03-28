@@ -1,0 +1,5 @@
+pushLiteralVariable: literalIndex
+	| association |
+	association <- self literal: literalIndex.
+	self push: (memory fetchPointer: ValueIndex
+			ofObject: association)

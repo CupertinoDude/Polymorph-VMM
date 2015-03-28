@@ -1,0 +1,18 @@
+checkProcessSwitch
+	| activeProcess |
+	[semaphoreIndex > 0]
+		whileTrue:
+			[self synchronousSignal: (semaphoreList at: semaphoreIndex).
+			semaphoreIndex <- semaphoreIndex - 1].
+	newProcessWaiting
+		ifTrue: [newProcessWaiting <- false.
+			activeProcess <- self activeProcess.
+			memory storePointer: SuspendedContextIndex
+				ofObject: activeProcess
+				withValue: activeContext.
+			memory storePointer: ActiveProcessIndex
+				ofObject: self schedulerPointer
+				withValue: newProcess.
+			self newActiveContext:
+				(memory fetchPointer: SuspendedContextIndex
+					ofObject: newProcess)]

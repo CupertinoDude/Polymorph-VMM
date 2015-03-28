@@ -1,0 +1,17 @@
+primitiveStringAtPut
+	| index array ascii character |
+	character <- self popStack.
+	index <- self positive16BitValueOf: self popStack.
+	array <- self popStack.
+	self checkIndexableBoundsOf: index
+		in: array.
+	self success: (memory fetchClassOf: character) = ClassCharacterPointer.
+	self success
+		ifTrue: [ascii <- memory fetchPointer: CharacterValueIndex
+					ofObject: character.
+			self subscript: array
+				with: index
+				storing: ascii].
+	self success
+		ifTrue: [self push: character]
+		ifFalse: [self unPop: 2]

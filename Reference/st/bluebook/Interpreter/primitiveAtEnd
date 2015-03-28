@@ -1,0 +1,18 @@
+primitiveAtEnd
+	| stream array arrayClass length index limit |
+	stream <- self popStack.
+	array <- memory fetchPointer: StreamArrayIndex
+			ofObject: stream.
+	arrayClass <- memory fetchClassOf: array.
+	length <- self lengthOf: array.
+	index <- self fetchInteger: StreamIndexIndex
+			ofObject: stream.
+	limit <- self fetchInteger: StreamReadLimitIndex
+			ofObject: Stream.
+	self success
+		(arrayClass=ClassArrayPointer) | (arrayClass=ClassStringPointer).
+	self success
+		ifTrue: [(index >= limit) | (index >= length)
+				ifTrue: [self push: TruePointer]
+				ifFalse: [self push: FalsePointer]]
+		ifFalse: [self unPop: 1]

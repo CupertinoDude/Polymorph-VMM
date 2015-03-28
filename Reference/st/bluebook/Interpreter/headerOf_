@@ -1,0 +1,3 @@
+headerOf: methodPointer
+	^memory fetchPointer: HeaderIndex
+		ofObject: methodPointer

@@ -1,0 +1,2 @@
+fetchByte: byteIndex ofObject: objectPointer
+	^self heapChunkOf: objectPointer byte: (HeaderSize*2 + byteIndex)

@@ -1,0 +1,6 @@
+primitiveSuspend
+	self success: self stackTop = self activeProcess.
+	self success
+		ifTrue: [self popStack.
+			self push: NilPointer.
+			self suspendActive]

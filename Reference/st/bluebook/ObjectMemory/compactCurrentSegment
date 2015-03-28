@@ -1,0 +1,9 @@
+compactCurrentSegment
+	| lowWaterMark bigSpace |
+	lowWaterMark <- self abandonFreeChunksInSegment: currentSegment.
+	lowWaterMark < HeapSpaceStop
+		ifTrue: [self reverseHeapPointersAbove: lowWaterMark.
+			bigSpace <- self sweepCurrentSegmentFrom: lowWaterMark.
+			self deallocate: (self obtainPointer:
+							(HeapSpaceStop + 1 - bigSpace)
+						location: bigSpace)]

@@ -1,0 +1,6 @@
+popInteger
+	| integerPointer |
+	integerPointer <- self popStack.
+	self success: (memory isIntegerObject: integerPointer).
+	self success
+		ifTrue: [^memory integerValueOf: integerPointer]

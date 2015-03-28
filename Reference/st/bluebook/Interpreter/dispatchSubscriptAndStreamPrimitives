@@ -1,0 +1,9 @@
+dispatchSubscriptAndStreamPrimitives
+	primitiveIndex = 60 ifTrue: [^self primitiveAt].
+	primitiveIndex = 61 ifTrue: [^self primitiveAtPut].
+	primitiveIndex = 62 ifTrue: [^self primitiveSize].
+	primitiveIndex = 63 ifTrue: [^self primitiveStringAt].
+	primitiveIndex = 64 ifTrue: [^self primitiveStringAtPut].
+	primitiveIndex = 65 ifTrue: [^self primitiveNext].
+	primitiveIndex = 66 ifTrue: [^self primitiveNextPut].
+	primitiveIndex = 67 ifTrue: [^self primitiveAtEnd]

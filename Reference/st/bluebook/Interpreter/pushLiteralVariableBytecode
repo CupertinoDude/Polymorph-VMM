@@ -1,0 +1,5 @@
+pushLiteralVariableBytecode
+	| fieldIndex |
+	fieldIndex <- self extractBits: 11 to: 15
+			of: currentBytecode.
+	self pushLiteralVariable: fieldIndex

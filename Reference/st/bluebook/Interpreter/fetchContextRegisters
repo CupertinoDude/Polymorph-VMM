@@ -1,0 +1,12 @@
+fetchContextRegisters
+	(self isBlockContext: activeContext)
+		ifTrue: [homeContext <- memory fetchPointer: HomeIndex
+						ofObject: activeContext]
+		ifFalse: [homeContext <- activeContext].
+	receiver <- memory fetchPointer: ReceiverIndex
+			ofObject: homeContext.
+	method <- memory fetchPointer: MethodIndex
+			ofObject: homeContext.
+	instructionPointer <- (self instructionPointerOfContext: activeContext) - 1.
+	stackPointer <-
+		(self stackPointerOfContext: activeContext) + TempFrameStart - 1

@@ -1,0 +1,15 @@
+swapPointersOf: firstPointer and: secondPointer
+	"ERROR in next line, firstPointer redefined"
+	| firstSegment firstLocation "firstPointer" firstOdd |
+	firstSegment <- self segmentBitsOf: firstPointer.
+	firstLocation <- self locationBitsOf: firstPointer.
+	firstPointer <- self pointerBitOf: firstPointer.
+	firstOdd <- self oddBitOf: firstPointer.
+	self segmentBitsOf: firstPointer put: (self segmentBitsOf: secondPointer).
+	self locationBitsOf: firstPointer put: (self locationBitsOf: secondPointer).
+	self pointerBitOf: firstPointer put: (self pointerBitOf: secondPointer).
+	self oddBitOf: firstPointer put: (self oddBitOf: secondPointer).
+	self segmentBitsOf: secondPointer put: firstSegment.
+	self locationBitsOf: secondPointer put: firstLocation.
+	self pointerBitOf: secondPointer put: firstPointer.
+	self oddBitOf: secondPointer put: firstOdd

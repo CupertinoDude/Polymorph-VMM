@@ -1,0 +1,9 @@
+synchronousSignal: aSemaphore
+	| excessSignals |
+	(self isEmptyList: aSemaphore)
+		ifTrue: [excessSignals <- self fetchInteger: ExcessSignalsIndex
+						ofObject: aSemaphore.
+			self storeInteger: ExcessSignalsIndex
+				ofObject: aSemaphore
+				withValue: excessSignals + 1]
+		ifFalse: [self resume: (self removeFirstLinkOfList: aSemaphore)]

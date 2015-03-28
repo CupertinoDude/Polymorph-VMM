@@ -1,0 +1,4 @@
+storeByte: byteIndex ofObject: objectPointer withValue: valueByte
+	^self heapChunkOf: objectPointer
+		byte: (HeaderSize*2 + byteIndex)
+		put: valueByte

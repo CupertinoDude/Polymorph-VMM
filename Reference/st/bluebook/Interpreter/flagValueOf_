@@ -1,0 +1,3 @@
+flagValueOf: methodPointer
+	^self extractBits: 0 to: 2
+		of: (self headerOf: methodPointer)

@@ -1,0 +1,4 @@
+resetFreeChunkList: size inSegment: segment
+	self headOfFreeChunkList: size
+		inSegment: segment
+		put: NonPointer

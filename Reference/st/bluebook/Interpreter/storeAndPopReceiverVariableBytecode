@@ -1,0 +1,7 @@
+storeAndPopReceiverVariableBytecode
+	| variableIndex |
+	variableIndex <- self extractBits: 13 to: 15
+				of: currentBytecode.
+	memory storePointer: variableIndex
+		ofObject: receiver
+		withValue: self popStack

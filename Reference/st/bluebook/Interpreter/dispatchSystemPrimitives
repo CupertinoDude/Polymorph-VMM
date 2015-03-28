@@ -1,0 +1,8 @@
+dispatchSystemPrimitives
+	primitiveIndex = 110 ifTrue: [^self primitiveEquivalent].
+	primitiveIndex = 111 ifTrue: [^self primitiveClass].
+	primitiveIndex = 112 ifTrue: [^self primitiveCoreLeft].
+	primitiveIndex = 113 ifTrue: [^self primitiveQuit].
+	primitiveIndex = 114 ifTrue: [^self primitiveExitToDebugger].
+	primitiveIndex = 115 ifTrue: [^self primitiveOopsLeft].
+	primitiveIndex = 116 ifTrue: [^self primitiveSignalAtOopsLeftWordsLeft]

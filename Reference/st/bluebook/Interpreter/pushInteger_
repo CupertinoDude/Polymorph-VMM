@@ -1,0 +1,2 @@
+pushInteger: integerValue
+	self push: (memory integerObjectOf: integerValue)

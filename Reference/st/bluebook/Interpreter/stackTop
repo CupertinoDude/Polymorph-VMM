@@ -1,0 +1,3 @@
+stackTop
+	^memory fetchPointer: stackPointer
+		ofObject: activeContext

@@ -1,0 +1,3 @@
+superclassOf: classPointer
+	^memory fetchPointer: SuperclassIndex
+		ofObject: classPointer

@@ -1,0 +1,13 @@
+primitiveObjectAtPut
+	| thisReceiver index newValue |
+	newValue <- self popStack.
+	index <- self popInteger.
+	thisReceiver <- self popStack.
+	self success: index > 0.
+	self success: index <= (self objectPointerCountOf: thisReceiver).
+	self success
+		ifTrue: [memory storePointer: index - 1
+				ofObject: thisReceiver
+				withValue: newValue.
+			self push: newValue]
+		ifFalse: [self unPop: 3]

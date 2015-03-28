@@ -1,0 +1,3 @@
+releasePointer: objectPointer
+	self freeBitOf: objectPointer put: 1.
+	self toFreePointerListAdd: objectPointer

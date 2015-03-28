@@ -1,0 +1,34 @@
+clipRange
+	"clip and adjust source origin and extent appropriately"
+	"first in x"
+	destX >= clipX
+		ifTrue: [sx <- sourceX.
+			dx <- destX.
+			w <- width]
+		ifFalse: [sx <- sourceX + (clipX - destX).
+			w <- width - (clipX - destX).
+			dx <- clipX].
+	(dx + w) > (clipX + clipWidth)
+		ifTrue: [w <- w - ((dx + w) - (clipX + clipWidth))].
+	"then in y"
+	destY >= clipY
+		ifTrue: [sy <- sourceY.
+			dy <- destY.
+			h <- height]
+		ifFalse: [sy <- sourceY + clipY - destY.
+			h <- height - (clipY - destY).
+			dy <- clipY].
+	(dy + h) > (clipY + clipHeight)
+		ifTrue: [h <- h - ((dy + h) - (clipY + clipHeight))].
+	sx < 0
+		ifTrue: [dx <- dx - sx.
+			w <- w + sx.
+			sx <- 0].
+	sx + w > sourceForm width
+		ifTrue: [w <- w - (sx + w - sourceForm width)].
+	sy < 0
+		ifTrue: [dy <- dy - sy.
+			h <- h + sy.
+			sy <- 0].
+	sy + h > sourceForm height
+		ifTrue: [h <- h - (sy + h - sourceForm height)]

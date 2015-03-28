@@ -1,0 +1,4 @@
+initializePointIndices
+	XIndex <- 0.
+	YIndex <- 1.
+	ClassPointSize <- 2

@@ -1,0 +1,3 @@
+argumentCountOfBlock: blockPointer
+	^self fetchInteger: BlockArgumentCountIndex
+		ofObject: blockPointer

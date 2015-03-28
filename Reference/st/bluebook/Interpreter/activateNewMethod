@@ -1,0 +1,25 @@
+activateNewMethod
+	| contextSize newContext newReceiver |
+	(self largeContextFlagOf: newMethod) = 1
+		ifTrue: [contextSize <- 32 + TempFrameStart]
+		ifFalse: [contextSize <- 12 + TempFrameStart].
+	newContext <- memory instantiateClass: ClassMethodContextPointer
+				withPointers: contextSize.
+	memory storePointer: SenderIndex
+		ofObject: newContext
+		withValue: activeContext.
+	self storeInstructionPointerValue:
+		(self initialInstructionPointerOfMethod: newMethod)
+		inContext: newContext.
+	self storeStackPointerValue: (self temporaryCountOf: newMethod)
+		inContext: newContext.
+	memory storePointer: MethodIndex
+		ofObject: newContext
+		withValue: newMethod.
+	self transfer: argumentCount + 1
+		fromIndex: stackPointer - argumentCount
+		ofObject: activeContext
+		toIndex: ReceiverIndex
+		ofObject: newContext.
+	self pop: argumentCount + 1.
+	self newActiveContext: newContext

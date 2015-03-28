@@ -1,0 +1,16 @@
+positive16BitIntegerFor: integerValue
+	| newLargeInteger |
+	integerValue < 0
+		ifTrue: [^self primitiveFail].
+	(memory isIntegerValue: integerValue)
+		ifTrue: [^memory integerObjectOf: integerValue].
+	newLargeInteger <- memory instantiateClass:
+					ClassLargePositiveIntegerPointer
+				withBytes: 2.
+	memory storeByte: 0
+		ofObject: newLargeInteger
+		withValue: (self lowByteOf: integerValue).
+	memory storeByte: 1
+		ofObject: newLargeInteger
+		withValue: (self highByteOf: integerValue).
+	^newLargeInteger

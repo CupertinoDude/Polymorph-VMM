@@ -1,0 +1,16 @@
+dispatchFloatPrimitives
+	primitiveIndex = 40 ifTrue: [^self primitiveAsFloat].
+	primitiveIndex = 41 ifTrue: [^self primitiveFloatAdd].
+	primitiveIndex = 42 ifTrue: [^self primitiveFloatSubtract].
+	primitiveIndex = 43 ifTrue: [^self primitiveFloatLessThan].
+	primitiveIndex = 44 ifTrue: [^self primitiveFloatGreaterThan].
+	primitiveIndex = 45 ifTrue: [^self primitiveFloatLessOrEqual].
+	primitiveIndex = 46 ifTrue: [^self primitiveFloatGreaterOrEqual].
+	primitiveIndex = 47 ifTrue: [^self primitiveFloatEqual].
+	primitiveIndex = 48 ifTrue: [^self primitiveFloatNotEqual].
+	primitiveIndex = 49 ifTrue: [^self primitiveFloatMultiply].
+	primitiveIndex = 50 ifTrue: [^self primitiveFloatDivide].
+	primitiveIndex = 51 ifTrue: [^self primitiveTruncated].
+	primitiveIndex = 52 ifTrue: [^self primitiveFractionalPart].
+	primitiveIndex = 53 ifTrue: [^self primitiveExponent].
+	primitiveIndex = 54 ifTrue: [^self primitiveTimesTwoPower]

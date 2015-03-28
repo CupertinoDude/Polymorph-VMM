@@ -1,0 +1,3 @@
+stackPointerOfContext: contextPointer
+	^self fetchInteger: StackPointerIndex
+		ofObject: contextPointer

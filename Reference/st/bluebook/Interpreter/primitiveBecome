@@ -1,0 +1,10 @@
+primitiveBecome
+	| thisReceiver otherPointer |
+	otherPointer <- self popStack.
+	thisReceiver <- self popStack.
+	self success: (memory isIntegerObject: otherPointer) not.
+	self success: (memory isIntegerObject: thisReceiver) not.
+	self success
+		ifTrue: [memory swapPointersOf: thisReceiver and: otherPointer.
+			self push: thisReceiver]
+		ifFalse: [self unPop: 2]

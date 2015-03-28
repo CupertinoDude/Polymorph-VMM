@@ -1,0 +1,6 @@
+popStack
+	| stackTop |
+	stackTop <- memory fetchPointer: stackPointer
+			ofObject: activeContext.
+	stackPointer <- stackPointer - 1.
+	^stackTop

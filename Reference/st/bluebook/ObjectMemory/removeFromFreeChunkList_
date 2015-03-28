@@ -1,0 +1,10 @@
+removeFromFreeChunkList: size
+	| objectPointer secondChunk |
+	objectPointer <- self headOfFreeChunkList: size
+				inSegment: currentSegment.
+	objectPointer = NonPointer ifTrue: [^nil].
+	secondChunk <- self classBitsOf: objectPointer.
+	self headOfFreeChunkList: size
+		inSegment: currentSegment
+		put: secondChunk.
+	^objectPointer

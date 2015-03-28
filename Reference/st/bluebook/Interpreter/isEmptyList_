@@ -1,0 +1,4 @@
+isEmptyList: aLinkedList
+	^(memory fetchPointer: FirstLinkIndex
+		ofObject: aLinkedList)
+			= NilPointer

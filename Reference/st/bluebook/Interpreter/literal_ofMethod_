@@ -1,0 +1,3 @@
+literal: offset ofMethod: methodPointer
+	^memory fetchPointer: offset + LiteralStart
+		ofObject: methodPointer

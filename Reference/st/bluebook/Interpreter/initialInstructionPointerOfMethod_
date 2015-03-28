@@ -1,0 +1,2 @@
+initialInstructionPointerOfMethod: methodPointer
+	^((self literalCountOf: methodPointer) + LiteralStart) * 2 + 1

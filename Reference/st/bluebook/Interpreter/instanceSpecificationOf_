@@ -1,0 +1,3 @@
+instanceSpecificationOf: classPointer
+	^memory fetchPointer: InstanceSpecificationIndex
+		ofObject: classPointer

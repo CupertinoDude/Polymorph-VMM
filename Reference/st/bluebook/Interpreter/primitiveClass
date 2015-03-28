@@ -1,0 +1,4 @@
+primitiveClass
+	| instance |
+	instance <- self popStack.
+	self push: (memory fetchClassOf: instance)

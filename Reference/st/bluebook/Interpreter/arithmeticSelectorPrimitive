@@ -1,0 +1,20 @@
+arithmeticSelectorPrimitive
+	"ERROR: the next line is redundant"
+	"self success: (memory isIntegerObject: (self stackValue: 1))."
+	self success
+		ifTrue:[currentBytecode = 176 ifTrue: [^self primitiveAdd].
+			currentBytecode = 177 ifTrue: [^self primitiveSubtract].
+			currentBytecode = 178 ifTrue: [^self primitiveLessThan].
+			currentBytecode = 179 ifTrue: [^self primitiveGreaterThan].
+			currentBytecode = 180 ifTrue: [^self primitiveLessOrEqual].
+			currentBytecode = 181 ifTrue: [^self primitiveGreaterOrEqual].
+			currentBytecode = 182 ifTrue: [^self primitiveEqual].
+			currentBytecode = 183 ifTrue: [^self primitiveNotEqual].
+			currentBytecode = 184 ifTrue: [^self primitiveMultiply].
+			currentBytecode = 185 ifTrue: [^self primitiveDivide].
+			currentBytecode = 186 ifTrue: [^self primitiveMod].
+			currentBytecode = 187 ifTrue: [^self primitiveMakePoint].
+			currentBytecode = 188 ifTrue: [^self primitiveBitShift].
+			currentBytecode = 189 ifTrue: [^self primitiveDiv].
+			currentBytecode = 190 ifTrue: [^self primitiveBitAnd].
+			currentBytecode = 191 ifTrue: [^self primitiveBitOr]]

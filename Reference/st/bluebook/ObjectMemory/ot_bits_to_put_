@@ -1,0 +1,7 @@
+ot: objectPointer bits: firstBitIndex to: lastBitIndex put: value
+	self cantBeIntegerObject: objectPointer.
+	^wordMemory segment: ObjectTableSegment
+		word: ObjectTableStart + objectPointer
+		bits: firstBitIndex
+		to: lastBitIndex
+		put: value

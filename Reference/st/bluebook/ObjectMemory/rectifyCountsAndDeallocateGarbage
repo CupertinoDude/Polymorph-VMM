@@ -1,0 +1,31 @@
+rectifyCountsAndDeallocateGarbage
+	| count |
+	"reset heads of free-chunk lists"
+	FirstHeapSegment to: LastHeapSegment do: "for every segment"
+		[ :segment |
+			HeaderSize to: BigSize do: "for every free chunk list"
+				[ :size | "reset the list head"
+					self resetFreeChunkList: size inSegment: segment]].
+	"rectify counts, and deallocate garbage"
+	0 to: ObjectTableSize-2 by: 2 do: "for every object table entry"
+		[ :objectPointer |
+			(self freeBitOf: objectPointer) = 0
+				ifTrue: "if it is not a free entry"
+					[(count <- self countBitsOf: objectPointer) = 0
+						ifTrue: "it is unmarked so deallocate it"
+							[self deallocate: objectPointer]
+						ifFalse: "it is marked so rectify reference counts"
+							[count < 128
+								ifTrue: "subtract 1 to compensate for the mark"
+									[self countBitsOf: objectPointer put: count-1].
+							1 to: (self lastPointerOf: objectPointer)-1 do:
+								[ :offset | "increment the reference count
+										of each pointer"
+									self countUp:
+										(self heapChunkOf: objectPointer
+											word: offset)]]]].
+	"be sure the root objects don't disappear"
+	"ERROR: rootObjectPointers not defined"
+	rootObjectPointers do:
+		[ :rootObjectPointer | self countUp: rootObjectPointer].
+	self countBitsOf: NilPointer put: 128

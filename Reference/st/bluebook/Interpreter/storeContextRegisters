@@ -1,0 +1,5 @@
+storeContextRegisters
+	self storeInstructionPointerValue: instructionPointer + 1
+		inContext: activeContext.
+	self storeStackPointerValue: stackPointer - TempFrameStart + 1
+		inContext: activeContext

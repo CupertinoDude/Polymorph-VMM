@@ -1,0 +1,43 @@
+copyLoop
+	| prevWord thisWord skewWord mergeMask halftoneWord mergeWord word |
+	1 to: h do: "here is the vertical loop"
+		[ :i |
+			(halftoneForm notNil)
+				ifTrue: [halftoneWord <- halftoneBits at: (1 + (dy bitAnd: 15)).
+					dy <- dy + vDir]
+				ifFalse: [halftoneWord <- AllOnes].
+			skewWord <- halftoneWord.
+			preload
+				ifTrue: [prevWord <- sourceBits at: sourceIndex + 1.
+					"load the 32-bit shifter"
+					sourceIndex <- sourceIndex + hDir]
+				ifFalse: [prevWord <- 0].
+			mergeMask <- mask1.
+			"ERROR: extra to on next line"
+			1 to: nWords do: "here is the inner horizontal loop"
+				[ :word |
+					sourceForm notNil "if source used"
+						ifTrue: [prevWord <- prevWord bitAnd: skewMask.
+							thisWord <- sourceBits at: sourceIndex + 1.
+									"pick up next word"
+							skewWord <-
+								prevWord bitOr: (thisWord bitAnd:
+									skewMask bitInvert).
+							prevWord <- thisWord.
+							skewWord <- (skewWord bitShift: skew) bitOr:
+									(skewWord bitShift: skew - 16)].
+									"16-bit rotate"
+					mergeWord <- self merge: (skewWord bitAnd: halftoneWord)
+							with: (destBits at: destIndex + 1).
+					destBits
+						at: destIndex + 1
+						put: ((mergeMask bitAnd: mergeWord)
+							bitOr: (mergeMask bitInvert
+								bitAnd: (destBits at: destIndex + 1))).
+					sourceIndex <- sourceIndex + hDir.
+					destIndex <- destIndex + hDir.
+					word = (nWords - 1)
+						ifTrue: [mergeMask <- mask2]
+						ifFalse: [mergeMask <- AllOnes]].
+			sourceIndex <- sourceIndex + sourceDelta.
+			destIndex <- destIndex + destDelta]

@@ -1,0 +1,8 @@
+primitiveCopyBits	primitiveCopyB
+initializeBitBlt	initializeBBlt
+clipRange	clipRange
+computeMasks	computeMasks
+checkOverlap	checkOverlap
+calculateOffsets	calculateOff
+copyLoop	copyLoop
+merge:with:	merge:with:

@@ -1,0 +1,6 @@
+removeFromFreePointerList
+	| objectPointer |
+	objectPointer <- self headOfFreePointerList.
+	objectPointer = NonPointer ifTrue: [^nil].
+	self headOfFreePointerListPut: (self locationBitsOf: objectPointer).
+	^objectPointer

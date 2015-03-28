@@ -1,0 +1,4 @@
+zeroReferenceCounts
+	0 to: ObjectTableSize-2 by: 2 do:
+		[ :objectPointer |
+			self countBitsOf: objectPointer put: 0]

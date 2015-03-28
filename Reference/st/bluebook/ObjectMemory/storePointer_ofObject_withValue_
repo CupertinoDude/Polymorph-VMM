@@ -1,0 +1,6 @@
+storePointer: fieldIndex ofObject: objectPointer withValue: valuePointer
+	| chunkIndex |
+	chunkIndex <- HeaderSize + fieldIndex.
+	self countUp: valuePointer.
+	self countDown: (self heapChunkOf: objectPointer word: chunkIndex).
+	^self heapChunkOf: objectPointer word: chunkIndex put: valuePointer

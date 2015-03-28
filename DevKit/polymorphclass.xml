@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<library name="polymorphclass" basename="PluginBase">
+	<include>exec/types.h</include>
+	<include>exec/ports.h</include>
+	<include>dos/dos.h</include>
+	<include>libraries/polymorph.h</include>
+	<include>utility/tagitem.h</include>
+	<include>utility/hooks.h</include>
+	<include>rexx/storage.h</include>
+	<interface name="main" version="1.0" struct="PolymorphClassIFace" prefix="_PolymorphClass_" asmprefix="IPolymorphClass" global="IPolymorphClass">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+		<method name="ObtainEmulationSystem" result="APTR" />
+	</interface>
+	<interface name="ESYS" version="1.0" struct="ESYSIFace" prefix="_ESYS_" asmprefix="IESYS" global="IESYS">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+	</interface>
+</library>

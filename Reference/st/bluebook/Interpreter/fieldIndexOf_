@@ -1,0 +1,3 @@
+fieldIndexOf: methodPointer
+	^self extractBits: 3 to: 7
+		of: (self headerOf: methodPointer)

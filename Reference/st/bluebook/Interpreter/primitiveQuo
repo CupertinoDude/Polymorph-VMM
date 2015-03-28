@@ -1,0 +1,11 @@
+primitiveQuo
+	| integerReceiver integerArgument integerResult |
+	integerArgument <- self popInteger.
+	integerReceiver <- self popInteger.
+	self success: integerArgument ~= 0.
+	self success
+		ifTrue: [integerResult <- integerReceiver quo: integerArgument.
+			self success: (memory isIntegerValue: integerResult)].
+	self success
+		ifTrue: [self pushInteger: integerResult]
+		ifFalse: [self unPop: 2]

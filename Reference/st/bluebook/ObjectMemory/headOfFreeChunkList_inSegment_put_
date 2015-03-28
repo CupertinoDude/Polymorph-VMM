@@ -1,0 +1,4 @@
+headOfFreeChunkList: size inSegment: segment put: objectPointer
+	^wordMemory segment: segment
+		word: FirstFreeChunkList + size
+		put: objectPointer

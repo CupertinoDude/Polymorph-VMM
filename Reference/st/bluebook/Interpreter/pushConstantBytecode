@@ -1,0 +1,8 @@
+pushConstantBytecode
+	currentBytecode = 113 ifTrue: [^self push: TruePointer].
+	currentBytecode = 114 ifTrue: [^self push: FalsePointer].
+	currentBytecode = 115 ifTrue: [^self push: NilPointer].
+	currentBytecode = 116 ifTrue: [^self push: MinusOnePointer].
+	currentBytecode = 117 ifTrue: [^self push: ZeroPointer].
+	currentBytecode = 118 ifTrue: [^self push: OnePointer].
+	currentBytecode = 119 ifTrue: [^self push: TwoPointer]

@@ -1,0 +1,10 @@
+primitiveAdd
+	| integerReceiver integerArgument integerResult |
+	integerArgument <- self popInteger.
+	integerReceiver <- self popInteger.
+	self success
+		ifTrue: [integerResult <- integerReceiver + integerArgument.
+			self success: (memory isIntegerValue: integerResult)].
+	self success
+		ifTrue: [self pushInteger: integerResult]
+		ifFalse: [self unPop: 2]

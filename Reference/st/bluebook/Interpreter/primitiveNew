@@ -1,0 +1,12 @@
+primitiveNew
+	| class size |
+	class <- self popStack.
+	size <- self fixedFieldsOf: class.
+	self success: (self isIndexable: class) == false.
+	self success
+		ifTrue: [(self isPointers: class)
+				ifTrue: [self push: (memory instantiateClass: class
+							withPointers: size)]
+				ifFalse: [self push: (memory instantiateClass: class
+							withWords: size)]]
+		ifFalse: [self unPop: 1]

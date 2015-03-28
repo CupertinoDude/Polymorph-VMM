@@ -1,0 +1,16 @@
+allocate: size
+		odd: oddBit
+		pointer: pointerBit
+		extra: extraWord
+		class: classPointer
+	| objectPointer default |
+	self countUp: classPointer.
+	objectPointer <- self allocateChunk: size + extraWord.
+	self oddBitOf: objectPointer put: oddBit.
+	self pointerBitOf: objectPointer put: pointerBit.
+	self classBitsOf: objectPointer put: classPointer.
+	default <- pointerBit=0 ifTrue: [0] ifFalse: [NilPointer].
+	HeaderSize to: size-1 do:
+		[ :i | self heapChunkOf: objectPointer word: i put: default].
+	self sizeBitsOf: objectPointer put: size.
+	^objectPointer

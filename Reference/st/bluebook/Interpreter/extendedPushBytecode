@@ -1,0 +1,11 @@
+extendedPushBytecode
+	| descriptor variableType variableIndex |
+	descriptor <- self fetchByte.
+	variableType <- self extractBits: 8 to: 9
+				of: descriptor.
+	variableIndex <- self extractBits: 10 to: 15
+				of: descriptor.
+	variableType=0 ifTrue: [^self pushReceiverVariable: variableIndex].
+	variableType=1 ifTrue: [^self pushTemporaryVariable: variableIndex].
+	variableType=2 ifTrue: [^self pushLiteralConstant: variableIndex].
+	variableType=3 ifTrue: [^self pushLiteralVariable: variableIndex]

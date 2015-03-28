@@ -1,0 +1,7 @@
+primitiveEquivalent
+	| thisObject otherObject |
+	otherObject <- self popStack.
+	thisObject <- self popStack.
+	thisObject = otherObject
+		ifTrue: [self push: TruePointer]
+		ifFalse: [self push: FalsePointer]

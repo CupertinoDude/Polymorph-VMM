@@ -1,0 +1,3 @@
+sender
+	^memory fetchPointer: SenderIndex
+		ofObject: homeContext

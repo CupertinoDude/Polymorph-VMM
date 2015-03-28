@@ -1,0 +1,2 @@
+popStackBytecode
+	self popStack

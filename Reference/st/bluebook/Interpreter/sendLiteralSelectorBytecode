@@ -1,0 +1,7 @@
+sendLiteralSelectorBytecode
+	| selector |
+	selector <- self literal: (self extractBits: 12 to: 15
+					of: currentBytecode).
+	self sendSelector: selector
+		argumentCount: (self extractBits: 10 to: 11
+					of: currentBytecode) - 1

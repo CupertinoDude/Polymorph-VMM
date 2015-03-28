@@ -1,0 +1,2 @@
+hash: objectPointer
+	^objectPointer bitShift: -1

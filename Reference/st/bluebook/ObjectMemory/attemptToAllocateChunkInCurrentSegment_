@@ -1,0 +1,42 @@
+attemptToAllocateChunkInCurrentSegment: size
+	| objectPointer predecessor next availableSize excessSize newPointer |
+	size < BigSize
+		ifTrue: [objectPointer <- self removeFromFreeChunkList: size].
+	objectPointer notNil
+		ifTrue: [^objectPointer]. "small chunk of exact size handy so use it"
+	predecessor <- NonPointer.
+		"remember predecessor of chunk under consideration"
+	objectPointer <- self headOfFreeChunkList: LastFreeChunkList
+				inSegment: currentSegment.
+	"the search loop stops when the end of the linked list is encountered"
+	[objectPointer = NonPointer] whileFalse:
+		[availableSize <- self sizeBitsOf: objectPointer.
+		availableSize = size
+			ifTrue: "exact fit - remove from free chunk list and return"
+				[next <- self classBitsOf: objectPointer.
+						"the link to the next chunk"
+				predecessor = NonPointer
+					ifTrue: "it was the head of the list; make the next item the head"
+						[self headOfFreeChunkList: LastFreeChunkList
+							inSegment: currentSegment
+							put: next]
+					ifFalse: "it was between two chunks; link them together"
+						[self classBitsOf: predecessor
+							put: next].
+				^objectPointer].
+			"this chunk was either too big or too small; inspect the amount of variance"
+			excessSize <- availableSize - size.
+			excessSize >= HeaderSize
+				ifTrue: "can be broken into two usable parts: return the second part"
+					["obtain an object table entry for the second part"
+					newPointer <- self obtainPointer: size
+							location: (self locationBitsOf: objectPointer)
+								+ excessSize.
+					newPointer isNil ifTrue: [^nil].
+					"correct the size of the first part (which remains on the free list)"
+					self sizeBitsOf: objectPointer put: excessSize.
+					^newPointer]
+				ifFalse: "not big enough to use; try the next chunk on the list"
+					[predecessor <- objectPointer.
+					objectPointer <- self classBitsOf: objectPointer]].
+	^nil "the end of the linked list was reached and no fit was found"

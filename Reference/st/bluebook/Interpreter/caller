@@ -1,0 +1,3 @@
+caller
+	^memory fetchPointer: SenderIndex
+		ofObject: activeContext

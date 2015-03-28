@@ -1,0 +1,3 @@
+sendMustBeBoolean
+	self sendSelector: MustBeBooleanSelector
+		argumentCount: 0

@@ -1,0 +1,3 @@
+fetchByteLengthOf: objectPointer
+	"ERROR in selector of next line"
+	^(self fetchWordLengthOf: objectPointer)*2 - (self oddBitOf: objectPointer)

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE library SYSTEM "library.dtd">
+<library name="polymorph" basename="PolymorphBase" openname="polymorph.library">
+	<include>exec/types.h</include>
+	<include>exec/ports.h</include>
+	<include>dos/dos.h</include>
+	<include>libraries/polymorph.h</include>
+	<include>utility/tagitem.h</include>
+	<include>utility/hooks.h</include>
+	<include>rexx/storage.h</include>
+	<interface name="main" version="1.0" struct="PolymorphIFace" prefix="_Polymorph_" asmprefix="IPolymorph" global="IPolymorph">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+		<method name="ScriptExec" result="LONG" status="private">
+			<arg name="rmsg" type="struct RexxMsg *"/>
+			<arg name="result" type="STRPTR *"/>
+		</method>
+		<method name="OptionTagList" result="ULONG">
+			<arg name="options" type="struct TagItem *"/>
+		</method>
+		<method name="ObtainPolymorphObject" result="APTR">
+			<arg name="options" type="struct TagItem *"/>
+		</method>
+		<method name="ReleasePolymorphObject" result="APTR">
+			<arg name="object" type="APTR"/>
+		</method>
+		<method name="GetPolymorphObjectAttr" result="ULONG">
+			<arg name="object" type="APTR"/>
+			<arg name="attr" type="ULONG"/>
+		</method>
+		<method name="SetPolymorphObjectAttr" result="ULONG">
+			<arg name="object" type="APTR"/>
+			<arg name="attr" type="ULONG"/>
+			<arg name="value" type="ULONG"/>
+		</method>
+	</interface>
+	<interface name="Eproc" version="1.0" struct="ProcessorIFace" prefix="_Processor_" asmprefix="IProcessor" global="IProcessor">
+		<method name="Obtain" result="uint32"/>
+		<method name="Release" result="uint32"/>
+		<method name="Expunge" result="void" status="unimplemented"/>
+		<method name="Clone" result="struct Interface *" status="unimplemented"/>
+		<method name="ExecShort"/>
+		<method name="ExecOctet"/>
+		<method name="InterpretVector"/>
+		<method name="DynamicVector"/>
+		<method name="ObtainTableSegment"/>
+		<method name="ReleaseTableSegment"/>
+		<method name="ReadTableSegment"/>
+		<method name="WriteTableSegment"/>
+		<method name="ReadOctet"/>
+		<method name="WriteOctet"/>
+		<method name="ReadShortBE"/>
+		<method name="WriteShortBE"/>
+		<method name="ReadShortLE"/>
+		<method name="WriteShortLE"/>
+		<method name="ReadLongBE"/>
+		<method name="WriteLongBE"/>
+		<method name="ReadLongLE"/>
+		<method name="WriteLongLE"/>
+	</interface>
+</library>

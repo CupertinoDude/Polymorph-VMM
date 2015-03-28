@@ -1,0 +1,6 @@
+quickInstanceLoad
+	| thisReceiver fieldIndex |
+	thisReceiver <- self popStack.
+	fieldIndex <- self fieldIndexOf: newMethod.
+	self push: (memory fetchPointer: fieldIndex
+			ofObject: thisReceiver)

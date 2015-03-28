@@ -1,0 +1,5 @@
+isIndexable: classPointer
+	| indexableFlag |
+	indexableFlag <- self extractBits: 2 to: 2
+				of: (self instanceSpecificationOf: classPointer).
+	^indexableFlag = 1

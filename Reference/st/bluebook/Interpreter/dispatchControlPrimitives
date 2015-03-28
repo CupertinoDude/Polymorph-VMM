@@ -1,0 +1,11 @@
+dispatchControlPrimitives
+	primitiveIndex = 80 ifTrue: [^self primitiveBlockCopy].
+	primitiveIndex = 81 ifTrue: [^self primitiveValue].
+	primitiveIndex = 82 ifTrue: [^self primitiveValueWithArgs].
+	primitiveIndex = 83 ifTrue: [^self primitivePerform].
+	primitiveIndex = 84 ifTrue: [^self primitivePerformWithArgs].
+	primitiveIndex = 85 ifTrue: [^self primitiveSignal].
+	primitiveIndex = 86 ifTrue: [^self primitiveWait].
+	primitiveIndex = 87 ifTrue: [^self primitiveResume].
+	primitiveIndex = 88 ifTrue: [^self primitiveSuspend].
+	primitiveIndex = 89 ifTrue: [^self primitiveFlushCache]

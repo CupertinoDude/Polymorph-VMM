@@ -1,0 +1,6 @@
+countUp: objectPointer
+	| count |
+	(self isIntegerObject: objectPointer)
+		ifFalse: [count <- (self countBitsOf: objectPointer) + 1.
+			count < 129 ifTrue: [self countBitsOf: objectPointer put: count]].
+	^objectPointer

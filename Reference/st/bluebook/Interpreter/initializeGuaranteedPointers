@@ -1,0 +1,23 @@
+initializeGuaranteedPointers
+	"UndefinedObject and Booleans"
+	NilPointer <- 2.
+	FalsePointer <- 4.
+	TruePointer <- 6.
+	"Root"
+	SchedulerAssociationPointer <- 8.
+	"Classes"
+	ClassStringPointer <- 14.
+	ClassArrayPointer <- 16.
+	ClassMethodContextPointer <- 22.
+	ClassBlockContextPointer <- 24.
+	ClassPointPointer <- 26.
+	ClassLargePositiveIntegerPointer <- 28.
+	ClassMessagePointer <- 32.
+	ClassCharacterPointer <- 40.
+	"Selectors"
+	DoesNotUnderstandSelector <- 42.
+	CannotReturnSelector <- 44.
+	MustBeBooleanSelector <- 52.
+	"Tables"
+	SpecialSelectorsPointer <- 48.
+	CharacterTablePointer <- 50

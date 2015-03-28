@@ -1,0 +1,4 @@
+locationBitsOf: objectPointer
+	self cantBeIntegerObject: objectPointer.
+	^wordMemory segment: ObjectTableSegment
+		word: ObjectTableStart + objectPointer + 1

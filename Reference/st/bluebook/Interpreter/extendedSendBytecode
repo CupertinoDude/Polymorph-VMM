@@ -1,0 +1,5 @@
+extendedSendBytecode
+	currentBytecode = 131 ifTrue: [^self singleExtendedSendBytecode].
+	currentBytecode = 132 ifTrue: [^self doubleExtendedSendBytecode].
+	currentBytecode = 133 ifTrue: [^self singleExtendedSuperBytecode].
+	currentBytecode = 134 ifTrue: [^self doubleExtendedSuperBytecode]

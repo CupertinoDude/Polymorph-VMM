@@ -1,0 +1,31 @@
+sweepCurrentSegmentFrom: lowWaterMark
+	| si di objectPointer size space |
+	si <- di <- lowWaterMark.
+	[si < HeapSpaceStop]
+		whileTrue: "for each object, si"
+			[(wordMemory segment: currentSegment word: si + 1) = NonPointer
+				ifTrue: "unallocated, so skip it"
+					[size <- wordMemory segment: currentSegment word: si.
+					si <- si + size]
+				ifFalse: "allocated, so keep it, but move it to compact storage"
+					[objectPointer
+						<- wordMemory segment: currentSegment word: si.
+					size <- self locationBitsOf: objectPointer.
+							"the reversed size"
+					self locationBitsOf: objectPointer
+						put: di. "point object table at new location"
+					self sizeBitsOf: objectPointer
+						put: size. "restore the size to its proper place"
+					si <- si + 1. "skip the size"
+					di <- di + 1. "skip the size"
+					2 to: (self spaceOccupiedBy: objectPointer) do:
+						"move the rest of the object"
+						[ :i |
+							wordMemory segment: currentSegment
+								word: di
+								put: (wordMemory segment:
+										currentSegment
+										word: si).
+							si <- si + 1.
+							di <- di + 1]]].
+	^di

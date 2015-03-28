@@ -1,0 +1,22 @@
+extendedStoreBytecode
+	| descriptor variableType variableIndex association |
+	descriptor <- self fetchByte.
+	variableType <- self extractBits: 8 to: 9
+				of: descriptor.
+	variableIndex <- self extractBits: 10 to: 15
+				of: descriptor.
+	variableType = 0 ifTrue:
+		[^memory storePointer: variableIndex
+			ofObject: receiver
+			withValue: self stackTop].
+	variableType = 1 ifTrue:
+		[^memory storePointer: variableIndex + TempFrameStart
+			ofObject: homeContext
+			withValue: self stackTop].
+	variableType = 2 ifTrue:
+		[^self error: 'illegal store'].
+	variableType = 3 ifTrue:
+		[association <- self literal: variableIndex.
+		^memory storePointer: ValueIndex
+			ofObject: association
+			withValue: self stackTop]

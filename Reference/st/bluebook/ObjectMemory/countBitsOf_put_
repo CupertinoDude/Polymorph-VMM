@@ -1,0 +1,2 @@
+countBitsOf: objectPointer put: value
+	^self ot: objectPointer bits: 0 to: 7 put: value

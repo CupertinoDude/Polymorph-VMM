@@ -1,0 +1,14 @@
+attemptToAllocateChunk: size
+	| objectPointer |
+	objectPointer <- self attemptToAllocateChunkInCurrentSegment: size.
+	objectPointer isNil ifFalse: [^objectPointer].
+	1 to: HeapSegmentCount do:
+		[ :i |
+			currentSegment <- currentSegment + 1.
+			currentSegment > LastHeapSegment
+				ifTrue: [currentSegment <- FirstHeapSegment].
+			self compactCurrentSegment.
+			objectPointer
+				 <- self attemptToAllocateChunkInCurrentSegment: size.
+			objectPointer isNil ifFalse: [^objectPointer]].
+	^nil

@@ -1,0 +1,9 @@
+primitiveCopyBits
+	"from copyBits, p.356"
+	"sets w and h"
+	self clipRange.
+	(w <= 0 or: [h <= 0]) ifTrue: [^self ]. "null range"
+	self computeMasks.
+	self checkOverlap.
+	self calculateOffsets.
+	self copyLoop

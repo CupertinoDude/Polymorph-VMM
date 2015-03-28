@@ -1,0 +1,9 @@
+obtainPointer: size location: location
+	| objectPointer |
+	objectPointer <- self removeFromFreePointerList.
+	objectPointer isNil ifTrue: [^nil].
+	self ot: objectPointer put: 0.
+	self segmentBitsOf: objectPointer put: currentSegment.
+	self locationBitsOf: objectPointer put: location.
+	self sizeBitsOf: objectPointer put: size.
+	^objectPointer

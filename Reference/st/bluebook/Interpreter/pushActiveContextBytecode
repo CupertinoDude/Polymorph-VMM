@@ -1,0 +1,2 @@
+pushActiveContextBytecode
+	self push: activeContext

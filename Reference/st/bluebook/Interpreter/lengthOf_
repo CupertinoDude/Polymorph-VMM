@@ -1,0 +1,4 @@
+lengthOf: array
+	(self isWords: (memory fetchClassOf: array))
+		ifTrue: [^memory fetchWordLengthOf: array]
+		ifFalse: [^memory fetchByteLengthOf: array]

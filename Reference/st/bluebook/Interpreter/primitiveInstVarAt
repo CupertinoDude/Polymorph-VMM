@@ -1,0 +1,12 @@
+primitiveInstVarAt
+	| thisReceiver index value |
+	index <- self popInteger.
+	thisReceiver <- self popStack.
+	self checkInstanceVariableBoundsOf: index
+		in: thisReceiver.
+	self success
+		ifTrue: [value <- self subscript: thisReceiver
+					with: index].
+	self success
+		ifTrue: [self push: value]
+		ifFalse: [self unPop: 2]

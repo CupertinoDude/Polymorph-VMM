@@ -1,0 +1,3 @@
+asynchronousSignal: aSemaphore
+	semaphoreIndex <- semaphoreIndex + 1.
+	semaphoreList at: semaphoreIndex put: aSemaphore

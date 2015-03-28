@@ -1,0 +1,12 @@
+primitiveWait
+	| thisReceiver excessSignals |
+	thisReceiver <- self stackTop.
+	excessSignals <- self fetchInteger: ExcessSignalsIndex
+				ofObject: thisReceiver.
+	excessSignals > 0
+		ifTrue: [self storeInteger: ExcessSignalsIndex
+				ofObject: thisReceiver
+				withValue: excessSignals - 1]
+		ifFalse: [self addLastLink: self activeProcess
+				toList: thisReceiver.
+			self suspendActive]

@@ -1,0 +1,13 @@
+subscript: array with: index
+	| class value |
+	class <- memory fetchClassOf: array.
+	(self isWords: class)
+		ifTrue: [(self isPointers: class)
+				ifTrue: [^memory fetchPointer: index - 1
+						ofObject: array]
+				ifFalse: [value <- memory fetchWord: index - 1
+						ofObject: array.
+					^self positive16BitIntegerFor: value]]
+		ifFalse: [value <- memory fetchByte: index - 1
+					ofObject: array.
+			^memory integerObjectOf: value]

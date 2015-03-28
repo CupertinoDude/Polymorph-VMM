@@ -1,0 +1,22 @@
+createActualMessage
+	| argumentArray message |
+	argumentArray <- memory instantiateClass: ClassArrayPointer
+				withPointers: argumentCount.
+	"ERROR: messageSize misspelled, self inserted"
+	message <- memory instantiateClass: ClassMessagePointer
+			withPointers: MessageSize.
+	memory storePointer: MessageSelectorIndex
+		ofObject: message
+		withValue: messageSelector.
+	memory storePointer: MessageArgumentsIndex
+		ofObject: message
+		withValue: argumentArray.
+	self transfer: argumentCount
+		"ERROR in selector in next line and next but one after"
+		fromIndex: stackPointer - (argumentCount - 1)
+		ofObject: activeContext
+		toIndex: 0
+		ofObject: argumentArray.
+	self pop: argumentCount.
+	self push: message.
+	argumentCount <- 1

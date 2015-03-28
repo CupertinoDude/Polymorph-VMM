@@ -1,0 +1,4 @@
+storeInstructionPointerValue: value inContext: contextPointer
+	self storeInteger: InstructionPointerIndex
+		ofObject: contextPointer
+		withValue: value

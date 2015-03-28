@@ -1,0 +1,18 @@
+primitivePerform
+	| performSelector newReceiver selectorIndex |
+	performSelector <- messageSelector.
+	messageSelector <- self stackValue: argumentCount - 1.
+	newReceiver <- self stackValue: argumentCount.
+	self lookupMethodInClass: (memory fetchClassOf: newReceiver).
+	self success: (self argumentCountOf: newMethod) = (argumentCount - 1).
+	self success
+		ifTrue: [selectorIndex <- stackPointer - argumentCount + 1.
+			self transfer: argumentCount - 1
+				fromIndex: selectorIndex + 1
+				ofObject: activeContext
+				toIndex: selectorIndex
+				ofObject: activeContext.
+			self pop: 1.
+			argumentCount <- argumentCount - 1.
+			self executeNewMethod]
+		ifFalse: [messageSelector <- performSelector]

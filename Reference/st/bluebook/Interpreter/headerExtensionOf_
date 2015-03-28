@@ -1,0 +1,5 @@
+headerExtensionOf: methodPointer
+	| literalCount |
+	literalCount <- self literalCountOf: methodPointer.
+	^self literal: literalCount - 2
+		ofMethod: methodPointer

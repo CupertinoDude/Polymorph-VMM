@@ -1,0 +1,8 @@
+initialInstanceOf: classPointer
+	0 to: ObjectTableSize-2 by: 2 do:
+		[ :pointer |
+			"ERROR in next line, second part of test omitted"
+			((self freeBitOf: pointer) = 0 and: [(self countBitOf: pointer) ~= 0])
+				ifTrue: [(self fetchClassOf: pointer) = classPointer
+						ifTrue: [^pointer]]].
+	^NilPointer

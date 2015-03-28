@@ -1,0 +1,5 @@
+deallocate: objectPointer
+	| space |
+	space <- self spaceOccupiedBy: objectPointer.
+	self sizeBitsOf: objectPointer put: space.
+	self toFreeChunkList: (space min: BigSize) add: objectPointer

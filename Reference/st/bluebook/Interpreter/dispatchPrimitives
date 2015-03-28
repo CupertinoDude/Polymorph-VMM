@@ -1,0 +1,15 @@
+dispatchPrimitives
+	primitiveIndex < 60
+		ifTrue: [^self dispatchArithmeticPrimitives].
+	primitiveIndex < 68
+		ifTrue: [^self dispatchSubscriptAndStreamPrimitives].
+	primitiveIndex < 80
+		ifTrue: [^self dispatchStorageManagementPrimitives].
+	primitiveIndex < 90
+		ifTrue: [^self dispatchControlPrimitives].
+	primitiveIndex < 110
+		ifTrue: [^self dispatchInputOutputPrimitives].
+	primitiveIndex < 128
+		ifTrue: [^self dispatchSystemPrimitives].
+	primitiveIndex < 256
+		ifTrue: [^self dispatchPrivatePrimitives]

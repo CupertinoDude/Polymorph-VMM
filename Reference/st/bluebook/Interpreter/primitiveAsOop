@@ -1,0 +1,7 @@
+primitiveAsOop
+	| thisReceiver |
+	thisReceiver <- self popStack.
+	self success: (memory isIntegerObject: thisReceiver) == false.
+	self success
+		ifTrue: [self push: (thisReceiver bitOr: 1)]
+		ifFalse: [self unPop: 1]

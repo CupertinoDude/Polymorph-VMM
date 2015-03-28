@@ -1,0 +1,4 @@
+reclaimInaccessibleObjects
+	self zeroReferenceCounts.
+	self markAccessibleObjects.
+	self rectifyCountsAndDeallocateGarbage

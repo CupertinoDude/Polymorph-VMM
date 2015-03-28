@@ -1,0 +1,30 @@
+primitivePerformWithArgs
+	| thisReceiver performSelector argumentArray arrayClass arraySize index |
+	argumentArray <- self popStack.
+	arraySize <- memory fetchWordLengthOf: argumentArray.
+	arrayClass <- memory fetchClassOf: argumentArray.
+	self success: (stackPointer + arraySize)
+				< (memory fetchWordLengthOf: activeContext).
+	self success: (arrayClass = ClassArrayPointer).
+	self success
+		ifTrue: [performSelector <- messageSelector.
+			messageSelector <- self popStack.
+			thisReceiver <- self stackTop.
+			argumentCount <- arraySize.
+			index <- 1.
+			[index <= argumentCount]
+				whileTrue: [self push: (memory fetchPointer: index - 1
+								ofObject: argumentArray).
+					index <- index + 1].
+			self lookupMethodInClass:
+				(memory fetchClassOf: thisReceiver).
+			self success: (self argumentCountOf: newMethod)
+						= argumentCount.
+			self success
+				ifTrue: [self executeNewMethod]
+				ifFalse: [self unPop: argumentCount.
+					self push: messageSelector.
+					self push: argumentArray.
+					argumentCount <- 2.
+					messageSelector <- performSelector]]
+	ifFalse: [self unPop: 1]

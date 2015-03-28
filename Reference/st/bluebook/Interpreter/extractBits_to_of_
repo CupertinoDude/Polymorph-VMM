@@ -1,0 +1,3 @@
+extractBits: firstBitIndex to: lastBitIndex of: anInteger
+	^(anInteger bitShift: lastBitIndex - 15)
+	bitAnd: (2 raisedTo: lastBitIndex - firstBitIndex + 1) - 1

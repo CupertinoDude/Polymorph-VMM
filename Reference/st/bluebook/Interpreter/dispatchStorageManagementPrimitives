@@ -1,0 +1,13 @@
+dispatchStorageManagementPrimitives
+	primitiveIndex = 68 ifTrue: [^self primitiveObjectAt].
+	primitiveIndex = 69 ifTrue: [^self primitiveObjectAtPut].
+	primitiveIndex = 70 ifTrue: [^self primitiveNew].
+	primitiveIndex = 71 ifTrue: [^self primitiveNewWithArg].
+	primitiveIndex = 72 ifTrue: [^self primitiveBecome].
+	primitiveIndex = 73 ifTrue: [^self primitiveInstVarAt].
+	primitiveIndex = 74 ifTrue: [^self primitiveInstVarAtPut].
+	primitiveIndex = 75 ifTrue: [^self primitiveAsOop].
+	primitiveIndex = 76 ifTrue: [^self primitiveAsObject].
+	primitiveIndex = 77 ifTrue: [^self primitiveSomeInstance].
+	primitiveIndex = 78 ifTrue: [^self primitiveNextInstance].
+	primitiveIndex = 79 ifTrue: [^self primitiveNewMethod]

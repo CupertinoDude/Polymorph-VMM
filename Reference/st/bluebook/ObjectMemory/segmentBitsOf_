@@ -1,0 +1,2 @@
+segmentBitsOf: objectPointer
+	^self ot: objectPointer bits: 12 to: 15

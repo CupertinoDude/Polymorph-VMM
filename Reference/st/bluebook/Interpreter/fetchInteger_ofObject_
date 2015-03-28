@@ -1,0 +1,7 @@
+fetchInteger: fieldIndex ofObject: objectPointer
+	| integerPointer |
+	integerPointer <- memory fetchPointer: fieldIndex
+				 ofObject: objectPointer.
+	(memory isIntegerObject: integerPointer)
+		ifTrue: [^memory integerValueOf: integerPointer]
+		ifFalse: [^self primitiveFail]

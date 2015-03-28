@@ -1,0 +1,5 @@
+markAccessibleObjects
+	"ERROR: rootObjectPointers not defined"
+	rootObjectPointers do:
+		[ :rootObjectPointer |
+			self markObjectsAccessibleFrom: rootObjectPointer]

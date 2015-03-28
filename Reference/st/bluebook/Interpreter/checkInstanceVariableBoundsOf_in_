@@ -1,0 +1,5 @@
+checkInstanceVariableBoundsOf: index in: object
+	| class |
+	class <- memory fetchClassOf: object.
+	self success: index >= 1.
+	self success: index <= (self lengthOf: object)

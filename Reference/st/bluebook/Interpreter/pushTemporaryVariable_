@@ -1,0 +1,2 @@
+pushTemporaryVariable: temporaryIndex
+	self push: (self temporary: temporaryIndex)

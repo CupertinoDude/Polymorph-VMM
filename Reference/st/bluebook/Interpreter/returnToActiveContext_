@@ -1,0 +1,6 @@
+returnToActiveContext: aContext
+	memory increaseReferencesTo: aContext.
+	self nilContextFields.
+	memory decreaseReferencesTo: activeContext.
+	activeContext <- aContext.
+	self fetchContextRegisters

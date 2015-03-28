@@ -1,0 +1,3 @@
+executeNewMethod
+	self primitiveResponse
+		ifFalse: [self activateNewMethod]
