@@ -10,7 +10,7 @@ AD		= Autodoc
 MAKE	= Make
 
 CWFLAGS	= -Wall -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wconversion -Waggregate-return
-INCLUDE	= -I/SDK/includes/include_h/ -I../../DevKit/Include/
+INCLUDE	= -I/SDK/includes/include_h/ -I../DevKit/Include/
 CFLAGS	= -O2 $(INCLUDE) -fno-builtin -fPIC -shared $(CWFLAGS)
 
 LDFLAGS	= -nostartfiles -nostdlib -mcrt=newlib
@@ -25,7 +25,7 @@ $(LNAME): devkit $(OBJECTS) autodoc
 	$(STRIP) $(LNAME).debug -o $(LNAME)
 
 devkit:
-	$(MAKE) -C ../../DevKit -f GNUmakefile
+	$(MAKE) -C ../DevKit -f GNUmakefile
 
 autodoc:
 	$(AD) apicalls.c >$(AUTODOC)

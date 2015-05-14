@@ -67,7 +67,7 @@ STATIC CONST BYTE   DaemonLocale[]			= "english";
 /*
 		InitPolymorphDaemon() is called to launch the PolymorphDaemon Process
 */
-void InitPolymorphDaemon(struct LIBRARY_CLASS *SelfBase)
+void  InitPolymorphDaemon(struct LIBRARY_CLASS *SelfBase)
 {
 	if(SelfBase->IDOS)
 		if(SelfBase->DaemonProcess==NULL)
@@ -86,7 +86,7 @@ void InitPolymorphDaemon(struct LIBRARY_CLASS *SelfBase)
 };
 
 /**/
-void ExitPolymorphDaemon(struct LIBRARY_CLASS *SelfBase)
+void  ExitPolymorphDaemon(struct LIBRARY_CLASS *SelfBase)
 {
 	return;
 };
@@ -94,13 +94,13 @@ void ExitPolymorphDaemon(struct LIBRARY_CLASS *SelfBase)
 /**/
 int32 ExecPolymorphDaemon(STRPTR argv, ULONG argc)
 {
-	uint32	rc=0L;
+	ULONG rc=0L;
     struct ExecIFace *IExec = (struct ExecIFace *)(*(struct ExecBase **)4)->MainInterface;
 	struct Library *Base = NULL;
 	struct DaemonApplication *dApplication=NULL;
 
-	ULONG	signals = 0L, sigmask = 0L;
-	APTR	message = NULL;
+	ULONG exit=0L, signals =0L, sigmask = 0L;
+	APTR message = NULL;
 
 	dApplication=IExec->AllocVecTags(sizeof(struct DaemonApplication),
 		AVT_Type,MEMF_SHARED,AVT_ClearWithValue,0L,TAG_DONE);
@@ -143,7 +143,7 @@ int32 ExecPolymorphDaemon(STRPTR argv, ULONG argc)
 			InitRexxHost(dApplication);
 
 		do{
-			sigmask = dApplication->ioSignal | dApplication->cxSignal | dApplication->rxSignal;
+			sigmask = dApplication->cxSignal | dApplication->rxSignal;
 			signals = IExec->Wait(sigmask);
 
 			if(signals && dApplication->cxSignal)
@@ -153,8 +153,6 @@ int32 ExecPolymorphDaemon(STRPTR argv, ULONG argc)
 				while((message=(APTR)IExec->GetMsg(dApplication->rxPort)))
 					exit=PolymorphRexxHostEvent(dApplication,message);
 		}while(!exit);
-
-		ExitInputHandler(dApplication);
 
 		ExitRexxHost(dApplication);
 		ExitLocalization(dApplication);
@@ -214,7 +212,7 @@ int32 ExecPolymorphDaemon(STRPTR argv, ULONG argc)
 };
 
 /**/
-void InitCommodity(struct DaemonApplication *Self,LONG active)
+void  InitCommodity(struct DaemonApplication *Self,LONG active)
 {
 	LONG	error=0L;
 	struct NewBroker NewCommodityDaemon;
@@ -248,7 +246,7 @@ void InitCommodity(struct DaemonApplication *Self,LONG active)
 }
 
 /**/
-void ExitCommodity(struct DaemonApplication *Self)
+void  ExitCommodity(struct DaemonApplication *Self)
 {
 	if(Self->CommodityKey)
 	{
@@ -267,7 +265,7 @@ void ExitCommodity(struct DaemonApplication *Self)
 	Kill	-> Run the Garbage Collector, push suspended PolymorphApplications to disk
 	Unique	-> System Breach!, Force GrimRepeaping
 */
-void PolymorphCommodityEvent(struct DaemonApplication *Self, APTR message)
+ULONG PolymorphCommodityEvent(struct DaemonApplication *Self, APTR message)
 {
 	ULONG rc=0L;
 	if((Self->ICX->CxMsgType(message))==CXM_COMMAND)
@@ -291,10 +289,6 @@ void PolymorphCommodityEvent(struct DaemonApplication *Self, APTR message)
 				break;
 			case	CXCMD_UNIQUE:		/*GarbageCollector();*/
 				KDEBUG("Polymorph[Commodity::Unique()]\n");
-				break;
-			case	CXCMD_KILL:			/* External then Internal */
-				break;
-			case	CXCMD_UNIQUE:		/* Internal Special */
 				break;
 			default:
 				break;
