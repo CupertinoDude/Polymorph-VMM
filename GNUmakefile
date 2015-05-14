@@ -12,7 +12,7 @@ world: prepack all
 	${COPY}		Plugins/#?/#?.polymorph#?		Release/Plugins
 
 release: world
-	@ ${MAKE}	-C Release		-f GNUmakefile
+	@ ${MAKE} -C Release	-f GNUmakefile
 
 all:
 	@ ${MAKE} -C Devkit 	-f GNUmakefile
