@@ -73,8 +73,8 @@ CONST APTR EmulationTable[] =
 #   *	r8	=	SYSV ARG(5) Input[1]                (Shared SYSV)
 #   *	r9	=	SYSV ARG(6) Input[2]                (Shared SYSV)
 #   *	r10	=	SYSV ARG(7) Input[3]                (Shared SYSV)
-#   *	r11	=	ECPU Procedure Vector				(Core)
-#   *	r12	=	ECPU Exception Vector               (Core)
+#   *	r11	=	ECPU Procedures Vector				(Core)
+#   *	r12	=	ECPU Exceptions Vector              (Core)
 #   *	r13	=	RESERVED 							(SYSTEM)
 #   *	r14	=   InstructionPtr						(Core)
 #	*	r15	=	ECPU Register[0]                    (Plugin)
@@ -100,7 +100,7 @@ CONST APTR EmulationTable[] =
 ##
 */
 
-/*	ECALL_ReadOctet():
+/*	ECALL_ReadOctet(r7:addr):
 */
 asm("\n\
 ECALL_ReadOctet:																	\n\
@@ -108,7 +108,7 @@ ECALL_ReadOctet:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteOctet():
+/*	ECALL_WriteOctet(r7:addr,r8:data):
 */
 asm("\n\
 ECALL_WriteOctet:																	\n\
@@ -116,7 +116,7 @@ ECALL_WriteOctet:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadShortBE():
+/*	ECALL_ReadShortBE(r7:addr):
 */
 asm("\n\
 ECALL_ReadShortBE:																	\n\
@@ -124,7 +124,7 @@ ECALL_ReadShortBE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteShortBE():
+/*	ECALL_WriteShortBE(r7:addr,r8:data):
 */
 asm("\n\
 ECALL_WriteShortBE:																	\n\
@@ -132,7 +132,7 @@ ECALL_WriteShortBE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadShortLE():
+/*	ECALL_ReadShortLE(r7:addr):
 */
 asm("\n\
 ECALL_ReadShortLE:																	\n\
@@ -140,7 +140,7 @@ ECALL_ReadShortLE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteShortLE():
+/*	ECALL_WriteShortLE(r7:addr,r8:data):
 */
 asm("\n\
 ECALL_WriteShortLE:																	\n\
@@ -148,7 +148,7 @@ ECALL_WriteShortLE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadLongBE():
+/*	ECALL_ReadLongBE(r7:addr):
 */
 asm("\n\
 ECALL_ReadLongBE:																	\n\
@@ -156,7 +156,7 @@ ECALL_ReadLongBE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteLongBE():
+/*	ECALL_WriteLongBE(r7:addr,r8:data):
 */
 asm("\n\
 ECALL_WriteLongBE:																	\n\
@@ -164,7 +164,7 @@ ECALL_WriteLongBE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadLongLE():
+/*	ECALL_ReadLongLE(r7:addr,r8:data):
 */
 asm("\n\
 ECALL_ReadLongLE:																	\n\
@@ -172,7 +172,7 @@ ECALL_ReadLongLE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteLongLE():
+/*	ECALL_WriteLongLE(r7:addr,r8:data):
 */
 asm("\n\
 ECALL_WriteLongLE:																	\n\
@@ -180,43 +180,55 @@ ECALL_WriteLongLE:																	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExecShort():
+/*	ECALL_ExecShort(r7:offset):			65536 OpCode Limited
 */
 asm("\n\
 ECALL_ExecShort:																	\n\
-	stwu	%r1,-16(%r1)		##	Enter the Sandman...to make a nightmare...		\n\
-	mflr	%r0					##													\n\
-	stw		%r0,20(%r1)			##	Prologue...										\n\
+	stwu	%r1,-16(%r1);		##	Enter the Sandman...to make a nightmare...		\n\
+	mflr	%r0;				##													\n\
+	stw		%r0,20(%r1);		##	Prologue...										\n\
 ##								##													\n\
-	lhzu	%r3,0(%r14)			##													\n\
+	lhzu	%r3,0(%r14);		##	OpCode = [IXP]									\n\
+	rlwinm	%r7,2,%r7,2,18;		##	r7 = (ARG:offset << 2) && 0x3FFFC				\n\
+	rlwinm	%r9,2,%r3,2,18;		##	r9 = (OpCode << 2) && 0x3FFFC					\n\
+	add		%r10,%r7,%r9;		##	r10 = r7+r9										\n\
+	lwzx	%r10,%r10,%r11;		##	OpCodeFunc() = %r10:Function[%r11:ECPU Interface]\n\
+	mtctr	%r10;				##	Set For Calling									\n\
+	bctr;						##	Execute!										\n\
 ##								##													\n\
-	lwz		%r0,20(%r1)			##	Epilogue...										\n\
-	addi	%r1,%r1,16			##													\n\
+	lwz		%r0,20(%r1);		##	Epilogue...										\n\
+	addi	%r1,%r1,16;			##													\n\
 	eieio;						##													\n\
-	mtlr	%r0					##													\n\
+	mtlr	%r0;				##													\n\
 	isync;						##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExecOctet():
+/*	ECALL_ExecOctet(r7:offset):			256 OpCode Limited
 */
 asm("\n\
 ECALL_ExecOctet:																	\n\
-	stwu	%r1,-16(%r1)		##	The Dreamer sleeps soundly one step at a time...\n\
-	mflr	%r0					##													\n\
-	stw		%r0,20(%r1)			##	Prologue...										\n\
+	stwu	%r1,-16(%r1);		##	The Dreamer sleeps soundly one step at a time...\n\
+	mflr	%r0;				##													\n\
+	stw		%r0,20(%r1);		##	Prologue...										\n\
 ##								##													\n\
-	lbzu	%r3,0(%r14)			##													\n\
+	lbzu	%r3,0(%r14);		##	OpCode = [IXP]									\n\
+	rlwinm	%r7,2,%r7,2,18;		##	r7 = (ARG:offset << 2) && 0x3FFFC				\n\
+	rlwinm	%r9,2,%r3,2,10;		##	r9 = (OpCode << 2) && 0x3FFFC					\n\
+	add		%r10,%r7,%r9;		##	r10 = r7+r9										\n\
+	lwzx	%r10,%r10,%r11;		##	OpCodeFunc() = %r10:Function[%r11:ECPU Interface]\n\
+	mtctr	%r10;				##	Set For Calling									\n\
+	bctr;						##	Execute!										\n\
 ##								##													\n\
-	lwz		%r0,20(%r1)			##	Epilogue...										\n\
-	addi	%r1,%r1,16			##													\n\
+	lwz		%r0,20(%r1);		##	Epilogue...										\n\
+	addi	%r1,%r1,16;			##													\n\
 	eieio;						##													\n\
-	mtlr	%r0					##													\n\
+	mtlr	%r0;				##													\n\
 	isync;						##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExceptVector():
+/*	ECALL_ExceptVector():			Exception and External Calling Convention
 */
 asm("\n\
 ECALL_ExceptVector:																	\n\
