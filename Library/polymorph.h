@@ -135,12 +135,6 @@ extern APTR  LCALL_ReleaseObject(struct PolymorphIFace *IFace, APTR object);
 extern ULONG LCALL_GetObjectAttr(struct PolymorphIFace *IFace, APTR object, ULONG attr);
 extern void  LCALL_SetObjectAttr(struct PolymorphIFace *IFace, APTR object, ULONG attr, ULONG value);
 /*emucalls.c*/
-extern APTR  ECALL_ExecShort(struct ProcessorIFace *IFace, USHORT offset);
-extern APTR  ECALL_ExecOctet(struct ProcessorIFace *IFace, USHORT offset);
-extern APTR  ECALL_ExceptVector(struct ProcessorIFace *IFace);
-extern APTR  ECALL_ExternVector(struct ProcessorIFace *IFace);
-extern APTR  ECALL_InterpretVector(struct ProcessorIFace *IFace, APTR offset);
-extern APTR  ECALL_DynamicVector(struct ProcessorIFace *IFace, APTR offset);
 extern UBYTE ECALL_ReadOctet(struct ProcessorIFace *IFace, APTR addr);
 extern void  ECALL_WriteOctet(struct ProcessorIFace *IFace, APTR addr, UBYTE value);
 extern UWORD ECALL_ReadShortBE(struct ProcessorIFace *IFace, APTR addr);
@@ -151,6 +145,12 @@ extern ULONG ECALL_ReadLongBE(struct ProcessorIFace *IFace, APTR addr);
 extern void  ECALL_WriteLongBE(struct ProcessorIFace *IFace, APTR addr, ULONG value);
 extern ULONG ECALL_ReadLongLE(struct ProcessorIFace *IFace, APTR addr);
 extern void  ECALL_WriteLongLE(struct ProcessorIFace *IFace, APTR addr, ULONG value);
+extern APTR  ECALL_ExecShort(struct ProcessorIFace *IFace, USHORT offset);
+extern APTR  ECALL_ExecOctet(struct ProcessorIFace *IFace, USHORT offset);
+extern APTR  ECALL_ExceptVector(struct ProcessorIFace *IFace);		//	ToDo:Interupt Handling
+extern APTR  ECALL_ExternVector(struct ProcessorIFace *IFace);		//	ToDo:FFI
+extern APTR  ECALL_InterpretVector(struct ProcessorIFace *IFace);	//	ToDo:Interpreter Branches
+extern APTR  ECALL_DynamicVector(struct ProcessorIFace *IFace);		//	ToDo:JustInTime	Branches
 /*Daemon.c*/
 extern void  InitPolymorphDaemon(struct LIBRARY_CLASS *Self);
 extern void  ExitPolymorphDaemon(struct LIBRARY_CLASS *Self);
@@ -169,24 +169,6 @@ extern BPTR  LoadPolymorphSegments(struct LIBRARY_CLASS *Self,BPTR sc,BPTR lock)
 /*Plugins.c*/
 extern APTR  InitPolymorphPlugin(struct LIBRARY_CLASS *Self);
 extern APTR  ExitPolymorphPlugin(struct LIBRARY_CLASS *Self);
-extern struct pmxHandle *_XPLUG_Reserved(struct pmxHandle *handle);
-/*
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-extern struct pmxHandle *_XPLUG_(struct pmxHandle *handle);
-*/
 /*Threads.c*/
 extern APTR  FindPolymorphApplication(APTR name);
 extern int32 ExecPolymorphApplication(void);
