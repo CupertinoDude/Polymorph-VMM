@@ -46,220 +46,238 @@ CONST APTR EmulationTable[] =
 };
 
 /*
-##
+#
 ## The above calls ***MUST*** be implimented in a Host specific fashion...
-##
+#
 ##	Host and Target Systems are both CPU and OS combinations
 ##		expansion hardware is included in OS driver simulation within plugins!
-##
+#
 ##	Thanks go out to
 ##	 "roxfan" of "##asm" on freenode
 ##	 "Kas1e" of OS4coding.net/AmigaWorld.net/Amigans.net in writing ""The Hacking Way: Part 1""
-##
+#
 ##	The calling convention upheld by this code would not be possible without the above!
-##
+#
 ##		Calling Convention for the ECALL_*() routines in AmigaOS4.x
-##
-## * r0,r1,r2,r13,r31 are reserved for system usage
-## * r3-r7 are defined as volatile
-## * r8-r12 are defined as ECPU call restricted access
-## * r14 is defined as the ECPU/ESYS combined Flags register
-## * r15-r30 are defined as ESYS private state (volatile to use in plugins)
-##
-##	Anything Not Defined Here is unusable within the following code!
-##
-## * r3		= InterfacePtr		=
-## * r4-r7  = SysVargV			= Standard Argument Vector register constraints
-##
-## * r8	 = OpCode			= Current Instruction Selection
-## * r9	 = InstructionPtr	= Instruction Address to Interpret from
-## * r10	= ExceptionVector	= Plugin Provided "EXTS" Interface Vector, Exception Operations
-## * r11	= OpCodeVector		= Plugin Provided "ESYS" Interface Vector, Standard Operations
-## * r12	= EprocVector		= Polymorph.Library plugin Interface
-## * r14	= EprocMachWord		= Shared with Plugins ("ECPU" and "ESYS" Interfaces overlap for this register only)
-##
-
+#
+#   *	THIS IS THE SECOND DEFINITION FOR THE PPC
+#
+#	*	r0	=	RESERVED 							(SYSTEM)
+#	*	r1	=	RESERVED 							(SYSTEM)
+#	*	r2	=	RESERVED 							(SYSTEM)
+#	*	r3	=	SYSV ARG(0) OpWord/Result           (Shared SYSV)
+#	*	r4	=	SYSV ARG(1) ECALL Interface (HOST)  (Shared SYSV)
+#	*	r5	=	SYSV ARG(2) ECALL Interface (ECPU)  (Shared SYSV)
+#   *	r6	=	SYSV ARG(3) ECALL Interface (ESYS)  (Shared SYSV)
+#   *	r7	=	SYSV ARG(4) Input[0]                (Shared SYSV)
+#   *	r8	=	SYSV ARG(5) Input[1]                (Shared SYSV)
+#   *	r9	=	SYSV ARG(6) Input[2]                (Shared SYSV)
+#   *	r10	=	SYSV ARG(7) Input[3]                (Shared SYSV)
+#   *	r11	=	ECPU Procedure Vector				(Core)
+#   *	r12	=	ECPU Exception Vector               (Core)
+#   *	r13	=	RESERVED 							(SYSTEM)
+#   *	r14	=   InstructionPtr						(Core)
+#	*	r15	=	ECPU Register[0]                    (Plugin)
+#	*	r16	=	ECPU Register[1]                    (Plugin)
+#	*	r17	=	ECPU Register[2]                    (Plugin)
+#	*	r18	=	ECPU Register[3]                    (Plugin)
+#	*	r19	=	ECPU Register[4]                    (Plugin)
+#	*	r20	=	ECPU Register[5]                    (Plugin)
+#	*	r21	=	ECPU Register[6]                    (Plugin)
+#	*	r22	=	ECPU Register[7]                    (Plugin)
+#	*	r23	=	ECPU Register[8]                    (Plugin)
+#	*	r24	=	ECPU Register[9]                    (Plugin)
+#	*	r25	=	ECPU Register[A]                    (Plugin)
+#	*	r26	=	ECPU Register[B]                    (Plugin)
+#	*	r27	=	ECPU Register[C]                    (Plugin)
+#	*	r28	=	ECPU Register[D]                    (Plugin)
+#	*	r29	=	ECPU Register[E]                    (Plugin)
+#   *   r30	=	ECPU Register[F]                    (Plugin)
+#   *	r31	=	RESERVED 							(SYSTEM)
+#
 ##
 ##	ECALL_*()s are defined below
 ##
-##	ALL THE FOLLOWING ECALL_*() functions use the following register constraints for PowerPC Hosts
-##
-##		r0-r2,r13,r31	are System Reserved
-##		r3-r7			are SysV compliant Argument Vector
-##		r8-r12			are Core State Machine
-##		r14				are Core & Plugin Shared State Machine Flags
-##		r14-r30			are Plugin State Machine Reserved
-##
-##		r14 has 16 bit Flags defined (by Enumeration)
-##
-##		0x00000001		Zero/Non-Zero
-##		0x00000002
-##		0x00000004
-##		0x00000008
-##		0x00000010
-##		0x00000020
-##		0x00000040
-##		0x00000080
-##		0x00000100
-##		0x00000200
-##		0x00000400
-##		0x00000800
-##		0x00001000
-##		0x00002000
-##		0x00004000
-##		0x00008000
-##		0x00010000
-##		0x00020000
-##		0x00040000
-##		0x00080000
-##		0x00100000
-##		0x00200000
-##		0x00400000
-##		0x00800000
-##		0x01000000
-##		0x02000000
-##		0x04000000
-##		0x08000000
-##		0x10000000
-##		0x20000000
-##		0x40000000
-##		0x80000000		Negative
-##
 */
 
+/*	ECALL_ReadOctet():
+*/
 asm("\n\
-##																					\n\
-##	Inline Naked Functionality for GCC												\n\
-##																					\n\
-																					\n\
-##	ECALL_ReadOctet():														  		\n\
-##																			  		\n\
 ECALL_ReadOctet:																	\n\
-	lbz %r4,0(%r4);				##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_WriteOctet():														 		\n\
-##																			  		\n\
-ECALL_WriteOctet:															   		\n\
-	stb %r5,0(%r4);				##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_ReadShortBE():															\n\
-##																			  		\n\
-ECALL_ReadShortBE:															  		\n\
-	lhz %r4,0(%r4);				##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_WriteShortBE():													   		\n\
-##																			  		\n\
-ECALL_WriteShortBE:															 		\n\
-	sth %r5,0(%r4);				##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_ReadShortLE():															\n\
-##																			  		\n\
-ECALL_ReadShortLE:															  		\n\
-	lhbrx %r4,0,%r4;			##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_WriteShortLE():													   		\n\
-##																			  		\n\
+	lbz %r3,0(%r7);				##	An Address in r7 has the content loaded to r3	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_WriteOctet():
+*/
+asm("\n\
+ECALL_WriteOctet:																	\n\
+	stb %r8,0(%r7);				##  Write from r8 to Memory using an address in r7	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_ReadShortBE():
+*/
+asm("\n\
+ECALL_ReadShortBE:																	\n\
+	lhz %r3,0(%r7);				##	An Address in r7 has the content loaded to r3	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_WriteShortBE():
+*/
+asm("\n\
+ECALL_WriteShortBE:																	\n\
+	sth %r8,0(%r7);				##  Write from r8 to Memory using an address in r7	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_ReadShortLE():
+*/
+asm("\n\
+ECALL_ReadShortLE:																	\n\
+	lhbrx %r3,0(%r7);			##	An Address in r7 has the content loaded to r3	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_WriteShortLE():
+*/
+asm("\n\
 ECALL_WriteShortLE:																	\n\
-	sthbrx %r5,0,%r4;			##											 		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_ReadLongBE():														 		\n\
-##																			  		\n\
-ECALL_ReadLongBE:															   		\n\
-	lwz %r4,0(%r4);				##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_WriteLongBE():															\n\
-##																			  		\n\
-ECALL_WriteLongBE:															  		\n\
-	stw %r5,0(%r4);				##											  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_ReadLongLE():														 		\n\
-##																			  		\n\
-ECALL_ReadLongLE:															   		\n\
-	lwbrx %r4,0,%r4;			##  An Address in r4 is replaced by the contents at that address\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_WriteLongLE():															\n\
-##																			  		\n\
-ECALL_WriteLongLE:															  		\n\
-	stwbrx %r5,0,%r4;			##  Write from r5 to Memory using an address in r4	\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_ExecShort();																\n\
-##																					\n\
+	sthbrx %r8,0(%r7);			##  Write from r8 to Memory using an address in r7	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_ReadLongBE():
+*/
+asm("\n\
+ECALL_ReadLongBE:																	\n\
+	lwz %r3,0(%r7);				##	An Address in r7 has the content loaded to r3	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_WriteLongBE():
+*/
+asm("\n\
+ECALL_WriteLongBE:																	\n\
+	stw %r8,0(%r7);				##  Write from r8 to Memory using an address in r7	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_ReadLongLE():
+*/
+asm("\n\
+ECALL_ReadLongLE:																	\n\
+	lwbrx %r3,0(%r7);			##  An Address in r7 has the content loaded to r3   \n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_WriteLongLE():
+*/
+asm("\n\
+ECALL_WriteLongLE:																	\n\
+	stwbrx %r8,0(%r7);			##  Write from r8 to Memory using an address in r7	\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_ExecShort():
+*/
+asm("\n\
 ECALL_ExecShort:																	\n\
-	stwu %r1,-16(%r1);			##  Enter the Sandman...to make a nightmare?		\n\
-	mflr %r0;					##													\n\
-	lhzu %r8,0(%r9);			##	Load the Short to Interpret and update the IXP	\n\
-	stw %r0,20(%r1);			##													\n\
-	rlwinm %r6,2,%r5,2,18;		##	r6 = (r4 << 2) && 0x3FFFC ARG:offset			\n\
-	rlwinm %r7,2,%r8,2,18;		##	r7 = (r8 << 2) && 0x3FFFC OpCode				\n\
-	add %r5,%r6,%r7;			##	OpCode+Offset after shift and mask				\n\
-	lwzx %r5,%r5,%r11;			##	Load OpCodeVector[OpCode+Offset]				\n\
-	mtctr %r5;					##													\n\
-	bctr;						##	ECPU OpCodeVector() Execution					\n\
-	lwz %r0,20(%r1);			##													\n\
-	addi %r1,%r1,16;			##													\n\
-	eieio;						##	Input & Output Sync								\n\
-	mtlr %r0;					##													\n\
-	isync;						##	Instruction Sync								\n\
+	stwu	%r1,-16(%r1)		##	Enter the Sandman...to make a nightmare...		\n\
+	mflr	%r0					##													\n\
+	stw		%r0,20(%r1)			##	Prologue...										\n\
+##								##													\n\
+	lhzu	%r3,0(%r14)			##													\n\
+##								##													\n\
+	lwz		%r0,20(%r1)			##	Epilogue...										\n\
+	addi	%r1,%r1,16			##													\n\
+	eieio;						##													\n\
+	mtlr	%r0					##													\n\
+	isync;						##													\n\
 	blr;						##	return();										\n\
-																					\n\
-##	ECALL_ExecOctet();																\n\
-##																					\n\
+");
+
+/*	ECALL_ExecOctet():
+*/
+asm("\n\
 ECALL_ExecOctet:																	\n\
-	stwu %r1,-16(%r1);			##  Entering the Dreamers Nightmares...				\n\
-	mflr %r0;					##													\n\
-	lbzu %r8,0(%r9);			##	Load the Octet to Interpret and update the IXP	\n\
-	stw %r0,20(%r1);			##													\n\
-	rlwinm %r6,2,%r4,2,18;		##	r6 = (r4 << 2) && 0x3FFFC ARG:offset			\n\
-	rlwinm %r7,2,%r8,2,10;		##	r7 = (r8 << 2) && 0x3FC OpCode					\n\
-	add %r5,%r6,%r7;			##	OpCode+Offset after shift and mask				\n\
-	lwzx %r5,%r5,%r11;			##	Load OpCodeVector[OpCode+Offset]				\n\
-	mtctr %r5;					##													\n\
-	bctr;						##	ECPU OpCodeVector() Execution					\n\
-	lwz %r0,20(%r1);			##													\n\
-	addi %r1,%r1,16;			##													\n\
-	eieio;						##	Input & Output Sync								\n\
-	mtlr %r0;					##													\n\
-	isync;						##	Instruction Sync								\n\
+	stwu	%r1,-16(%r1)		##	The Dreamer sleeps soundly one step at a time...\n\
+	mflr	%r0					##													\n\
+	stw		%r0,20(%r1)			##	Prologue...										\n\
+##								##													\n\
+	lbzu	%r3,0(%r14)			##													\n\
+##								##													\n\
+	lwz		%r0,20(%r1)			##	Epilogue...										\n\
+	addi	%r1,%r1,16			##													\n\
+	eieio;						##													\n\
+	mtlr	%r0					##													\n\
+	isync;						##													\n\
 	blr;						##	return();										\n\
-																					\n\
-##	ECALL_ExceptVector();															\n\
-##																					\n\
-##	This Vector is used for resolution of an Interrupt/Exception Event				\n\
-##																					\n\
+");
+
+/*	ECALL_ExceptVector():
+*/
+asm("\n\
 ECALL_ExceptVector:																	\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_ExternVector();															\n\
-##																					\n\
-##	This Vector is used for Emulator External Call Execution (EECE_)				\n\
-##																					\n\
+	stwu	%r1,-16(%r1)		##													\n\
+	mflr	%r0					##													\n\
+	stw		%r0,20(%r1)			##													\n\
+##								##													\n\
+	lwz		%r0,20(%r1)			##													\n\
+	addi	%r1,%r1,16			##													\n\
+	eieio;						##													\n\
+	mtlr	%r0					##													\n\
+	isync;						##													\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_ExternVector():
+*/
+asm("\n\
 ECALL_ExternVector:																	\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_InterpretVector():														\n\
-##																			  		\n\
-##	Used for resolving Addresses within Interpretive Emulation			  			\n\
-##																			  		\n\
-ECALL_InterpretVector:														  		\n\
-	blr;						##	return();								   		\n\
-																					\n\
-##	ECALL_DynamicVector():													  		\n\
-##																			  		\n\
-##	Used for resolving Addresses within Dynamic JIT-style Emulation	  				\n\
-##																			  		\n\
+	stwu	%r1,-16(%r1)		##													\n\
+	mflr	%r0					##													\n\
+	stw		%r0,20(%r1)			##													\n\
+##								##													\n\
+	lwz		%r0,20(%r1)			##													\n\
+	addi	%r1,%r1,16			##													\n\
+	eieio;						##													\n\
+	mtlr	%r0					##													\n\
+	isync;						##													\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_InterpretVector():
+*/
+asm("\n\
+ECALL_InterpretVector:																\n\
+	stwu	%r1,-16(%r1)		##													\n\
+	mflr	%r0					##													\n\
+	stw		%r0,20(%r1)			##													\n\
+##								##													\n\
+	lwz		%r0,20(%r1)			##													\n\
+	addi	%r1,%r1,16			##													\n\
+	eieio;						##													\n\
+	mtlr	%r0					##													\n\
+	isync;						##													\n\
+	blr;						##	return();										\n\
+");
+
+/*	ECALL_DynamicVector():
+*/
+asm("\n\
 ECALL_DynamicVector:																\n\
-	blr;						##	return();								   		\n\
-																					\n\
+	stwu	%r1,-16(%r1)		##													\n\
+	mflr	%r0					##													\n\
+	stw		%r0,20(%r1)			##													\n\
+##								##													\n\
+	lwz		%r0,20(%r1)			##													\n\
+	addi	%r1,%r1,16			##													\n\
+	eieio;						##													\n\
+	mtlr	%r0					##													\n\
+	isync;						##													\n\
+	blr;						##	return();										\n\
 ");
 
 /**/
