@@ -76,7 +76,7 @@ CONST APTR EmulationTable[] =
 #   *	r11	=	ECPU Exception Vector				(Plugin Processor)
 #   *	r12	=	ECPU Execution Vector				(Plugin Processor)
 #   *	r13	=	RESERVED							(SYSTEM)
-#   *	r14	=   InstructionPtr						(Core)
+#   *	r14	=   ECALL IXP InstructionPtr			(Core)
 #	*	r15	=	ECPU Register[0]                    (Plugin)
 #	*	r16	=	ECPU Register[1]                    (Plugin)
 #	*	r17	=	ECPU Register[2]                    (Plugin)
@@ -94,6 +94,14 @@ CONST APTR EmulationTable[] =
 #	*	r29	=	ECPU Register[E]                    (Plugin)
 #   *   r30	=	ECPU Register[F]                    (Plugin)
 #   *	r31	=	RESERVED 							(SYSTEM)
+#
+##	ECALL_*() are usable directly and the SYSV ARG[] range of registers are *scratch*
+##      RESERVED registers are Host system related
+##		ECPU marked registers from r15 through to r30 are Plugin Defined
+##		r10,r11,r12,r14 are fixed use within the Polymorph defined Environment
+##		r3 through to r9 are SysV calling convention and *scratch* registers.
+##
+##		Any "ECPU Register[n]" register unused within a plugin can be *scratch* as well.
 #
 ##
 ##	ECALL_*()s are defined below
