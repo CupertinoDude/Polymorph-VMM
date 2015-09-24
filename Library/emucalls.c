@@ -65,17 +65,17 @@ CONST APTR EmulationTable[] =
 #	*	r0	=	RESERVED 							(SYSTEM)
 #	*	r1	=	RESERVED 							(SYSTEM)
 #	*	r2	=	RESERVED 							(SYSTEM)
-#	*	r3	=	SYSV ARG(0) OpWord/Result           (Shared SYSV)
-#	*	r4	=	SYSV ARG(1) ECALL Interface (HOST)  (Shared SYSV)
-#	*	r5	=	SYSV ARG(2) ECALL Interface (ECPU)  (Shared SYSV)
-#   *	r6	=	SYSV ARG(3) ECALL Interface (ESYS)  (Shared SYSV)
-#   *	r7	=	SYSV ARG(4) Input[0]                (Shared SYSV)
-#   *	r8	=	SYSV ARG(5) Input[1]                (Shared SYSV)
-#   *	r9	=	SYSV ARG(6) Input[2]                (Shared SYSV)
-#   *	r10	=	SYSV ARG(7) Input[3]                (Shared SYSV)
-#   *	r11	=	ECPU Procedures Vector				(Core)
-#   *	r12	=	ECPU Exceptions Vector              (Core)
-#   *	r13	=	RESERVED 							(SYSTEM)
+#	*	r3	=	SYSV ARG(0)	*scratch*				(Shared SYSV)
+#	*	r4	=	SYSV ARG(1)	*scratch*				(Shared SYSV)
+#   *	r5	=	SYSV ARG(2)	*scratch*				(Shared SYSV)
+#   *	r6	=	SYSV ARG(3)	*scratch*				(Shared SYSV)
+#   *	r7	=	SYSV ARG(4)	*scratch*				(Shared SYSV)
+#   *	r8	=	SYSV ARG(5)	*scratch*				(Shared SYSV)
+#	*	r9	=   SYSV ARG(6)	*scratch*				(Shared SYSV)
+#   *	r10	=	ECALL Microcode Vector				(Polymorph Library)
+#   *	r11	=	ECPU Exception Vector				(Plugin Processor)
+#   *	r12	=	ECPU Execution Vector				(Plugin Processor)
+#   *	r13	=	RESERVED							(SYSTEM)
 #   *	r14	=   InstructionPtr						(Core)
 #	*	r15	=	ECPU Register[0]                    (Plugin)
 #	*	r16	=	ECPU Register[1]                    (Plugin)
@@ -100,87 +100,99 @@ CONST APTR EmulationTable[] =
 ##
 */
 
-/*	ECALL_ReadOctet(r7:addr):
+/*	ECALL_ReadOctet(r5:addr):
 */
 asm("\n\
 ECALL_ReadOctet:																	\n\
-	lbz %r3,0(%r7);				##	An Address in r7 has the content loaded to r3	\n\
+	lbz %r3,0(%r5);				##	An Address in r7 has the content loaded to r3	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteOctet(r7:addr,r8:data):
+/*	ECALL_WriteOctet(r5:addr,r6:data):
 */
 asm("\n\
 ECALL_WriteOctet:																	\n\
-	stb %r8,0(%r7);				##  Write from r8 to Memory using an address in r7	\n\
+	stb %r6,0(%r5);				##  Write from r8 to Memory using an address in r7	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadShortBE(r7:addr):
+/*	ECALL_ReadShortBE(r5:addr):
 */
 asm("\n\
 ECALL_ReadShortBE:																	\n\
-	lhz %r3,0(%r7);				##	An Address in r7 has the content loaded to r3	\n\
+	lhz %r3,0(%r5);				##	An Address in r7 has the content loaded to r3	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteShortBE(r7:addr,r8:data):
+/*	ECALL_WriteShortBE(r5:addr,r6:data):
 */
 asm("\n\
 ECALL_WriteShortBE:																	\n\
-	sth %r8,0(%r7);				##  Write from r8 to Memory using an address in r7	\n\
+	sth %r6,0(%r5);				##  Write from r8 to Memory using an address in r7	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadShortLE(r7:addr):
+/*	ECALL_ReadShortLE(r5:addr):
 */
 asm("\n\
 ECALL_ReadShortLE:																	\n\
-	lhbrx %r3,0(%r7);			##	An Address in r7 has the content loaded to r3	\n\
+	lhbrx %r3,0,%r5;			##	An Address in r7 has the content loaded to r3	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteShortLE(r7:addr,r8:data):
+/*	ECALL_WriteShortLE(r5:addr,r6:data):
 */
 asm("\n\
 ECALL_WriteShortLE:																	\n\
-	sthbrx %r8,0(%r7);			##  Write from r8 to Memory using an address in r7	\n\
+	sthbrx %r6,0,%r5;			##  Write from r8 to Memory using an address in r7	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadLongBE(r7:addr):
+/*	ECALL_ReadLongBE(r5:addr):
 */
 asm("\n\
 ECALL_ReadLongBE:																	\n\
-	lwz %r3,0(%r7);				##	An Address in r7 has the content loaded to r3	\n\
+	lwz %r3,0(%r5);				##	An Address in r7 has the content loaded to r3	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteLongBE(r7:addr,r8:data):
+/*	ECALL_WriteLongBE(r5:addr,r6:data):
 */
 asm("\n\
 ECALL_WriteLongBE:																	\n\
-	stw %r8,0(%r7);				##  Write from r8 to Memory using an address in r7	\n\
+	stw %r6,0(%r5);				##  Write from r8 to Memory using an address in r7	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ReadLongLE(r7:addr,r8:data):
+/*	ECALL_ReadLongLE(r5:addr):
 */
 asm("\n\
 ECALL_ReadLongLE:																	\n\
-	lwbrx %r3,0(%r7);			##  An Address in r7 has the content loaded to r3   \n\
+	lwbrx %r3,0,%r5;			##  An Address in r7 has the content loaded to r3   \n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_WriteLongLE(r7:addr,r8:data):
+/*	ECALL_WriteLongLE(r5:addr,r6:data):
 */
 asm("\n\
 ECALL_WriteLongLE:																	\n\
-	stwbrx %r8,0(%r7);			##  Write from r8 to Memory using an address in r7	\n\
+	stwbrx %r6,0,%r5;			##  Write from r8 to Memory using an address in r7	\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExecShort(r7:offset):			65536 OpCode Limited
+/*
+**	ECALL EntryPoint for ECPU EntryPoint Execution	( 65536 OpCodes Restriction )
+**
+**	ECALL_ExecShort(MachineWord, ECPU[0], ECPU[1], ECPU[2], ECPU[3], offset):
+**	ECPU EntryPoint mirrored
+#	*	r3	=	SYSV ARG(0) = MachineWord
+#	*	r4	=	SYSV ARG(1) = ECPU[0]
+#   *	r5	=	SYSV ARG(2) = ECPU[1]
+#   *	r6	=	SYSV ARG(3) = ECPU[2]
+#   *	r7	=	SYSV ARG(4) = ECPU[3]
+#	ECALL Extended
+#   *	r8	=	SYSV ARG(5) = offset
+#	*	r9	=   OpWord internally loaded
 */
 asm("\n\
 ECALL_ExecShort:																	\n\
@@ -188,23 +200,33 @@ ECALL_ExecShort:																	\n\
 	mflr	%r0;				##													\n\
 	stw		%r0,20(%r1);		##	Prologue...										\n\
 ##								##													\n\
-	lhzu	%r3,0(%r14);		##	OpCode = [IXP]									\n\
-	rlwinm	%r7,2,%r7,2,18;		##	r7 = (ARG:offset << 2) && 0x3FFFC				\n\
-	rlwinm	%r9,2,%r3,2,18;		##	r9 = (OpCode << 2) && 0x3FFFC					\n\
-	add		%r10,%r7,%r9;		##	r10 = r7+r9										\n\
-	lwzx	%r10,%r10,%r11;		##	OpCodeFunc() = %r10:Function[%r11:ECPU Interface]\n\
-	mtctr	%r10;				##	Set For Calling									\n\
+	lhzu	%r9,0(%r14);			##	r9 = OpCode = [IXP]								\n\
+	rlwinm	%r8,2,%r5,2,18;		##	r8 = (ARG:offset << 2) && 0x3FFFC				\n\
+	rlwinm	%r9,2,%r9,2,18;		##	r9 = (OpCode << 2) && 0x3FFFC					\n\
+	add		%r9,%r8,%r9;		##	r9 = r9+r8										\n\
+	lwzx	%r9,%r9,%r12;		##	r8:OpCodeFunc() = %r8:Function[%r12:Interface]	\n\
+	mtctr	%r8;				##	Set For Calling									\n\
 	bctr;						##	Execute!										\n\
 ##								##													\n\
+	isync;						##													\n\
+	eieio;						##													\n\
 	lwz		%r0,20(%r1);		##	Epilogue...										\n\
 	addi	%r1,%r1,16;			##													\n\
-	eieio;						##													\n\
 	mtlr	%r0;				##													\n\
-	isync;						##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExecOctet(r7:offset):			256 OpCode Limited
+/*
+**	ECALL EntryPoint for ECPU EntryPoint Execution	( 256 OpCodes Restriction )
+**
+**	ECALL_ExecShort(MachineWord, ECPU[0], ECPU[1], ECPU[2], ECPU[3], offset):
+#	*	r3	=	SYSV ARG(0) = MachineWord       **ECPU**
+#	*	r4	=	SYSV ARG(1) = ECPU[0]           **ECPU**
+#   *	r5	=	SYSV ARG(2) = ECPU[1]           **ECPU**
+#   *	r6	=	SYSV ARG(3) = ECPU[2]           **ECPU**
+#   *	r7	=	SYSV ARG(4) = ECPU[3]           **ECPU**
+#   *	r8	=	SYSV ARG(5) = offset            **ECALL**
+#	*	r9	=   OpWord internally loaded        **ECALL**
 */
 asm("\n\
 ECALL_ExecOctet:																	\n\
@@ -212,55 +234,73 @@ ECALL_ExecOctet:																	\n\
 	mflr	%r0;				##													\n\
 	stw		%r0,20(%r1);		##	Prologue...										\n\
 ##								##													\n\
-	lbzu	%r3,0(%r14);		##	OpCode = [IXP]									\n\
-	rlwinm	%r7,2,%r7,2,18;		##	r7 = (ARG:offset << 2) && 0x3FFFC				\n\
-	rlwinm	%r9,2,%r3,2,10;		##	r9 = (OpCode << 2) && 0x3FFFC					\n\
-	add		%r10,%r7,%r9;		##	r10 = r7+r9										\n\
-	lwzx	%r10,%r10,%r11;		##	OpCodeFunc() = %r10:Function[%r11:ECPU Interface]\n\
-	mtctr	%r10;				##	Set For Calling									\n\
+	lbzu	%r9,0(%r14);		##	r9 = OpCode = [IXP]								\n\
+	rlwinm	%r8,2,%r5,2,18;		##	r8 = (ARG:offset << 2) && 0x3FFFC				\n\
+	rlwinm	%r9,2,%r9,2,10;		##	r9 = (OpCode << 2) && 0x3FFFC					\n\
+	add		%r9,%r8,%r9;		##	r9 = r9+r8										\n\
+	lwzx	%r9,%r9,%r12;		##	r8:OpCodeFunc() = %r8:Function[%r12:Interface]	\n\
+	mtctr	%r9;				##	Set For Calling									\n\
 	bctr;						##	Execute!										\n\
 ##								##													\n\
+	isync;						##													\n\
+	eieio;						##													\n\
 	lwz		%r0,20(%r1);		##	Epilogue...										\n\
 	addi	%r1,%r1,16;			##													\n\
-	eieio;						##													\n\
 	mtlr	%r0;				##													\n\
-	isync;						##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExceptVector():			Exception and External Calling Convention
+/*
+**	ECALL EntryPoint for ECPU EntryPoint Execution	( 256 Vectors Restriction )
+**
+**	ECALL_ExceptVector(r3:MachineWord,r4:ExceptionID,r5:offset):
+#	*	r3	=	SYSV ARG(0) = MachineWord       **ECPU**
+#	*	r4	=	SYSV ARG(1) = ExceptionID		**ECALL**
+#   *	r5	=	SYSV ARG(2) = ExceptionOffset   **ECALL**
 */
 asm("\n\
 ECALL_ExceptVector:																	\n\
-	stwu	%r1,-16(%r1)		##													\n\
-	mflr	%r0					##													\n\
-	stw		%r0,20(%r1)			##													\n\
+	stwu	%r1,-16(%r1);		##	To Ride Pegasus and fly through space...		\n\
+	mflr	%r0;				##													\n\
+	stw		%r0,20(%r1);		##	Prologue...										\n\
 ##								##													\n\
-	lwz		%r0,20(%r1)			##													\n\
-	addi	%r1,%r1,16			##													\n\
-	eieio;						##													\n\
-	mtlr	%r0					##													\n\
+	rlwinm	%r6,2,%r4,2,18;		##	r6 = (ARG:exception << 2) && 0x3FC				\n\
+	rlwinm	%r7,2,%r5,2,10;		##	r7 = (ARG:offset << 2) && 0x3FFFC				\n\
+	add		%r6,%r6,%r7;		##	r6 = r6+r7										\n\
+	lwzx	%r6,%r6,%r12;		##	r8:OpCodeFunc() = %r8:Function[%r12:Interface]	\n\
+	mtctr	%r6;				##	Set For Calling									\n\
+	bctr;						##	Execute!										\n\
+##								##													\n\
 	isync;						##													\n\
+	eieio;						##													\n\
+	lwz		%r0,20(%r1);		##	Epilogue...										\n\
+	addi	%r1,%r1,16;			##													\n\
+	mtlr	%r0;				##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_ExternVector():
+/*
+**	External Calling Convention (FFI specification here)
+**
+**	ECALL_ExternVector():
 */
 asm("\n\
 ECALL_ExternVector:																	\n\
-	stwu	%r1,-16(%r1)		##													\n\
+	stwu	%r1,-96(%r1)		##													\n\
 	mflr	%r0					##													\n\
-	stw		%r0,20(%r1)			##													\n\
+	stw		%r0,100(%r1)		##													\n\
 ##								##													\n\
-	lwz		%r0,20(%r1)			##													\n\
-	addi	%r1,%r1,16			##													\n\
-	eieio;						##													\n\
-	mtlr	%r0					##													\n\
+##								##													\n\
 	isync;						##													\n\
+	eieio;						##													\n\
+	lwz		%r0,100(%r1)		##													\n\
+	addi	%r1,%r1,96			##													\n\
+	mtlr	%r0					##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_InterpretVector():
+/*
+**	ECALL_InterpretVector():		Update the IXP to a given Address, Also Sets the IXP
 */
 asm("\n\
 ECALL_InterpretVector:																\n\
@@ -268,15 +308,15 @@ ECALL_InterpretVector:																\n\
 	mflr	%r0					##													\n\
 	stw		%r0,20(%r1)			##													\n\
 ##								##													\n\
+	eieio;						##													\n\
 	lwz		%r0,20(%r1)			##													\n\
 	addi	%r1,%r1,16			##													\n\
-	eieio;						##													\n\
 	mtlr	%r0					##													\n\
-	isync;						##													\n\
 	blr;						##	return();										\n\
 ");
 
-/*	ECALL_DynamicVector():
+/*
+**	ECALL_DynamicVector():			Return the given Address Calculated
 */
 asm("\n\
 ECALL_DynamicVector:																\n\
@@ -284,11 +324,11 @@ ECALL_DynamicVector:																\n\
 	mflr	%r0					##													\n\
 	stw		%r0,20(%r1)			##													\n\
 ##								##													\n\
+##								##													\n\
+	eieio;						##													\n\
 	lwz		%r0,20(%r1)			##													\n\
 	addi	%r1,%r1,16			##													\n\
-	eieio;						##													\n\
 	mtlr	%r0					##													\n\
-	isync;						##													\n\
 	blr;						##	return();										\n\
 ");
 
