@@ -1,0 +1,332 @@
+	-*- Text -*-
+
+This document describes the differences between the (AIX based) PowerOpen
+Application Binary Interface for 32-bit big endian systems dated June 30th,
+1994, the March 1995 draft of the System V Application Binary Interface
+PowerPC Processor Supplement calling sequences, and the Windows NT little
+PowerPC calling sequences.
+
+1. PowerOpen ABI
+----------------
+
+   The PowerOpen stack frame looks like:
+
+	SP---->	+---------------------------------------+
+		| back chain to caller			| 0
+		+---------------------------------------+
+		| saved CR				| 4
+		+---------------------------------------+
+		| saved LR				| 8
+		+---------------------------------------+
+		| reserved for compilers		| 12
+		+---------------------------------------+
+		| reserved for binders			| 16
+		+---------------------------------------+
+		| saved TOC pointer			| 20
+		+---------------------------------------+
+		| Parameter save area (P)		| 24
+		+---------------------------------------+
+		| Alloca space (A)			| 24+P
+		+---------------------------------------+
+		| Local variable space (L)		| 24+P+A
+		+---------------------------------------+
+		| Save area for GP registers (G)	| 24+P+A+L
+		+---------------------------------------+
+		| Save area for FP registers (F)	| 24+P+A+L+G
+		+---------------------------------------+
+	old SP->| back chain to caller's caller		|
+		+---------------------------------------+
+
+   The registers are used as follows (volatile means that a function does not
+have to preserve its value when it returns, saved means that a function must
+restore its value before returnning):
+
+    r0		volatile, may be used by function linkage
+    r1		stack pointer
+    r2		table of contents register
+    r3	.. r4	volatile, pass 1st - 2nd int args, return 1st - 2nd ints
+    r5  .. r10	volatile, pass 3rd - 8th int args
+    r11		volatile, pass static chain if language needs it
+    r12		volatile, used by dyn linker, exception handling
+    r13 .. r31	saved
+    f0		volatile
+    f1  .. f4	volatile, pass 1st - 4th float args, return 1st - 4th floats
+    f5  .. f13	volatile, pass 5th - 13th float args
+    f14 .. f31	saved
+    lr		volatile, return address
+    ctr		volatile
+    xer		volatile
+    fpscr	volatile
+    cr0 .. cr1	volatile
+    cr2 .. cr4	saved
+    cr5 .. cr7	volatile
+
+   When alloca is executed, the back chain to the caller's stack frame must be
+updated.
+
+   The parameter save area includes 8 words so that r3..r10 can be saved there.
+In addition, calls to non-prototyped functions, and prototyped variable
+argument functions, must pass floating point arguments in both the floating
+point registers and either in the general registers or on the stack like the
+integer arguments are passed.  Structures are treated as integers for the
+purposes of calls.
+
+   Variable argument functions store registers that aren't used by fixed
+arguments into the appropriate words of the parameter save area.  The va_list
+type is a char *.
+
+   Function descriptors are used that are three words, containing the real
+address of the function, the function's TOC value, and the function's static
+link.  Function pointers actually point to the function descriptor, rather than
+the real function.  The function descriptor takes on the function name in the
+object file, and the real function name is prefixed by a period (".").  The
+calling sequence used by GCC 2.7.0 for V.4/eabi did not use function
+descriptors, unlike AIX and PowerOpen.
+
+
+2.  V.4 ABI
+-----------
+
+   The proposed System V.4 ABI stack frame looks like:
+
+	SP---->	+---------------------------------------+
+		| back chain to caller			| 0
+		+---------------------------------------+
+		| saved LR				| 4
+		+---------------------------------------+
+		| Parameter save area (P)		| 8
+		+---------------------------------------+
+		| Alloca space (A)			| 8+P
+		+---------------------------------------+
+		| Local variable space (L)		| 8+P+A
+		+---------------------------------------+
+		| saved CR (C)				| 8+P+A+L
+		+---------------------------------------+
+		| Save area for GP registers (G)	| 8+P+A+L+C
+		+---------------------------------------+
+		| Save area for FP registers (F)	| 8+P+A+L+C+G
+		+---------------------------------------+
+	old SP->| back chain to caller's caller		|
+		+---------------------------------------+
+
+   The registers are used as follows (volatile means that a function does not
+have to preserve its value when it returns, saved means that a function must
+restore its value before returnning):
+
+    r0		volatile, may be used by function linkage
+    r1		stack pointer
+    r2		reserved for system
+    r3	.. r4	volatile, pass 1st - 2nd int args, return 1st - 2nd ints
+    r5  .. r10	volatile, pass 3rd - 8th int args
+    r11	.. r12	volatile, may be used by function linkage
+    r13		small data area pointer
+    r14 .. r31	saved
+    f0		volatile
+    f1		volatile, pass 1st float arg, return 1st float
+    f2  .. f8	volatile, pass 2nd - 8th float args
+    f9  .. f13	volatile
+    f14 .. f30	saved
+    f31		saved, static chain if needed.
+    lr		volatile, return address
+    ctr		volatile
+    xer		volatile
+    fpscr	volatile*
+    cr0		volatile
+    cr1		volatile**
+    cr2 .. cr4	saved
+    cr5 .. cr7	volatile
+
+* The VE, OE, UE, ZE, XE, NI, and RN (rounding mode) bits of the FPSCR may be
+changed only by a called function such as fpsetround that has the documented
+effect of changing them, the rest of the FPSCR is volatile.
+
+** Bit 6 of the CR (CR1 floating point invalid exception bit) is set to 1 if a
+variable argument function is passed floating point arguments in registers.
+
+   When alloca is executed, the back chain to the caller's stack frame and the
+link register save area must be updated.
+
+   The parameter save area does not contain space to store the 8 integer
+arguments.  If it is desired that they be stored, the callee must allocate
+space to save it in the local variable area of the stack.  Structures and
+unions are copied into temporary slots and an address of the temporary slot is
+passed as the argument.
+
+   Variable argument functions must store the registers used for passing
+arguments that aren't used for fixed arguments into a 96 word area on the stack
+in the local variable section.  If bit 6 of the CR is not 1, it doesn't have to
+save the floating point registers.  The va_list type is defined as follows:
+
+	typedef struct {
+	    char gpr;			/* index to next saved gp register */
+	    char fpr;			/* index to next saved fp register */
+	    char *overflow_arg_area;	/* ptr to next overflow argument */
+	    char *reg_save_area;	/* ptr to reg save area */
+	} va_list[1];
+
+
+3. Windows NT
+-------------
+
+   The Windows NT stack frame looks like:
+
+	SP---->	+---------------------------------------+
+		| back chain to caller			| 0
+		+---------------------------------------+
+		| reserved				| 4
+		+---------------------------------------+
+		| saved TOC pointer			| 8
+		+---------------------------------------+
+		| reserved				| 12
+		+---------------------------------------+
+		| reserved				| 16
+		+---------------------------------------+
+		| reserved				| 20
+		+---------------------------------------+
+		| Parameter save area (P)		| 24
+		+---------------------------------------+
+		| Alloca space (A)			| 24+P
+		+---------------------------------------+
+		| Local variable space (L)		| 24+P+A
+		+---------------------------------------+
+		| Save area for CR (C)			| 24+P+A+L
+		+---------------------------------------+
+		| Save area for LR (R)			| 24+P+A+L+C
+		+---------------------------------------+
+		| Save area for GP registers (G)	| 24+P+A+L+C+R
+		+---------------------------------------+
+		| Save area for FP registers (F)	| 24+P+A+L+C+R+G
+		+---------------------------------------+
+	old SP->| back chain to caller's caller		|
+		+---------------------------------------+
+
+   The registers are used as follows (volatile means that a function does not
+have to preserve its value when it returns, saved means that a function must
+restore its value before returnning):
+
+    r0		volatile, may be used by function linkage
+    r1		stack pointer
+    r2		table of contents register
+    r3	.. r4	volatile, pass 1st - 2nd int args, return 1st - 2nd ints
+    r5  .. r10	volatile, pass 3rd - 8th int args
+    r11		volatile, pass static chain if language needs it
+    r12		volatile, used by dyn linker, exception handling
+    r13		reserved for use by the OS
+    r14 .. r31	saved
+    f0		volatile
+    f1  .. f4	volatile, pass 1st - 4th float args, return 1st - 4th floats
+    f5  .. f13	volatile, pass 5th - 13th float args
+    f14 .. f31	saved
+    lr		volatile, return address
+    ctr		volatile
+    xer		volatile
+    fpscr	volatile
+    cr0 .. cr1	volatile
+    cr2 .. cr4	saved
+    cr5 .. cr7	volatile
+
+   When alloca is executed, the back chain to the caller's stack frame must be
+updated.
+
+   The parameter save area includes 8 words so that r3..r10 can be saved there.
+In addition, calls to non-prototyped functions, and prototyped variable
+argument functions, must pass floating point arguments in both the floating
+point registers and either in the general registers or on the stack like the
+integer arguments are passed.  Structures are treated as integers for the
+purposes of calls.
+
+   Variable argument functions store registers that aren't used by fixed
+arguments into the appropriate words of the parameter save area.  The va_list
+type is a char *.
+
+   Function descriptors are used that are two words, containing the real
+address of the function, and the function's TOC value.  Function pointers
+actually point to the function descriptor, rather than the real function.  The
+function descriptor takes on the function name in the object file, and the real
+function name is prefixed by a two periods ("..").
+
+
+
+4. Differences between the calling sequences:
+---------------------------------------------
+
+   The following differences exist between the three calling sequences:
+
+    1)  Only 8 floating point args are passed in registers in V.4 compared to
+	13 in PowerOpen and NT.  Also under V.4, floating arguments passed in
+	floating registers don't cause the corresponding integer registers to
+	be skipped.
+
+    2)	V.4 has no register save area for the 8 words passed in GP registers.
+
+    3)	Varargs/stdarg support is completely different between the V.4 and
+	PowerOpen/NT.  In particular, PowerOpen/NT passes floating args in both
+	integer and floating registers, and uses the register save area to make
+	one contiguous area.  The va_list type is a char *.  V.4 never passes
+	floating arguments in integer registers.  The registers used to hold
+	arguments are saved in a separate save area, and va_list is an array of
+	1 element of a structure that contains pointers to the stack and
+	register save area, and two char variables indicating how many integer
+	and floating point registers have been processed.  In addition, bit 6
+	of the condition code register is set to 1 if floating point arguments
+	were passed, and 0 if they were not.
+
+    4)	V.4 doesn't support a TOC register, but the register is reserved for
+	system use.
+
+    5)	V.4 uses r13 to point to the small data area, while PowerOpen uses it
+	as a normal caller save register, and NT reserves it for use by the
+	operating system.
+
+    6)	Where the LR/CR is stored on the stack is different in all three.
+
+    7)	The static chain (environment pointer) is in r31 for V.4 and r11 for
+	PowerOpen.  NT doesn't have a defined register for passing the static
+	chain, so GCC uses r11.
+
+    8)	Under PowerOpen/NT, structures and unions are passed in registers or on
+	the stack like large integers, while V.4 copies them to a temporary
+	location and passes the pointer to that location.
+
+    9)	A long long passed as word 7 is not split between the stack and the
+	register under V.4.
+
+   10)	Alloca for V.4 must copy both the stack back chain and the return
+	address when extending the stack, while PowerOpen only copies the stack
+	back chain.
+
+   11)	PowerOpen and NT use function descriptors, and function pointers point
+	to the function descriptor.  The real function name is prefixed by one
+	or two periods.  V.4 (and GCC 2.7.0 for V.4/eabi which otherwise used
+	the AIX calling sequence) has function pointers point to the actual
+	function (which is not prefixed).
+
+For example, consider the following example:
+
+	struct word { int a; } st;
+	int i1, i2;
+	double d1, d2;
+	extern void bar (int, double, struct word, ...);
+
+	void foo (void) {
+		bar (i1, d1, st, i2, d2);
+	}
+
+PowerOpen and NT would call bar as follows:
+
+	r3 <- i1
+	r6 <- st
+	r7 <- i2
+	r8 <- d2 word 1
+	r9 <- d2 word 2
+	f1 <- d1
+
+V.4 would call bar as follows:
+
+	<temp> <- copy of st
+	r3 <- i1
+	r4 <- address of <temp>
+	r5 <- i2
+	f1 <- d1
+	f2 <- d2
+	CR <- bit 6 set to 1
