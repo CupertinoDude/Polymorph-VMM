@@ -2,8 +2,8 @@
 #
 LNAME	= WinXP32.polymorph
 
-CC		= gcc -N -q
-CXX		= gcc -N -q
+CC		= gcc -N
+CXX		= gcc -N
 STRIP	= strip
 MKDIR	= Makedir
 RM		= Delete

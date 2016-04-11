@@ -3,7 +3,7 @@
 LNAME	= polymorph.library
 AUTODOC	= polymorph.doc
 
-CC		= gcc -N -q
+CC		= gcc -N
 STRIP	= strip
 RM		= Delete
 AD		= Autodoc

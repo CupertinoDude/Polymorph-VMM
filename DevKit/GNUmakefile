@@ -1,7 +1,7 @@
 #
 #	'Polymorph.Library' Build Scripting
 #
-CC		= gcc -N -q
+CC		= gcc -N
 IDLTOOL	=	SDK:C/idltool -p -n -i
 MKDIR	=	C:Makedir
 RM		=	C:Delete ALL FORCE QUIET
