@@ -69,8 +69,8 @@
 #define LIBRARY_IDENTITY	"polymorph.library v1.1"
 
 #define LIBRARY_CLASS		PolymorphBase
-#define LIBRARY_VERSION		1
-#define LIBRARY_REVISION	2
+#define LIBRARY_VERSION     3
+#define LIBRARY_REVISION    7
 
 /*	The Default State of any System patching is to self-bypass and let the user override!
 */
