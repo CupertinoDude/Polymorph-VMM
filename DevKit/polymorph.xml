@@ -20,20 +20,45 @@
 		<method name="OptionTagList" result="ULONG">
 			<arg name="options" type="struct TagItem *"/>
 		</method>
-		<method name="ObtainPolymorphObject" result="APTR">
-			<arg name="options" type="struct TagItem *"/>
+		<method name="NewMemoryBlock" result="APTR">
 		</method>
-		<method name="ReleasePolymorphObject" result="APTR">
-			<arg name="object" type="APTR"/>
+		<method name="EndMemoryBlock" result="void">
 		</method>
-		<method name="GetPolymorphObjectAttr" result="ULONG">
-			<arg name="object" type="APTR"/>
-			<arg name="attr" type="ULONG"/>
+		<method name="GetMemoryBlockA" result="ULONG">
 		</method>
-		<method name="SetPolymorphObjectAttr" result="ULONG">
-			<arg name="object" type="APTR"/>
-			<arg name="attr" type="ULONG"/>
-			<arg name="value" type="ULONG"/>
+		<method name="SetMemoryBlockA" result="void">
+		</method>
+		<method name="ObtainApplication" result="APTR">
+		</method>
+		<method name="ReleaseApplication" result="void">
+		</method>
+		<method name="GetApplicationA" result="ULONG">
+		</method>
+		<method name="SetApplicationA" result="void">
+		</method>
+		<method name="InitApplicationEntryPoint" result="ULONG">
+		</method>
+		<method name="ExecApplicationEntryPoint" result="ULONG">
+		</method>
+		<method name="LoadApplicationSegments" result="ULONG">
+		</method>
+		<method name="SaveApplicationSegments" result="ULONG">
+		</method>
+		<method name="LCALL_ObtainEnvironment" result="APTR">
+		</method>
+		<method name="LCALL_ReleaseEnvironment" result="VOID">
+		</method>
+		<method name="LCALL_GetEnvironmentA" result="ULONG">
+		</method>
+		<method name="LCALL_SetEnvironmentA" result="void">
+		</method>
+		<method name="LCALL_FindEnvironmentA" result="APTR">
+		</method>
+		<method name="LCALL_FindEnvironmentM" result="APTR">
+		</method>
+		<method name="LCALL_LoadEnvironment" result="ULONG">
+		</method>
+		<method name="LCALL_SaveEnvironment" result="ULONG">
 		</method>
 	</interface>
 	<interface name="Eproc" version="1.0" struct="ProcessorIFace" prefix="_Processor_" asmprefix="IProcessor" global="IProcessor">
@@ -43,12 +68,8 @@
 		<method name="Clone" result="struct Interface *" status="unimplemented"/>
 		<method name="ExecShort"/>
 		<method name="ExecOctet"/>
-		<method name="InterpretVector"/>
-		<method name="DynamicVector"/>
-		<method name="ObtainTableSegment"/>
-		<method name="ReleaseTableSegment"/>
-		<method name="ReadTableSegment"/>
-		<method name="WriteTableSegment"/>
+		<method name="ResolveVector"/>
+		<method name="ExternVector"/>
 		<method name="ReadOctet"/>
 		<method name="WriteOctet"/>
 		<method name="ReadShortBE"/>

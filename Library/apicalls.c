@@ -10,7 +10,7 @@ CONST struct TagItem LibInterfaceTags[] =
 {
 	    { MIT_Name,        (ULONG)"main"   	        },
 	    { MIT_VectorTable, (ULONG)LibInterfaceTable	},
-	    { MIT_Version,     1                    	},
+	    { MIT_Version,     7                    	},
 	    { TAG_END,         0                    	}
 };
 
@@ -23,12 +23,40 @@ CONST APTR LibInterfaceTable[] =
   NULL,
   (APTR)&LCALL_ScriptExec,
   (APTR)&LCALL_OptionTagList,
-  (APTR)&LCALL_LoadSegments,
-  (APTR)&LCALL_StoreSegment,
-  (APTR)&LCALL_ObtainObject,
-  (APTR)&LCALL_ReleaseObject,
-  (APTR)&LCALL_GetObjectAttr,
-  (APTR)&LCALL_SetObjectAttr,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_NewMemoryBlock,
+  (APTR)&LCALL_EndMemoryBlock,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_GetMemoryBlockA,
+  (APTR)&LCALL_SetMemoryBlockA,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_ObtainApplication,
+  (APTR)&LCALL_ReleaseApplication,
+  (APTR)&LCALL_GetApplicationA,
+  (APTR)&LCALL_SetApplicationA,
+  (APTR)&LCALL_InitApplicationEntryPoint,
+  (APTR)&LCALL_ExecApplicationEntryPoint,
+  (APTR)&LCALL_LoadApplicationSegments,
+  (APTR)&LCALL_SaveApplicationSegments,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_ObtainEnvironment,
+  (APTR)&LCALL_ReleaseEnvironment,
+  (APTR)&LCALL_GetEnvironmentA,
+  (APTR)&LCALL_SetEnvironmentA,
+  (APTR)&LCALL_FindEnvironmentA,
+  (APTR)&LCALL_FindEnvironmentM,
+  (APTR)&LCALL_LoadEnvironment,
+  (APTR)&LCALL_SaveEnvironment,
+  (APTR)&LCALL_Reservation,
+  (APTR)&LCALL_Reservation,
 /**/
   (APTR)-1
 };
@@ -55,9 +83,23 @@ CONST APTR LibInterfaces[] =
 *	Each PolymorphApplication plugin added to the system will have its own
 *	limitations for what it can and can not support
 *
+*	SAFETY WARNING,  HOST AND CONTAINER SEMANTICS ARE EXCLUSIVE.
+*  USE OF EXTERNAL(HOST) AND INTERNAL(CONTAINER) MIXED MEMORY ACCESS IS LETHAL
+*  AND SUBJECT TO MIXED-ENDIAN DATA ISSUES.
+*
+*   HOSTed AND CONTAINed Memory Semantics must be assumed as ACTIVELY HOSTILE!!
+*
+*    LE containment on BE hosts (and the reverse) IS a practical hostile example.
+*
 *****************************************************************************
 *
 */
+
+void  LCALL_Reservation (struct PolymorphIFace *IFace)
+{
+/*	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;*/
+	return;
+}
 
 /****** polymorph.library/-RexxHost- ***************************************
 *---------------------------------------------------------------------------*
@@ -102,7 +144,225 @@ ULONG LCALL_OptionTagList(struct PolymorphIFace *IFace, struct TagItem *options)
 	return(rc);
 }
 
-/****** polymorph.library/LoadSegments() ************************************
+/****** polymorph.library/NewMemoryBlock() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		NewMemoryBlock()
+*
+*	SYNOPSIS
+*		LCALL_NewMemoryBlock(container, size, attrs)
+*
+*	DESCRIPTION
+*		Polymorph Internal Memory Management,
+*	Allocator for Container and Application Memory Usage with Resource-Tracking
+*
+*	Container and Contained Applications only please
+*
+*****************************************************************************
+*
+*/
+APTR  LCALL_NewMemoryBlock(struct PolymorphIFace *IFace, APTR container, ULONG size, ULONG attrs)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	APTR 	rc=NULL;
+
+	return(rc);
+}
+
+
+/****** polymorph.library/EndMemoryBlock() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		EndMemoryBlock()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Resource-Tracking cleanup and clean removal of memory from a container
+*
+*	DANGEROUS FOR NON-CONTAINED MEMORY REGIONS.
+*****************************************************************************
+*
+*/
+void  LCALL_EndMemoryBlock(struct PolymorphIFace *IFace, APTR block )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+}
+
+/****** polymorph.library/GetMemoryBlock() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		GetMemoryBlock()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*		Read tracking or security details about a MemoryBlock
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_GetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, ULONG attr )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
+}
+
+/****** polymorph.library/SetMemoryBlock() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		SetMemoryBlock()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*		modify MemoryBlock tracking or security settings
+*
+*
+*****************************************************************************
+*
+*/
+void  LCALL_SetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, ULONG attr, ULONG option)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	return;
+}
+
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*		Create or Find a valid runtime image for an application
+*	When an existing Application Image exists CopyOnWrite cloning may occur
+*
+*****************************************************************************
+*
+*/
+APTR  LCALL_ObtainApplication(struct PolymorphIFace *IFace, ULONG magic, ULONG options)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	APTR rc=NULL;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  
+*
+*****************************************************************************
+*
+*/
+void  LCALL_ReleaseApplication(struct PolymorphIFace *IFace, APTR application )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*		Read attributes from a contained Application,
+*	This may incur special operations penalties
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_GetApplicationA(struct PolymorphIFace *IFace, APTR application, ULONG attr )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*		Write attribute changes to an Application being contained,
+*	For some special attributes,  additional operations occur.
+*
+*****************************************************************************
+*
+*/
+void  LCALL_SetApplicationA(struct PolymorphIFace *IFace, APTR application, ULONG attr, ULONG option)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Setup an "EntryPoint" Hook and provide an external addressable handle
+*	Security concerns mean code provided is of limited viability,
+*		and will require re-Init() of "EntryPoint"s for complex containers
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_InitApplicationEntryPoint(struct PolymorphIFace *IFace, APTR entrypoint, APTR application)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*		Execute code using an "EntryPoint" handle
+*	Security is a consideration here along with relocation demands
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_ExecApplicationEntryPoint(struct PolymorphIFace *IFace, APTR entrypoint )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
+}
+
+/****** polymorph.library/() ************************************
 *---------------------------------------------------------------------------*
 *
 *	NAME
@@ -111,14 +371,19 @@ ULONG LCALL_OptionTagList(struct PolymorphIFace *IFace, struct TagItem *options)
 *	SYNOPSIS
 *
 *	DESCRIPTION
+*		Identify and Transfer an Application into a Container(creating if required)
 *
 *****************************************************************************
 *
 */
-BPTR LCALL_LoadSegments(struct PolymorphIFace *IFace, APTR fname )
+ULONG LCALL_LoadApplicationSegments(struct PolymorphIFace *IFace, APTR application, APTR fname )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	ULONG 	rc=0L;
+
+	return(rc);
+}
+/*
 	BPTR	fh=0L,sc=0L;
 	struct DataType *dtype=NULL;
 
@@ -126,123 +391,228 @@ BPTR LCALL_LoadSegments(struct PolymorphIFace *IFace, APTR fname )
 	if(fh)
 	{
 		if(Self->IDataTypes)
+			dtype=(APTR)Self->IDataTypes->ObtainDataTypeA(DTST_FILE,(APTR)fh,NULL);
+		if(dtype)
 		{
-			Self->IDataTypes->ObtainDataTypeA(DTST_FILE,(APTR)fh,NULL);
-			if(dtype)
-			{
-				sc=ObtainPolymorphSegment(Self,fname,dtype->dtn_Header);
-				if(!sc)
-					sc=InitPolymorphSegment(Self,fname,dtype->dtn_Header);
-				if(sc)
-					rc=LoadPolymorphSegments(Self,sc,fh);
-				Self->IDataTypes->ReleaseDataType(dtype);
-			}
+			sc=ObtainPolymorphSegment(Self,fname,dtype->dtn_Header);
+			if(!sc)
+				sc=InitPolymorphSegment(Self,fname,dtype->dtn_Header);
+			if(sc)
+				rc=LoadPolymorphSegments(Self,sc,fh);
+			Self->IDataTypes->ReleaseDataType(dtype);
 		}
 		Self->IDOS->UnLock(fh);
 	}
 	if(sc)
 		rc=sc;
+*/
 
-	return(rc);
-}
-
-/****** polymorph.library/StoreSegment() ************************************
+/****** polymorph.library/SaveApplicationSegments() ************************************
 *---------------------------------------------------------------------------*
 *
 *	NAME
-*		StoreSegment()
+*		SaveApplicationSegments()
 *
 *	SYNOPSIS
 *
 *	DESCRIPTION
+*		Streams out a single "Application" Image to any valid disk/network target
+*		post-write changes
 *
 *****************************************************************************
 *
 */
-ULONG LCALL_StoreSegment(struct PolymorphIFace *IFace, BPTR fh )
+ULONG LCALL_SaveApplicationSegments(struct PolymorphIFace *IFace, APTR application, APTR fname )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	ULONG rc=0L;
+
 	return(rc);
 }
 
-/****** polymorph.library/ObtainPolymorphObject() *************************
+/****** polymorph.library/ObtainEnvironment() **********************************
 *---------------------------------------------------------------------------*
 *
 *	NAME
-*		ObtainPolymorphObject()
+*		ObtainEnvironment()
 *
 *	SYNOPSIS
 *
 *	DESCRIPTION
+*	  Creates or Finds container resources
+*
+*	Special case (NULL, NULL) forces creation without search,
+*		this provides for container to container runtime reconstruction,
+*		garbage-collection or security flags may trigger this special-case
+*
+*	SECURITY-WARNING:  MULTIPLE-APPLICATION-CONTAINER-SHARING IS SUBJECT
+*		TO ACTIVELY FORKING RUNTIME STATE WITH ONLY THE NEWEST SURVIVING
+*	ALL DYNAMIC ALLOCATIONS MAY BE RELOCATED ON DEMAND.
+*	(THIS MAY TRIGGER UNDEFINED INCOHERENCE WITHIN SOME SYSTEMS)
 *
 *****************************************************************************
 *
 */
-APTR LCALL_ObtainObject(struct PolymorphIFace *IFace, struct TagItem *setup)
+APTR  LCALL_ObtainEnvironment(struct PolymorphIFace *IFace, ULONG magic, ULONG options )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	APTR rc=NULL;
+
 	return(rc);
 }
 
-/****** polymorph.library/ReleasePolymorphObject() ************************
+/****** polymorph.library/() **********************************
 *---------------------------------------------------------------------------*
 *
 *	NAME
-*		ReleasePolymorphObject()
+*		()
 *
 *	SYNOPSIS
 *
 *	DESCRIPTION
+*	  Unlock Container resources (triggers garbage collection)
 *
 *****************************************************************************
 *
 */
-APTR LCALL_ReleaseObject(struct PolymorphIFace *IFace, APTR object)
+void  LCALL_ReleaseEnvironment(struct PolymorphIFace *IFace, APTR Environment )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	APTR rc=NULL;
-	return(rc);
-}
 
-/****** polymorph.library/GetPolymorphObjectAttr() **************************
-*---------------------------------------------------------------------------*
-*
-*	NAME
-*		GetPolymorphObjectAttr()
-*
-*	SYNOPSIS
-*
-*	DESCRIPTION
-*
-*****************************************************************************
-*
-*/
-ULONG LCALL_GetObjectAttr(struct PolymorphIFace *IFace, APTR object, ULONG attr)
-{
-	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
-}
-
-/****** polymorph.library/SetPolymorphObjectAttr() **************************
-*---------------------------------------------------------------------------*
-*
-*	NAME
-*		SetPolymorphObjectAttr()
-*
-*	SYNOPSIS
-*
-*	DESCRIPTION
-*
-*****************************************************************************
-*
-*/
-void LCALL_SetObjectAttr(struct PolymorphIFace *IFace, APTR object, ULONG attr, ULONG value)
-{
-	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	return;
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Read current container attributes
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_GetEnvironmentA(struct PolymorphIFace *IFace, APTR env, ULONG attr)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Write container attribute changes
+*
+*****************************************************************************
+*
+*/
+void  LCALL_SetEnvironmentA(struct PolymorphIFace *IFace, APTR env, ULONG attr, ULONG option)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Search for a Container by Attributes
+*
+*	This still requires additional compatability checking.
+*		(it is possible to hard-load x86 code into an ARM/LE container)
+*
+*****************************************************************************
+*
+*/
+APTR  LCALL_FindEnvironmentA(struct PolymorphIFace *IFace, ULONG options )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	APTR rc=NULL;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Search for a Container by MagicID (Value provided by plugins)
+*
+*	MagicID values may be arbitrary so are of limited reliability.
+*
+*****************************************************************************
+*
+*/
+APTR  LCALL_FindEnvironmentM(struct PolymorphIFace *IFace, ULONG magic)
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	APTR rc=NULL;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Create a Memory Image from a streamed container.
+*
+*	Disk/Network or other sources are possible
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_LoadEnvironment(struct PolymorphIFace *IFace, APTR env )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
+}
+
+/****** polymorph.library/() **********************************
+*---------------------------------------------------------------------------*
+*
+*	NAME
+*		()
+*
+*	SYNOPSIS
+*
+*	DESCRIPTION
+*	  Creates and Stores partial or complete container streams.
+*
+*	Storage Destinations may be Disk or Network
+*
+*****************************************************************************
+*
+*/
+ULONG LCALL_SaveEnvironment(struct PolymorphIFace *IFace, APTR env )
+{
+	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
+	ULONG rc=0L;
+	return(rc);
 }
 
 /**/
