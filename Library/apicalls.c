@@ -10,7 +10,7 @@ CONST struct TagItem LibInterfaceTags[] =
 {
 	    { MIT_Name,        (ULONG)"main"   	        },
 	    { MIT_VectorTable, (ULONG)LibInterfaceTable	},
-	    { MIT_Version,     7                    	},
+	    { MIT_Version,     31                    	},
 	    { TAG_END,         0                    	}
 };
 
@@ -95,7 +95,7 @@ CONST APTR LibInterfaces[] =
 *
 */
 
-void  LCALL_Reservation (struct PolymorphIFace *IFace)
+void LCALL_Reservation (struct PolymorphIFace *IFace)
 {
 /*	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;*/
 	return;
@@ -162,10 +162,10 @@ ULONG LCALL_OptionTagList(struct PolymorphIFace *IFace, struct TagItem *options)
 *****************************************************************************
 *
 */
-APTR  LCALL_NewMemoryBlock(struct PolymorphIFace *IFace, APTR container, ULONG size, ULONG attrs)
+APTR LCALL_NewMemoryBlock(struct PolymorphIFace *IFace, APTR container, u_long size, u_long attrs)
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	APTR 	rc=NULL;
+	ULONG 	rc=0L;
 
 	return(rc);
 }
@@ -186,7 +186,7 @@ APTR  LCALL_NewMemoryBlock(struct PolymorphIFace *IFace, APTR container, ULONG s
 *****************************************************************************
 *
 */
-void  LCALL_EndMemoryBlock(struct PolymorphIFace *IFace, APTR block )
+void LCALL_EndMemoryBlock(struct PolymorphIFace *IFace, APTR block )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 }
@@ -205,11 +205,9 @@ void  LCALL_EndMemoryBlock(struct PolymorphIFace *IFace, APTR block )
 *****************************************************************************
 *
 */
-ULONG LCALL_GetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, ULONG attr )
+u_long LCALL_GetMemoryBlockA(struct PolymorphIFace *IFace, APTR block )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
 
 /****** polymorph.library/SetMemoryBlock() **********************************
@@ -222,15 +220,16 @@ ULONG LCALL_GetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, ULONG attr
 *
 *	DESCRIPTION
 *		modify MemoryBlock tracking or security settings
-*
+*	  
 *
 *****************************************************************************
 *
 */
-void  LCALL_SetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, ULONG attr, ULONG option)
+u_long LCALL_SetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, u_long attrs)
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	return;
+	u_long rec=0L;
+	return(rc);
 }
 
 
@@ -249,11 +248,9 @@ void  LCALL_SetMemoryBlockA(struct PolymorphIFace *IFace, APTR block, ULONG attr
 *****************************************************************************
 *
 */
-APTR  LCALL_ObtainApplication(struct PolymorphIFace *IFace, ULONG magic, ULONG options)
+void LCALL_ObtainApplication(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	APTR rc=NULL;
-	return(rc);
 }
 
 /****** polymorph.library/() **********************************
@@ -270,7 +267,7 @@ APTR  LCALL_ObtainApplication(struct PolymorphIFace *IFace, ULONG magic, ULONG o
 *****************************************************************************
 *
 */
-void  LCALL_ReleaseApplication(struct PolymorphIFace *IFace, APTR application )
+void LCALL_ReleaseApplication(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 }
@@ -290,11 +287,9 @@ void  LCALL_ReleaseApplication(struct PolymorphIFace *IFace, APTR application )
 *****************************************************************************
 *
 */
-ULONG LCALL_GetApplicationA(struct PolymorphIFace *IFace, APTR application, ULONG attr )
+void LCALL_GetApplicationA(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
 
 /****** polymorph.library/() **********************************
@@ -312,7 +307,7 @@ ULONG LCALL_GetApplicationA(struct PolymorphIFace *IFace, APTR application, ULON
 *****************************************************************************
 *
 */
-void  LCALL_SetApplicationA(struct PolymorphIFace *IFace, APTR application, ULONG attr, ULONG option)
+void LCALL_SetApplicationA(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 }
@@ -333,13 +328,11 @@ void  LCALL_SetApplicationA(struct PolymorphIFace *IFace, APTR application, ULON
 *****************************************************************************
 *
 */
-ULONG LCALL_InitApplicationEntryPoint(struct PolymorphIFace *IFace, APTR entrypoint, APTR application)
+void LCALL_InitApplicationEntryPoint(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
-
+ 
 /****** polymorph.library/() **********************************
 *---------------------------------------------------------------------------*
 *
@@ -355,13 +348,11 @@ ULONG LCALL_InitApplicationEntryPoint(struct PolymorphIFace *IFace, APTR entrypo
 *****************************************************************************
 *
 */
-ULONG LCALL_ExecApplicationEntryPoint(struct PolymorphIFace *IFace, APTR entrypoint )
+void LCALL_ExecApplicationEntryPoint(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
-
+ 
 /****** polymorph.library/() ************************************
 *---------------------------------------------------------------------------*
 *
@@ -376,14 +367,10 @@ ULONG LCALL_ExecApplicationEntryPoint(struct PolymorphIFace *IFace, APTR entrypo
 *****************************************************************************
 *
 */
-ULONG LCALL_LoadApplicationSegments(struct PolymorphIFace *IFace, APTR application, APTR fname )
+BPTR LCALL_LoadApplicationSegments(struct PolymorphIFace *IFace, APTR fname )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	ULONG 	rc=0L;
-
-	return(rc);
-}
-/*
 	BPTR	fh=0L,sc=0L;
 	struct DataType *dtype=NULL;
 
@@ -405,7 +392,9 @@ ULONG LCALL_LoadApplicationSegments(struct PolymorphIFace *IFace, APTR applicati
 	}
 	if(sc)
 		rc=sc;
-*/
+
+	return(rc);
+}
 
 /****** polymorph.library/SaveApplicationSegments() ************************************
 *---------------------------------------------------------------------------*
@@ -422,11 +411,10 @@ ULONG LCALL_LoadApplicationSegments(struct PolymorphIFace *IFace, APTR applicati
 *****************************************************************************
 *
 */
-ULONG LCALL_SaveApplicationSegments(struct PolymorphIFace *IFace, APTR application, APTR fname )
+ULONG LCALL_SaveApplicationSegments(struct PolymorphIFace *IFace, APTR fname )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	ULONG rc=0L;
-
 	return(rc);
 }
 
@@ -453,7 +441,7 @@ ULONG LCALL_SaveApplicationSegments(struct PolymorphIFace *IFace, APTR applicati
 *****************************************************************************
 *
 */
-APTR  LCALL_ObtainEnvironment(struct PolymorphIFace *IFace, ULONG magic, ULONG options )
+APTR LCALL_ObtainEnvironment(struct PolymorphIFace *IFace, u_long magic, u_long options )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 	APTR rc=NULL;
@@ -475,7 +463,7 @@ APTR  LCALL_ObtainEnvironment(struct PolymorphIFace *IFace, ULONG magic, ULONG o
 *****************************************************************************
 *
 */
-void  LCALL_ReleaseEnvironment(struct PolymorphIFace *IFace, APTR Environment )
+void LCALL_ReleaseEnvironment(struct PolymorphIFace *IFace, APTR Environment )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 
@@ -496,11 +484,9 @@ void  LCALL_ReleaseEnvironment(struct PolymorphIFace *IFace, APTR Environment )
 *****************************************************************************
 *
 */
-ULONG LCALL_GetEnvironmentA(struct PolymorphIFace *IFace, APTR env, ULONG attr)
+void LCALL_GetEnvironmentA(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
 
 /****** polymorph.library/() **********************************
@@ -517,7 +503,7 @@ ULONG LCALL_GetEnvironmentA(struct PolymorphIFace *IFace, APTR env, ULONG attr)
 *****************************************************************************
 *
 */
-void  LCALL_SetEnvironmentA(struct PolymorphIFace *IFace, APTR env, ULONG attr, ULONG option)
+void LCALL_SetEnvironmentA(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
 }
@@ -539,11 +525,9 @@ void  LCALL_SetEnvironmentA(struct PolymorphIFace *IFace, APTR env, ULONG attr, 
 *****************************************************************************
 *
 */
-APTR  LCALL_FindEnvironmentA(struct PolymorphIFace *IFace, ULONG options )
+void LCALL_FindEnvironmentA(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	APTR rc=NULL;
-	return(rc);
 }
 
 /****** polymorph.library/() **********************************
@@ -562,11 +546,9 @@ APTR  LCALL_FindEnvironmentA(struct PolymorphIFace *IFace, ULONG options )
 *****************************************************************************
 *
 */
-APTR  LCALL_FindEnvironmentM(struct PolymorphIFace *IFace, ULONG magic)
+void LCALL_FindEnvironmentM(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	APTR rc=NULL;
-	return(rc);
 }
 
 /****** polymorph.library/() **********************************
@@ -585,11 +567,9 @@ APTR  LCALL_FindEnvironmentM(struct PolymorphIFace *IFace, ULONG magic)
 *****************************************************************************
 *
 */
-ULONG LCALL_LoadEnvironment(struct PolymorphIFace *IFace, APTR env )
+void LCALL_LoadEnvironment(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
 
 /****** polymorph.library/() **********************************
@@ -608,11 +588,9 @@ ULONG LCALL_LoadEnvironment(struct PolymorphIFace *IFace, APTR env )
 *****************************************************************************
 *
 */
-ULONG LCALL_SaveEnvironment(struct PolymorphIFace *IFace, APTR env )
+void LCALL_SaveEnvironment(struct PolymorphIFace *IFace, , )
 {
 	struct LIBRARY_CLASS *Self = (APTR) IFace->Data.LibBase;
-	ULONG rc=0L;
-	return(rc);
 }
 
 /**/

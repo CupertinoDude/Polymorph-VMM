@@ -1,0 +1,470 @@
+diff -r -p -N -x CVS qemu-pristine/configure qemu/configure
+*** qemu-pristine/configure	2006-03-10 16:30:41.000000000 +0100
+--- qemu/configure	2006-03-08 14:17:44.000000000 +0100
+*************** bigendian="no"
+*** 74,79 ****
+--- 74,80 ----
+  mingw32="no"
+  EXESUF=""
+  gdbstub="yes"
++ tcpctrl="yes"
+  slirp="yes"
+  adlib="no"
+  oss="no"
+*************** for opt do
+*** 208,213 ****
+--- 209,218 ----
+    ;;
+    --disable-gcc-check) check_gcc="no"
+    ;;
++   --enable-tcpctrl) tcpctrl="yes"
++   ;;
++   --disable-tcpctrl) tcpctrl="no"
++   ;;
+    esac
+  done
+  
+*************** if test "$mingw32" = "yes" ; then
+*** 224,229 ****
+--- 229,235 ----
+      linux="no"
+      EXESUF=".exe"
+      gdbstub="no"
++     tcpctrl="no"
+      oss="no"
+      if [ "$cpu" = "i386" ] ; then
+          kqemu="yes"
+*************** echo "  --enable-coreaudio       enable 
+*** 385,390 ****
+--- 391,397 ----
+  echo "  --enable-alsa            enable ALSA audio driver"
+  echo "  --enable-fmod            enable FMOD audio driver"
+  echo "  --enabled-dsound         enable DirectSound audio driver"
++ echo "  --disable-tcpctrl        disable TCP control connections"
+  echo "  --fmod-lib               path to FMOD library"
+  echo "  --fmod-inc               path to FMOD includes"
+  echo ""
+*************** if test "$fmod" = "yes"; then
+*** 451,456 ****
+--- 458,464 ----
+      echo -n " (lib='$fmod_lib' include='$fmod_inc')"
+  fi
+  echo ""
++ echo "TCP control       $tcpctrl"
+  echo "kqemu support     $kqemu"
+  
+  if test $sdl_too_old = "yes"; then
+*************** if test "$gdbstub" = "yes" ; then
+*** 545,550 ****
+--- 553,562 ----
+    echo "CONFIG_GDBSTUB=yes" >> $config_mak
+    echo "#define CONFIG_GDBSTUB 1" >> $config_h
+  fi
++ if test "$tcpctrl" = "yes" ; then
++   echo "CONFIG_TCPCTRL=yes" >> $config_mak
++   echo "#define CONFIG_TCPCTRL 1" >> $config_h
++ fi
+  if test "$gprof" = "yes" ; then
+    echo "TARGET_GPROF=yes" >> $config_mak
+    echo "#define HAVE_GPROF 1" >> $config_h
+diff -r -p -N -x CVS qemu-pristine/Makefile.target qemu/Makefile.target
+*** qemu-pristine/Makefile.target	2006-03-10 16:30:41.000000000 +0100
+--- qemu/Makefile.target	2006-03-06 18:05:47.000000000 +0100
+*************** VL_OBJS+=block-cow.o block-qcow.o aes.o 
+*** 275,280 ****
+--- 275,283 ----
+  ifdef CONFIG_WIN32
+  VL_OBJS+=tap-win32.o
+  endif
++ ifdef CONFIG_TCPCTRL
++ VL_OBJS+=tcpctrl.o
++ endif
+  
+  SOUND_HW = sb16.o es1370.o
+  AUDIODRV = audio.o noaudio.o wavaudio.o
+diff -r -p -N -x CVS qemu-pristine/monitor.c qemu/monitor.c
+*** qemu-pristine/monitor.c	2006-03-10 16:30:42.000000000 +0100
+--- qemu/monitor.c	2006-03-08 14:14:35.000000000 +0100
+*************** static void do_info_history (void)
+*** 296,301 ****
+--- 296,304 ----
+  
+  static void do_quit(void)
+  {
++ #ifdef CONFIG_TCPCTRL
++     tcpctrl_stop();
++ #endif
+      exit(0);
+  }
+  
+*************** static void monitor_handle_command(const
+*** 2026,2031 ****
+--- 2029,2058 ----
+      return;
+  }
+  
++ /**
++  * monitor_process_command:
++  * @output: the console used to send the output
++  * @cmdline: the line of the command to process
++  *
++  * Process a command coming from a different requester than the usual console.
++  */
++ 
++ void monitor_process_command(CharDriverState *output, const char *cmdline)
++ {
++     CharDriverState *old_output = monitor_hd;
++ 
++     if ((output == NULL) || (cmdline == NULL))
++         return;
++ 
++     /*
++      * TODO: maybe it would be cleaner to inherit the current driver
++      *       in the calls than relying on a global variable ?
++      */
++     monitor_hd = output;
++     monitor_handle_command(cmdline);
++     monitor_hd = old_output;
++ }
++ 
+  static void cmd_completion(const char *name, const char *list)
+  {
+      const char *p, *pstart;
+diff -r -p -N -x CVS qemu-pristine/tcpctrl.c qemu/tcpctrl.c
+*** qemu-pristine/tcpctrl.c	1970-01-01 01:00:00.000000000 +0100
+--- qemu/tcpctrl.c	2006-03-10 15:57:44.000000000 +0100
+***************
+*** 0 ****
+--- 1,266 ----
++ /*
++  * remote TCP control connection
++  * 
++  * Copyright (c) 2006 Daniel Veillard <daniel@veillard.com>
++  *
++  * This library is free software; you can redistribute it and/or
++  * modify it under the terms of the GNU Lesser General Public
++  * License as published by the Free Software Foundation; either
++  * version 2 of the License, or (at your option) any later version.
++  *
++  * This library is distributed in the hope that it will be useful,
++  * but WITHOUT ANY WARRANTY; without even the implied warranty of
++  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++  * Lesser General Public License for more details.
++  *
++  * You should have received a copy of the GNU Lesser General Public
++  * License along with this library; if not, write to the Free Software
++  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++  */
++ #include "vl.h"
++ #ifdef CONFIG_TCPCTRL
++ 
++ #include <sys/socket.h>
++ #include <sys/un.h>
++ #include <netinet/in.h>
++ #include <netinet/tcp.h>
++ 
++ /* #define DEBUG_TCPCTRL */
++ 
++ static int tcpctrl_fd = -1;
++ static char tcpctrl_socket[150] = "";
++ 
++ typedef struct _tcp_client {
++     int fd;
++     CharDriverState drv;
++ } tcp_client;
++ 
++ static void
++ tcpctrl_disconnect(tcp_client *info)
++ {
++     if ((info == NULL) || (info->fd < 0))
++         return;
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_disconnect(fd = %d)\n", info->fd);
++ #endif
++     /*
++      * this seems the best way to unregister this should work
++      * even in the loop over iov in the main loop
++      */
++     if (info->fd > 0) {
++ 	qemu_set_fd_handler(info->fd, NULL, NULL, NULL);
++ 	close(info->fd);
++     }
++     qemu_free(info);
++ }
++ 
++ static
++ int tcpctrl_write(tcp_client *info, const char *buf, int len)
++ {
++     int written, sent = 0;
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_write(fd = %d, len = %d)\n", info->fd, len);
++ #endif
++     
++     if (tcpctrl_fd == -1) {
++         return(-1);
++     }
++     if (len <= 0)
++         return(0);
++ 
++ retry_write:
++     written = write(info->fd, buf + sent, len - sent);
++     if (written < 0) {
++         if ((errno == EINTR) || (errno == EAGAIN))
++ 	    goto retry_write;
++ 	close(info->fd);
++ 	qemu_set_fd_handler(info->fd, NULL, NULL, NULL);
++ 	info->fd = -1;
++ 	return(-1);
++     }
++     if (written + sent < len) {
++         sent += written;
++ 	goto retry_write;
++     }
++     return(written);
++ }
++ 
++ static int
++ chrctr_write(struct CharDriverState *s, const uint8_t *buf, int len) {
++     tcp_client *info;
++ 
++     if ((s == NULL) || (buf == NULL) || (len < 0) || (s->opaque == NULL))
++         return(-1);
++     if (tcpctrl_fd == -1)
++         return(-1);
++ 
++     info = s->opaque;
++     return(tcpctrl_write(info, (const char *) buf, len));
++ }
++ 
++ static int tcpctrl_process(tcp_client *info, const char *command) {
++     if (tcpctrl_fd == -1)
++         return(-1);
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_process(command = '%s')\n", command);
++ #endif
++     monitor_process_command(&info->drv, command);
++ 
++     /* writing back to tcp connection may have failed */
++     if (info->fd < 0) {
++         /* tcpctrl_disconnect(info); */
++ 	return(-1);
++     }
++     tcpctrl_write(info, "<<<DONE>>>", 10);
++     return(0);
++ }
++ 
++ static void tcpctrl_read(void *opaque)
++ {
++     char buffer[4096 + 1];
++     int ret;
++ 
++     tcp_client *info = opaque;
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_read(fd = %d)\n", info->fd);
++ #endif
++     
++     if (tcpctrl_fd == -1) {
++ 	tcpctrl_disconnect(info);
++         return;
++     }
++ 
++ retry_read:
++ 
++     ret = read(info->fd, &buffer[0], sizeof(buffer) - 1);
++     if (ret < 0) {
++         if ((errno == EINTR) || (errno == EAGAIN))
++ 	    goto retry_read;
++ 	tcpctrl_disconnect(info);
++ 	return;
++     }
++     if (ret == 0) {
++ 	tcpctrl_disconnect(info);
++ 	return;
++     }
++     buffer[ret] = 0;
++     tcpctrl_process(info, &buffer[0]);
++ }
++ 
++ static void
++ tcpctrl_accept(void *opaque)
++ {
++     struct sockaddr_in sockaddr;
++     socklen_t len;
++     int val, fd;
++     tcp_client *info;
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_accept()\n");
++ #endif
++ 
++     for(;;) {
++         len = sizeof(sockaddr);
++         fd = accept(tcpctrl_fd, (struct sockaddr *)&sockaddr, &len);
++         if (fd < 0 && errno != EINTR) {
++             perror("accept");
++             return;
++         } else if (fd >= 0) {
++             break;
++         }
++     }
++ 
++     /* set short latency */
++     val = 1;
++     setsockopt(fd, IPPROTO_TCP, TCP_NODELAY, &val, sizeof(val));
++     
++     info = qemu_mallocz(sizeof(tcp_client));
++     if (!info) {
++         close(fd);
++         return;
++     }
++     info->fd = fd;
++     info->drv.chr_write = chrctr_write;
++     info->drv.opaque = info;
++ 
++     fcntl(fd, F_SETFL, O_NONBLOCK);
++ 
++     qemu_set_fd_handler(fd, tcpctrl_read, NULL, info);
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_accept(): fd = %d\n", fd);
++ #endif
++ }
++ 
++ static int tcpctrl_open()
++ {
++     int fd = -1;
++     int pid = getpid();
++     mode_t oldmask;
++     struct sockaddr_un addr;
++ 
++     snprintf(tcpctrl_socket, sizeof(tcpctrl_socket) - 1,
++              "%s/qemu-%d-socket", "/tmp", pid);
++     tcpctrl_socket[sizeof(tcpctrl_socket) - 1] = 0;
++     unlink(tcpctrl_socket);
++ 
++     fd = socket(PF_UNIX, SOCK_STREAM, 0);
++     if (fd < 0) {
++         fprintf(stderr, "Failed to create unix socket");
++ 	return(-1);
++     }
++     memset(&addr, 0, sizeof(addr));
++     addr.sun_family = AF_UNIX;
++     strncpy(&addr.sun_path[0], tcpctrl_socket, (sizeof(addr) - 4) - 1);
++     oldmask = umask(0077);
++     if (bind(fd, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
++         fprintf(stderr, "Failed to bind to socket %s\n", tcpctrl_socket);
++ 	close(fd);
++ 	umask(oldmask);
++ 	return(-1);
++     }
++     if (listen(fd, 3) < 0) {
++         fprintf(stderr, "Failed to listen to socket %s\n", tcpctrl_socket);
++ 	close(fd);
++ 	umask(oldmask);
++ 	return(-1);
++     }
++     umask(oldmask);
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "Listening on TCP control socket %s\n", tcpctrl_socket);
++ #endif
++ 
++     return fd;
++ }
++ 
++ int tcpctrl_start()
++ {
++ 
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_start()\n");
++ #endif
++     tcpctrl_fd = tcpctrl_open();
++     if (tcpctrl_fd < 0)
++         return -1;
++     qemu_set_fd_handler(tcpctrl_fd, tcpctrl_accept, NULL, NULL);
++     return 0;
++ }
++ 
++ void tcpctrl_stop()
++ {
++     if (tcpctrl_fd < 0)
++         return;
++ #ifdef DEBUG_TCPCTRL
++     fprintf(stderr, "tcpctrl_stop()\n");
++ #endif
++     unlink(tcpctrl_socket);
++     qemu_set_fd_handler(tcpctrl_fd, NULL, NULL, NULL);
++     close(tcpctrl_fd);
++     tcpctrl_fd = -1;
++     return;
++ }
++ #endif /* CONFIG_TCPCTRL */
+diff -r -p -N -x CVS qemu-pristine/vl.c qemu/vl.c
+*** qemu-pristine/vl.c	2006-03-10 16:30:42.000000000 +0100
+--- qemu/vl.c	2006-03-08 14:10:40.000000000 +0100
+*************** static void select_soundhw (const char *
+*** 4550,4555 ****
+--- 4550,4558 ----
+  
+  int main(int argc, char **argv)
+  {
++ #ifdef CONFIG_TCPCTRL
++     int use_tcpctrl = 1;
++ #endif
+  #ifdef CONFIG_GDBSTUB
+      int use_gdbstub, gdbstub_port;
+  #endif
+*************** int main(int argc, char **argv)
+*** 5210,5215 ****
+--- 5213,5226 ----
+      gui_timer = qemu_new_timer(rt_clock, gui_update, NULL);
+      qemu_mod_timer(gui_timer, qemu_get_clock(rt_clock));
+  
++ #ifdef CONFIG_TCPCTRL
++     if (use_tcpctrl) {
++         if (tcpctrl_start() < 0) {
++             fprintf(stderr, "Could not open TCP control socket\n");
++ 	    exit(1);
++ 	}
++     }
++ #endif
+  #ifdef CONFIG_GDBSTUB
+      if (use_gdbstub) {
+          if (gdbserver_start(gdbstub_port) < 0) {
+*************** int main(int argc, char **argv)
+*** 5232,5237 ****
+--- 5243,5253 ----
+          }
+      }
+      main_loop();
++ #ifdef CONFIG_TCPCTRL
++     if (use_tcpctrl) {
++         tcpctrl_stop();
++     }
++ #endif
+      quit_timers();
+      return 0;
+  }
+diff -r -p -N -x CVS qemu-pristine/vl.h qemu/vl.h
+*** qemu-pristine/vl.h	2006-03-10 16:30:42.000000000 +0100
+--- qemu/vl.h	2006-03-08 13:49:07.000000000 +0100
+*************** void term_flush(void);
+*** 991,996 ****
+--- 991,1004 ----
+  void term_print_help(void);
+  void monitor_readline(const char *prompt, int is_password,
+                        char *buf, int buf_size);
++ void monitor_process_command(CharDriverState *output, const char *cmdline);
++ 
++ #ifdef CONFIG_TCPCTRL
++ /* tcpctrl.c */
++ int tcpctrl_start(void);
++ void tcpctrl_stop(void);
++ 
++ #endif /* CONFIG_TCPCTRL */
+  
+  /* readline.c */
+  typedef void ReadLineFunc(void *opaque, const char *str);

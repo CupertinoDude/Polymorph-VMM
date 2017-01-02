@@ -2,7 +2,7 @@
 #
 LNAME	= template.polymorph
 
-CC		= gcc -N
+CC		= gcc -N -q
 STRIP	= strip
 RM		= Delete
 AD		= Autodoc

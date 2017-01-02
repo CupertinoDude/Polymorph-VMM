@@ -1,0 +1,12 @@
+ZetaStorage = RDSK part on a physical device. 
+  access hardware using DeviceIO.library
+
+ZetaDataManager = Object and ObjectSets stored into a pool of ZetaStorage
+
+ZetaProperties = Object Attribute Processing
+
+ZetaHeirarchy = Host Heirarchal FileSystem Layer
+
+ZetaIntentions = Intent Logging for replay
+
+ZetaVolume = Zeta Volume Root Data

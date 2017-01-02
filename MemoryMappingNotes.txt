@@ -1,0 +1,38 @@
+
+#define PM_MEMORY_MAPCOUNT 65536
+#define PM_MEMORY_MAP_MASK ((-1)-0x10000)
+struct PolymorphMemory
+{
+	struct Node Link;
+	APTR	Self;
+	struct Hook Magic;
+	APTR	Container;
+	APTR	Application;
+	APTR	Relocation;
+	u_long	Base;
+	u_long	Size;
+	u_long	Reservation;
+};
+
+#define	PM_APPLICATION_MAXATTRS 8192
+struct PolymorphApplication
+{
+	struct PolymorphMemory Link;
+	struct TagItem Attributes[8192];
+};
+
+#define	PM_PROCESSOR_MAX_REGISTERS	32
+struct PolymorphProcessor
+{
+	u_long Registers[32];
+}
+#define	PM_PROC_REG_FLAGS	0
+
+struct PolymorphContainer	//	
+{
+	struct PolymorphMemory Link;
+	struct List MemoryChain;
+	struct List Applications;
+	struct PolymorphPlugin ECPU;
+	APTR MemoryMap[65536];
+};

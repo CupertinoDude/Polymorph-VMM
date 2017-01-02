@@ -2,8 +2,8 @@
 #
 LNAME	= SmallTalkVM.polymorph
 
-CC		= gcc -N
-CXX		= gcc -N
+CC		= gcc -N -q
+CXX		= gcc -N -q
 STRIP	= strip
 MKDIR	= Makedir
 RM		= Delete

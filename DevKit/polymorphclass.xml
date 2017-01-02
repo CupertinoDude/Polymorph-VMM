@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <!DOCTYPE library SYSTEM "library.dtd">
-<library name="polymorphclass" basename="PolymorphClassBase">
+<library name="polymorphclass" basename="PluginBase">
 	<include>exec/types.h</include>
 	<include>exec/ports.h</include>
 	<include>dos/dos.h</include>

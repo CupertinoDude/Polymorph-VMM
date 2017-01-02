@@ -1,0 +1,9 @@
+ZFS
+
+RFS
+
+BTR
+
+****
+Everything above is used from a hex view for FileSystem Identifiers
+Disk FS Type ID's and on-disk magic ID values

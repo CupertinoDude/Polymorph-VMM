@@ -1,0 +1,11 @@
+prefix=/opt/libvirt-0.6.3/
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libvirt
+Version: 0.6.3
+Description: libvirt library
+Requires:
+Libs: -L${libdir} -lvirt -lpthread -lintl 
+Cflags: -I${includedir}
